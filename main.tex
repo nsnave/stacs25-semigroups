@@ -1,0 +1,882 @@
+
+\documentclass[a4paper,UKenglish,cleveref, autoref, thm-restate, anonymous]{lipics-v2021}
+%This is a template for producing LIPIcs articles. 
+%See lipics-v2021-authors-guidelines.pdf for further information.
+%for A4 paper format use option "a4paper", for US-letter use option "letterpaper"
+%for british hyphenation rules use option "UKenglish", for american hyphenation rules use option "USenglish"
+%for section-numbered lemmas etc., use "numberwithinsect"
+%for enabling cleveref support, use "cleveref"
+%for enabling autoref support, use "autoref"
+%for anonymousing the authors (e.g. for double-blind review), add "anonymous"
+%for enabling thm-restate support, use "thm-restate"
+%for enabling a two-column layout for the author/affilation part (only applicable for > 6 authors), use "authorcolumns"
+%for producing a PDF according the PDF/A standard, add "pdfa"
+
+\usepackage{bm}
+
+%\pdfoutput=1 %uncomment to ensure pdflatex processing (mandatatory e.g. to submit to arXiv)
+%\hideLIPIcs  %uncomment to remove references to LIPIcs series (logo, DOI, ...), e.g. when preparing a pre-final version to be uploaded to arXiv or another public repository
+
+%\graphicspath{{./graphics/}}%helpful if your graphic files are in another directory
+
+\bibliographystyle{plainurl}% the mandatory bibstyle
+
+\title{Characterizing NC${}^1$ with Typed Semigroups} %TODO Please add
+
+%\titlerunning{Dummy short title} %TODO optional, please use if title is longer than one line
+
+\author{Anuj Dawar}{Department of Computer Science and Technology, University of Cambridge, United Kingdom \and \url{https://www.cl.cam.ac.uk/~ad260/} }{anuj.dawar@cl.cam.ac.uk}{https://orcid.org/0000-0003-4014-8248}{(Optional) author-specific funding acknowledgements}%TODO mandatory, please use full name; only 1 author per \author macro; first two parameters are mandatory, other parameters can be empty. Please provide at least the name of the affiliation and the country. The full address is optional. Use additional curly braces to indicate the correct name splitting when the last name consists of multiple name parts.
+
+\author{Aidan T. Evans\footnote{Corresponding Author}}{Department of Computer Science and Technology, University of Cambridge, United Kingdom \and \url{https://www.aidantevans.com/} }{ate26@cam.ac.uk}{https://orcid.org/0009-0007-9084-3608}{[funding]}
+
+\authorrunning{A. Dawar and A.\,T. Evans} %TODO mandatory. First: Use abbreviated first/middle names. Second (only in severe cases): Use first author plus 'et al.'
+
+\Copyright{Anuj Dawar and Aidan T. Evans} %TODO mandatory, please use full first names. LIPIcs license is "CC-BY";  http://creativecommons.org/licenses/by/3.0/
+
+\ccsdesc[100]{\textcolor{red}{Replace ccsdesc macro with valid one}} %TODO mandatory: Please choose ACM 2012 classifications from https://dl.acm.org/ccs/ccs_flat.cfm 
+
+\keywords{Dummy keyword} %TODO mandatory; please add comma-separated list of keywords
+
+\category{} %optional, e.g. invited paper
+
+\relatedversion{} %optional, e.g. full version hosted on arXiv, HAL, or other respository/website
+%\relatedversiondetails[linktext={opt. text shown instead of the URL}, cite=DBLP:books/mk/GrayR93]{Classification (e.g. Full Version, Extended Version, Previous Version}{URL to related version} %linktext and cite are optional
+
+%\supplement{}%optional, e.g. related research data, source code, ... hosted on a repository like zenodo, figshare, GitHub, ...
+%\supplementdetails[linktext={opt. text shown instead of the URL}, cite=DBLP:books/mk/GrayR93, subcategory={Description, Subcategory}, swhid={Software Heritage Identifier}]{General Classification (e.g. Software, Dataset, Model, ...)}{URL to related version} %linktext, cite, and subcategory are optional
+
+%\funding{(Optional) general funding statement \dots}%optional, to capture a funding statement, which applies to all authors. Please enter author specific funding statements as fifth argument of the \author macro.
+
+\acknowledgements{I want to thank \dots}%optional
+
+%\nolinenumbers %uncomment to disable line numbering
+
+
+\newcommand{\todo}[1]{\textit{\textcolor{red}{[TODO]: #1}}}
+ 
+\definecolor{ate}{rgb}{0.58, 0.0, 0.83}
+\newcommand{\ate}[1]{\textit{\textcolor{ate}{[Aidan]: #1}}}
+
+
+
+%Editor-only macros:: begin (do not touch as author)%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\EventEditors{John Q. Open and Joan R. Access}
+\EventNoEds{2}
+\EventLongTitle{42nd Conference on Very Important Topics (CVIT 2016)}
+\EventShortTitle{CVIT 2016}
+\EventAcronym{CVIT}
+\EventYear{2016}
+\EventDate{December 24--27, 2016}
+\EventLocation{Little Whinging, United Kingdom}
+\EventLogo{}
+\SeriesVolume{42}
+\ArticleNo{23}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\maketitle
+
+%TODO mandatory: add short abstract of the document
+\begin{abstract}
+    \todo{}
+\end{abstract}
+
+\newpage
+
+\section{Introduction}
+
+
+We call classes of languages like P and NP \emph{complexity classes} because the historically predominant approach to defining them is via the medium of a machine together with a complexity measure. Likewise, we favor the nomenclature of \emph{formal languages} for the classes of regular and context-free languages because of the historical context in which they first gained wide-spread attention, i.e., the study of formal grammars.  Ultimately, however, all these classes are simply classes of languages and there exist possible worlds where, for example, the regular languages would be predominantly called a complexity class, P an `automaton class', and NP a `logic class'.\footnote{In \cite{hennie1965one}, Hennie proved that linear-time-bounded single-tape Turing machines recognize exactly the regular languages. In \cite{cook1971characterizations}, Cook provides an automata theoretic definition of P, proving that the languages recognized by multi-head two-way pushdown automata are exactly those in P; this provided a machine-based definition of P without any reference to complexity measures. In \cite{fagin1974generalized}, Fagin proved that the languages expressible by existential second-order logic are exactly those in NP.} These different media of recognition, i.e., the mathematical objects we use to carve out classes of languages, simply provide us different ways to characterize the same abstract objects. Therefore, in being different characterizations, they, provide different insights into the nature of their respective classes and tools with which to study them.
+
+Historically, the three main alternative\footnote{Alternative to the use of regular expressions and grammars.} characterizations of classes of regular languages used by researchers during the early study of formal language theory were those via automata, logics, and algebras. The automata/machine-based approaches to language recognition had the benefits of being intuitive to understand from the algorithm construction, programming, and systems building perspectives. The logic-based approaches helped us break down the structure of languages into their component parts because of the use of quantifiers, numerical predicates, and logical connectives. Finally, the algebra-based approaches helped us understand the deeper structure of the languages.
+
+The algebraic approach, known as \emph{algebraic automata theory} or \emph{Krohn-Rhodes theory}, characterized classes of regular languages with the languages recognized by classes of finite semigroups via homomorphisms. This approach to the study of languages proved to be a powerful tool for with it, we found success in proving results where other approaches, such as those via machines or logics, had either failed completely or, at the very least, failed to easily generalize.\footnote{A long-standing open question was whether there existed an effective procedure for determining whether a give regular expression recognized a star-free language or not. An answer eluded researchers completely until the star-free regular languages were characterized via algebra; once they were, an algorithm followed naturally from the work. Also, when it came to separating subclasses of regular languages, often game-like techniques were used, i.e., Ehrenfeucht-Fra{\"i}ss{\'e} games, but these methods were often difficult to transfer from one subclass to another; with algebra, however, separations typically just fell-out immediately as a result of Eilenberg's Correspondence Theorem \cite{eilenberg1976automata} and the study of the syntactic semigroup.} However, with finite semigroups, we limit ourselves to the study of classes of regular languages.
+
+Research continued in the 1970s and after for providing logics and machines which characterized classes of languages well beyond the regular languages---e.g., P, NP, PH, etc.---yet research into the construction of algebras characterizing these classes did not. In fact, it would not be until the 2000s that the algebraic approach to representing classes of languages would finally be properly generalized by the use of \emph{typed semigroups} to robustly handle non-regular language classes \cite{behle2007linear,behle2011typed,krebs2007characterizing,krebs2008typed,cano2021positive}. Still, however, we have yet to construct algebraic characterizations\footnote{To be clear, by ``algebraic approach" and ``algebraic characterizations'' here, we do not mean algebraic geometry, arithmetic circuits, VP vs VNP, or anything that is typically referred to today as algebraic complexity theory (cf. \cite[Ch. 12]{wigderson2019mathematics}). Neither should one confuse ``algebra'' here with the portmanteau ``algebraization'' (cf. \cite{aaronson2009algebrization}). Unless otherwise stated, we are only referring to algebra as it is understood in the older field of algebraic automata theory.} of classes any larger than \textsc{DLogTime}-uniform TC${}^0$.
+
+In this work, we take the first steps towards constructing algebraic characterizations of more non-regular language classes by constructing one for \textsc{DLogTime}-uniform NC${}^1$. The core of the proofs reduces to answering an open question from the work of \cite{lautemann2001descriptive} regarding the expressive power of first-order logic over strings extended with arithmetic predicates and what Barrington, Immerman, and Straubing refer to as generalized quantifiers \cite{barrington1990uniformity}---or as we more generally refer to them here, multiplication quantifiers. Specifically, we prove that the expressive power over strings of a logic (regardless of the numerical predicates or quantifiers in use) extended with multiplication quantifiers binding one variable is the same as if it was extended with multiplication quantifiers binding multiple variables. Combined with results from \cite{behle2007linear,krebs2008typed}, we obtain our main result.
+
+In \autoref{sec:prelim}, we cover the relevant background material on semigroup theory, typed semigroups, and multiplication quantifiers. In \autoref{sec:mult}, we prove our intermediate results regarding the expressive power of multiplication quantifiers. In \autoref{sec:alg}, we prove our main result providing an algebraic characterization of \textsc{DLogTime}-uniform NC${}^1$. Finally, in \autoref{sec:conc}, we conclude and outline future work.
+
+%Therefore, we have yet to properly assess the effectiveness of the algebraic approach in the study of non-regular language classes. Perhaps, like it did for the regular languages, algebraic characterizations will prove to be a powerful tool for the study of the non-regular language classes---classes for which the standard approaches have also hitherto come up short. Regardless, though, the first step on this journey is to construct algebraic characterizations of more non-regular language classes.
+
+\section{Preliminaries}\label{sec:prelim}
+
+We assume familiarity with the basic concepts of formal language theory, automata theory, complexity theory, and finite model theory. We do not assume familiarity with algebraic automata theory or algebra in general. 
+
+In Section \ref{sec:backgroundconv}, we clarify the standard notations and conventions used in this report. In Section \ref{sec:backgroundsemi}, we cover the necessary background material on semigroups and groups. In Section \ref{sec:backgroundmult}, we cover logic and multiplication quantifiers. In Section \ref{sec:backgroundtyped}, we cover the algebraic approach to the recognition of languages via typed semigroups needed for Section \ref{sec:alg}.
+
+\subsection{Notations and Conventions}\label{sec:backgroundconv}
+
+\begin{definition}
+    We let $[n] = \{1, \dots, n\}$.
+\end{definition}
+
+\begin{definition}
+    \,
+    \begin{itemize}
+        \item $\mathbb{Z}$ denotes the set of integers.
+        \item $\mathbb{N}$ denotes the set of natural numbers, including 0.
+        \item $\mathbb{Z}^+$ denotes the set of positive integers.
+        \item $\mathbb{S}$ denotes the set of positive square integers.
+    \end{itemize}
+\end{definition}
+
+\begin{definition}
+    For a tuple $t$, we denote by $\pi_i(t)$ the $i^{\text{th}}$ element of $t$.
+\end{definition}
+
+\begin{definition}
+    A \emph{one-hot encoding} of an integer $i \in [n]$ is a length $n$ binary string $b$ such that $b_j = 1$ if $j = i$ and $b_j = 0$ otherwise. For example, the one-hot encoding of $3 \in [5]$ is 00100.
+\end{definition}
+
+\subsection{Semigroup and Group Theory}\label{sec:backgroundsemi}
+
+\begin{definition}[Semigroups, Monoids, and Groups]
+    A \emph{semigroup} $(S, \cdot)$ is a set $S$ closed under an \emph{associative} binary operation $\cdot : S \times S \rightarrow S$. We call a semigroup \emph{finite} if $S$ is finite. Context permitting, we may refer to a semigroup $(S, \cdot)$ simply by its underlying set $S$.
+
+    A \emph{monoid} $(M, \cdot)$ is a semigroup with an element $1 \in M$ such that for all $m \in M$, $1 \cdot m = m \cdot 1 = m$. We call $1$ the \emph{identity} or \emph{neutral} element of $M$. For a semigroup $S$, we denote by $S^1$, the monoid generated by $S$; i.e., $S = S^1$ if $S$ is a monoid or, otherwise, we introduce a new element $1$ to $S$ and define it to be the identity.
+
+    A \emph{group} $(G, \cdot)$ is a monoid with the additional property that for every $g \in G$, there exists an element $g^{-1} \in G$ such that $g \cdot g^{-1} = g^{-1} \cdot g = 1$. We call $g^{-1}$ the \emph{inverse} of $g$.
+\end{definition}
+
+\begin{remark}
+    Observe that all groups are monoids and all monoids are semigroups.
+\end{remark}
+
+\begin{remark}
+    If $\mathbb{Z}$ or $\mathbb{N}$ is referred to as a semigroup, then we assume the operation to be the usual addition unless stated otherwise.
+\end{remark}
+
+\begin{definition}
+    For a semigroup $(S, \cdot_S)$, we say that a set $G \subseteq S$ \emph{generates} $S$ if $S$ is equal to the closure of $G$ under $\cdot_S$; we denote this by $S = \langle G \rangle_{\cdot_S}$, or, simply, $\langle G \rangle$ if the operation is clear from context, and call $G$ a \emph{generating set of} $S$. We say that $S$ is \emph{finitely generated} if there exists a finite generating set of $S$.
+\end{definition}
+
+\begin{remark}
+    Unless otherwise stated, we assume that all semigroups are finitely generated.
+\end{remark}
+
+\begin{definition}
+    A semigroup homomorphism $h : S \rightarrow T$ is a function from a semigroup $(S, \cdot_S)$ to a semigroup $(T, \cdot_T)$ such that for all $s_1, s_2 \in S$, $h(s_1 \cdot_S s_2) = h(s_1) \cdot_T h(s_2)$.
+\end{definition}
+
+\iffalse
+TODO: remove / move elsewhere
+\begin{definition}
+    A semigroup $S'$ is a \emph{subsemigroup} of a semigroup $(S, \cdot)$, denoted $S' \leq S$, if it is isomorphic to a semigroup $(S'', \cdot)$ where $S'' \subseteq S$.
+\end{definition}
+
+\begin{definition}
+    A semigroup $S'$ \emph{divides} a semigroup $S$, denoted $S' \preceq S$, if there exists a subsemigroup $S''$ of $S$ and a surjective homomorphism from $S''$ onto $S'$. In other words, $S'$ divides $S$ if $S'$ is the homomorphic image of a subsemigroup of $S$.
+\end{definition}
+\fi
+
+\begin{definition}
+    $U_1$ is the monoid over $\{0,1\}$ with multiplication defined as usual.
+\end{definition}
+
+\begin{definition}
+    For a set $S$, we denote by $S^+$ the set of non-empty strings over $S$ and by $S^*$ the set of all strings over $S$. We call $S^+$ ($S^*$) the \emph{free semigroup (monoid)} over $S$ and will denote string concatenation by either $\circ$ or simply juxtaposition.
+\end{definition}
+
+\begin{definition}
+    We say that a semigroup $(S, \cdot)$ is \emph{cancellative} if for $a,b,c \in S$, (1) if $a \cdot b = a \cdot c$, then $b = c$ and (2) if $b \cdot a = c \cdot a$, then $b = c$. 
+\end{definition}
+
+\begin{proposition}\label{prop:groupcanc}
+    Every group is a cancellative semigroup.
+\end{proposition}
+
+\begin{definition}[Congruence, Quotient Semigroup, Canonical Homomorphism]
+    A \emph{congruence} on a semigroup $(S, \cdot)$ is an equivalence relation $\sim$ on $S$ such that for all $a,b,c,d \in S$, if $a \sim b$ and $c \sim d$, then $a \cdot c \sim b \cdot d$. We denote by $S/{\sim}$ the set of equivalence classes of $\sim$ on $S$. We denote by $[a]_{\sim}$, or simply $[a]$, the equivalence class of $a \in S$ under $\sim$.
+
+    We may then define a semigroup $(S/{\sim}, \star)$ where for $[a],[b] \in S/{\sim}$, $[a] \star [b] = [a \cdot b]$. We call this semigroup the \emph{quotient semigroup} of $S$ by $\sim$.
+
+    We then define the \emph{canonical homomorphism} $\eta : S \rightarrow S/{\sim}$ by $\eta(a) = [a]$.
+\end{definition}
+
+\subsection{Logics and Multiplication Quantifiers}\label{sec:backgroundmult}
+
+In Section~\ref{sec:backgroundlogic}, we clarify our notations and definitions regarding logics. In Section~\ref{sec:backgroundmult}, we define multiplication quantifiers and provide the necessary background material on them. In Section~\ref{sec:backgrounddef}, we make some brief remarks regarding \emph{definability} in logics.
+
+\subsubsection{Logics}\label{sec:backgroundlogic}
+
+\begin{remark}
+    In this report, we will only consider finite structures over relational vocabularies; specifically, we assume that all structures are over initial segments of the natural numbers, excluding $0$. Thus, for a structure $\mathfrak{A}$, $|\mathfrak{A}| = [n] = \{1, \dots, n\}$ for some $n \in \mathbb{N}$.
+\end{remark}
+
+\begin{remark}
+    We often consider logics containing numerical predicates. These are predicates included in the vocabulary of the logic and are interpreted in the natural way. For example, for the order predicate $<$, we say that $\mathfrak{A} \models a < b$ iff $a^\mathfrak{A}$ is less than $b^\mathfrak{A}$, where $a^\mathfrak{A} \in |\mathfrak{A}| = [n]$, for some $n \in \mathbb{N}$, is the interpretation of variable $a$ in $\mathfrak{A}$. We will also refer to the commonly used numerical predicates $=$, $+$, and $\times$.
+\end{remark}
+
+\begin{remark}
+    We let $\text{Mod}(\varphi)$ denote all models of a formula $\varphi$: \( \text{Mod}(\varphi) = \{\mathfrak{A} \mid \mathfrak{A} \models \varphi\}.\)
+\end{remark}
+
+\begin{remark}
+    Let $\mathfrak{A}$ be a structure. For a formula $\varphi(x_1, \dots, x_k)$ with free variables $x_1, \dots, x_k$, we denote by $\varphi^\mathfrak{A}[a_1, \dots, a_k]$ the function which maps the tuple $(a_1, \dots, a_k)$ to the truth value of $\varphi$ in $\mathfrak{A}$ when the free variables are interpreted as $a_1, \dots, a_k \in |\mathfrak{A}|$. For example, if $\varphi(x) := x < 3$, then $\varphi^\mathfrak{A}[a] = 1$ if $a^\mathfrak{A} < 3$ and $0$ otherwise.
+\end{remark}
+
+\iffalse
+% TODO: remove comments before submission
+
+% define what a quantifier is
+% define what a numerical predicate is
+% state my assumptions regarding what structures/domains we're dealing with
+
+\begin{definition}\label{def:lindstrom}
+    Let $\tau = \{R_1^{(l_1)}, \dots, R_k^{(l_k)}\}$ be a relational vocabulary where $R_i$ is $l_i$-ary. 
+    
+    A \emph{first-order generalized (or Lindstr{\"o}m) quantifier $Q$ over $\tau$} is a set of $\tau$-structures such that $Q$ \emph{binds} $k$ tuples $\overline{x_1},\dots,\overline{x_k}$ of variables, where $|\overline{x_i}| = l_i$, and \emph{extends} over a $k$-tuple of formulae. For an arbitrary $\sigma$-structure $\mathfrak{A}$ and formulae $\varphi_1, \dots, \varphi_k$ over $\sigma$, we have that \[
+        \mathfrak{A} \models Q\overline{x_1}\dots\overline{x_k}\langle \varphi_1(\overline{x_1}), \dots, \varphi_k(\overline{x_k})\rangle
+    \] iff $(|\mathfrak{A}|, \varphi_1^\mathfrak{A}, \dots, \varphi_k^\mathfrak{A}) \in Q$. We call $Q$ a quantifier of \emph{type} $(l_1, \dots, l_k)$.
+
+    We call a quantifier $Q$ of type $(l_1, \dots, l_k)$ \emph{$l$-uniform} if $l_1 = \dots = l_k = l$; $Q$ is \emph{uniform} if it is $l$-uniform for some $l$. We call a quantifier \emph{unary} if it $1$-uniform. Often, if a quantifier is uniform, we will simplify the syntax of the quantifier by writing \[Q\overline{x}\langle \varphi_1(\overline{x}), \dots, \varphi_k(\overline{x})\rangle\] instead of $Q\overline{x_1}\dots\overline{x_k}\langle \varphi_1(\overline{x_1}), \dots, \varphi_k(\overline{x_k})\rangle$.
+    
+\end{definition}
+
+\begin{definition}\label{def:lindstromstrings}
+    Let $\tau = \{R_1^{(l)}, \dots, R_k^{(l)}\}$ be a relational vocabulary where each $R_i$ is $l$-ary. For an ordered $\tau$-structure $\mathfrak{A} = (A, <, \tau^\mathfrak{A})$, let \[
+        \text{str}_\tau(\mathfrak{A}) = \prod_{a_1 \in A}\cdots\prod_{a_l \in A}\{ R_i \in \tau \mid (a_1, \dots, a_l) \in R_i^\mathfrak{A} \} \in (\wp(\tau))^{+}.
+    \] where the products iterate over the elements of $A$ according to the order $<$.
+
+    An \emph{ordered first-order generalized quantifier (or Lindstr{\"o}m quantifier on strings) $Q$ over $\tau$} is a set of ordered $\tau$-structures. $Q$ is $l$-uniform and extends over a $k$-tuple of formulae. For an arbitrary ordered $\sigma$-structure $\mathfrak{A} = (A, <, \sigma^{\mathfrak{A}})$ and formulae $\varphi_1, \dots, \varphi_k$ over $\sigma$, we have that \[
+        \mathfrak{A} \models Q\overline{x}\langle \varphi_1(\overline{x}), \dots, \varphi_k(\overline{x})\rangle
+    \] iff there exists a $\mathfrak{B} \in Q$ such that \(
+        \text{str}_\tau(\mathfrak{B}) = \text{str}_\tau((A, <, \varphi_1^\mathfrak{A}, \dots, \varphi_k^\mathfrak{A})).
+    \)
+\end{definition}
+\begin{remark}
+    Definition \ref{def:lindstrom} has its origin in \cite{lindstrom1966first}. Definition \ref{def:lindstromstrings} is equivalent to those given in \cite{burtschick1998lindstrom} and \cite{lautemann2001descriptive}. 
+\end{remark}
+\fi
+
+\begin{definition}
+    For a set of quantifiers $\mathfrak{Q}$ and numerical predicates $\mathfrak{N}$, we denote by $(\mathfrak{Q})[\mathfrak{N}]$ the logic constructed by extending quantifier-free first-order logic with the quantifiers in $\mathfrak{Q}$ and the numerical predicates in $\mathfrak{N}$. 
+
+    For a singleton set of quantifiers $\mathfrak{Q} = \{Q\}$, we will sometimes denote $(\mathfrak{Q})[\mathfrak{N}]$ as $(Q)[\mathfrak{N}]$. We use similar notation for the sets of numerical predicates.
+
+    We denote by \emph{FO} the set of our ordinary first-order quantifiers: $\{\exists, \forall\}$.
+\end{definition}
+
+\begin{definition}
+    We say that a quantifier is \emph{unary} if it binds only one variable.
+\end{definition}
+
+Besides the standard first-order quantifiers, we will also use the following two unary first-order quantifiers in this paper:
+\begin{definition}
+    \,
+    \begin{itemize}
+        \item $\emph{Maj}$ is the unary \emph{majority quantifier} such that for a structure $\mathfrak{A}$, $\mathfrak{A} \models \emph{Maj} x \varphi(x)$ iff $|\{a \in \mathfrak{A} \mid \varphi^\mathfrak{A}[a] = 1\}| > ||\mathfrak{A}|| / 2$.
+        \item $\emph{Sq}$ is the unary \emph{square quantifier} such that for a structure $\mathfrak{A}$, $\mathfrak{A} \models \emph{Sq} x \varphi(x)$ iff $|\{a \in \mathfrak{A} \mid \varphi^\mathfrak{A}[a] = 1\}|$ is a positive square number.
+    \end{itemize}
+\end{definition}
+
+\begin{example}
+    \,
+    \begin{itemize}
+        \item $(\text{FO})[=]$ is our usual first-order logic with equality. 
+        \item $(\text{Maj})[<]$ is majority logic, i.e., it contains the majority quantifier and the order predicate. 
+        \item $(\varnothing)[\varnothing]$ is quantifier-free first-order logic with no numerical predicates.
+    \end{itemize}
+\end{example}
+
+\begin{definition}
+    We say that a logical formula is a \emph{depth-$k$ formula} if its quantifier depth is at most $k$.
+\end{definition}
+
+
+\begin{definition}
+    We say that a structure $\mathfrak{A}$ is a \emph{string structure} over $\Sigma = \{\sigma_1, \dots, \sigma_c\}$ if it is ordered and over a relational vocabulary $\tau = \{R_{\sigma_1}, \dots, R_{\sigma_c}\}$ where each $R_{\sigma_i}$ is unary and for every $a \in |\mathfrak{A}|$, there exists exactly one $\sigma_i$ such that $a \in R_{\sigma_i}^\mathfrak{A}$. Thus, we may interpret a string $w \in \Sigma^+$ as a string structure over $\Sigma$, and vice versa.
+
+    We say that a language $L \subseteq \Sigma^+$ is \emph{expressible} by a logic $\mathfrak{L}$ if there exists a $\mathfrak{L}$-sentence $\varphi$ over a unary relational vocabulary $\tau = \{R_{\sigma_1}, \dots, R_{\sigma_c}\}$ such that for all string structures $\mathfrak{A}$ over $\Sigma$, $\mathfrak{A} \models \varphi$ iff $\mathfrak{A} \in L$---or more precisely, iff $\mathfrak{A}$ encodes a string in $L$.
+    
+    For a logic $\mathfrak{L}$, we denote by $\mathcal{L}(\mathfrak{L})$, the languages expressible by $\mathfrak{L}$.
+\end{definition}
+
+\subsubsection{Multiplication Quantifiers}\label{sec:backgroundmult}
+
+The definition of multiplication quantifier has its origin in Barrington, Immerman, and Straubing \cite[Section 5]{barrington1990uniformity} where they were refered to as monoid quantifiers or generalized quantifiers; the authors proved that the languages in \textsc{DLogTime}-uniform NC${}^1$ are exactly those expressible by first-order logic with quantifiers whose truth-value is determined via multiplication in a finite semigroup. We now define `multiplication quantifiers':
+
+\begin{definition}[Multiplication Quantifiers]\label{def:multquant}
+    Let $S$ be a semigroup, $B \subseteq S$, and $\gamma : \{0,1\}^k \rightarrow S$ a total function. We call $\Gamma_{l,\gamma}^{S,B}$ the \emph{multiplication quantifier} for $S$, $B$, and $\gamma$ which binds $l$ variables and extends over a $k$-tuple of formulae. If $B = \{s\}$ is a singleton, then we simply write $\Gamma_{l,\gamma}^{S,s}$.
+    
+    For an ordered structure $\mathfrak{A}$ and formulae $\varphi_1, \dots, \varphi_k$, we evaluate the formula \[
+        \Phi := \Gamma_{l,\gamma}^{S,B}x_1\dots x_l\langle \varphi_1(x_1,\dots,x_l), \dots, \varphi_k(x_1,\dots,x_l)\rangle
+    \] as follows. Let $\gamma^\mathfrak{A} : |\mathfrak{A}|^l \rightarrow S$ be a function such that \[
+        \gamma^\mathfrak{A}(a_1,\dots,a_l) = \gamma(\varphi_1^\mathfrak{A}[a_1,\dots,a_l], \dots, \varphi_k^\mathfrak{A}[a_1,\dots,a_l]).
+    \] We call $\gamma^\mathfrak{A}$ the \emph{evaluator function} for our formula. We say that \(\mathfrak{A} \models \Phi\) iff \[
+        \prod_{a_1 \in |\mathfrak{A}|}\cdots\prod_{a_l \in |\mathfrak{A}|}\gamma^\mathfrak{A}(a_1,\dots,a_l) \in B
+    \] where the products iterate over the elements of $|\mathfrak{A}|$ based on the order of the structure.
+\end{definition}
+
+\begin{example}
+    Our normal first-order existential quantifier may be represented by $\Gamma^{U_1,0}_{1,\gamma}$ where $\gamma : \{0,1\} \rightarrow U_1$ such that $\gamma(0) = 1$ and $\gamma(1) = 0$. Similar goes for the universal quantifier.
+\end{example}
+
+\begin{definition}
+    For a semigroup $S$, we define the following sets of quantifiers: 
+    \begin{align*}
+        \Gamma^S &= \left\{\Gamma^{S,B}_{l,\gamma} \mid B \subseteq S \text{, } \gamma : \{0,1\}^k \rightarrow S \text{, and } l,k \geq 1\right\}\\
+        \Gamma^S_{l} &= \left\{\Gamma^{S,B}_{l,\gamma} \mid B \subseteq S \text{ and } \gamma : \{0,1\}^k \rightarrow S\right\}\\
+        \Gamma^S_{l,\gamma} &= \left\{\Gamma^{S,B}_{l,\gamma} \mid B \subseteq S\right\}
+    \end{align*}
+    Finally, let $\Gamma^\emph{fin}$ be the set of all multiplication quantifiers over finite semigroups and $\Gamma^\emph{fin}_1$ be the set of all unary multiplication quantifiers over finite semigroups.
+\end{definition}
+
+From \cite[Corollary 9.1]{barrington1990uniformity}, we know that $\text{\textsc{DLogTime}-uniform NC${}^1$}$ is characterized by $(\text{FO})[+,\times]$ equipped with finite multiplication quantifiers:
+
+\begin{theorem}[\cite{barrington1990uniformity}]\label{thm:logfornc1}
+    $\emph{\textsc{DLogTime}-uniform NC${}^1$} = \mathcal{L}((\emph{FO} \cup \Gamma^\emph{fin})[+,\times])$.
+\end{theorem}
+
+% include in this remark that we don't actually need for the exposition what a non-solvable monoid is but S5 will do
+\begin{remark}\label{thm:s5logfornc1}
+    In fact, simply the set of multiplication quantifiers for some finite, non-solvable monoid will suffice. The definition of ``non-solvable monoid'' is not needed for our proofs here but, for example, the \emph{symmetric group of degree five}, denoted $S_5$, is a non-solvable monoid. Therefore, we know that $\text{\textsc{DLogTime}-uniform NC${}^1$} = \mathcal{L}((\text{FO}\cup\Gamma^{S_5})[+,\times])$.
+\end{remark}
+
+We also have a similar characterization for the regular languages:
+\begin{theorem}[\cite{barrington1990uniformity}]\label{thm:fologforreg}
+    \emph{\textsc{Reg}} $= \mathcal{L}((\emph{FO} \cup \Gamma^\emph{fin}_1)[<])$.
+\end{theorem}
+\noindent Later, \cite[Theorem 5.1]{lautemann2001descriptive} showed that introducing non-unary quantifiers doesn't increase the expressive power in the case of order predicates:
+\begin{theorem}\label{thm:unaryfologforreg}
+    \emph{\textsc{Reg}} $= \mathcal{L}((\emph{FO} \cup \Gamma^\emph{fin})[<])$.
+\end{theorem}
+
+\subsubsection{Definability}\label{sec:backgrounddef}
+
+\begin{definition}
+    Say that a first-order quantifier $Q$ binds $l$ variables and extends over a $k$-tuple of formulae. We say that $Q$ is \emph{definable} in a logic $\mathfrak{L}$ if there exists a sentence $\varphi$ in $\mathfrak{L}$ over a vocabulary $\tau = \{R_1^{(l)}, \dots, R_k^{(l)}\}$, i.e., each relation is $l$-ary, such that for all structures $\mathfrak{A}$, $\mathfrak{A} \models \varphi$ iff $\mathfrak{A} \models Qx_1\dots x_l\langle R_1(x_1,\dots,x_l), \dots, R_k(x_1,\dots,x_l)\rangle$.
+\end{definition}
+
+\begin{remark}
+    Observe that if a quantifier $Q$ is definable in a logic $\mathfrak{L}$, then any use of $Q$ in a formula can be substituted with a formula from $\mathfrak{L}$.
+\end{remark}
+
+\begin{definition}
+    Similar to the above, we say that a $k$-ary numerical predicate $R$ is \emph{definable} in a logic $\mathfrak{L}$ if there exists a formula $\varphi$ in $\mathfrak{L}$ with free variables $x_1, \dots, x_k$ such that for all structures $\mathfrak{A}$, $\mathfrak{A} \models \varphi(x_1, \dots, x_k)$ iff $\mathfrak{A} \models R x_1\dots x_k$.
+\end{definition}
+
+\subsection{Typed Semigroups}\label{sec:backgroundtyped}
+
+
+\begin{definition}[Boolean Algebra]
+    A \emph{Boolean algebra} over a set $S$ is a set $B \subseteq \wp(S)$ such that $\varnothing, S \in B$ and $B$ is closed under union, intersection, and complementation. If $B$ is finite, we call it a \emph{finite} Boolean algebra.
+
+    We call $\varnothing$ and $S$ the \emph{trivial elements} (or in some contexts, the \emph{trivial types}) of $B$.
+\end{definition}
+
+\begin{definition}
+    Let $B_1$ and $B_2$ be Boolean algebras over sets $S$ and $T$, respectively. We call $h : B_1 \rightarrow B_2$ a \emph{homomorphism of Boolean algebras} if $h(\varnothing) = \varnothing$, $h(S) = T$, and for all $s_1, s_2 \in B_1$, $h(s_1 \cap s_2) = h(s_1) \cap h(s_2)$, $h(s_1 \cup s_2) = h(s_1) \cup h(s_2)$, and $h(s^C) = (h(s))^C$.
+\end{definition}
+
+\begin{definition}[Typed Semigroup]
+    Let $S$ be a semigroup, $G$ a Boolean algebra over $S$, and $E$ a finite subset of $S$. We call the tuple $T = (S, G, E)$ a \emph{typed semigroup over $S$} and the elements of $G$ \emph{types} and the elements of $E$ \emph{units}. We call $S$ the \emph{base semigroup} of $T$. If $S$ is a monoid or group, then we may also call $T$ a \emph{typed monoid} or \emph{typed group}, respectively.
+
+    If $G = \{\varnothing, A, S - A, S\}$, then we often abbreviate $T$ as $(S, A, E)$, i.e., the Boolean algebra is signified by an element, or elements, which generates it---in this case, $A$. 
+\end{definition}
+
+
+\begin{definition}\label{def:typedhom}
+    A \emph{typed homomorphism} $h : (S, G, E) \rightarrow (T, H, F)$ of typed semigroups is a triple $(h_1, h_2, h_3)$ where $h_1 : S \rightarrow T$ is a semigroup homomorphism, $h_2 : G \rightarrow H$ is a homomorphism of Boolean algebras, and $h_3 : E \rightarrow F$ is a mapping of sets such that the following conditions hold:
+    \begin{enumerate}[\ \ \ \ (i)]
+        \item For all $A \in G$, $h_1(A) = h_2(A) \cap h_1(S)$.
+        \item For all $e \in E$, $h_1(e) = h_3(e)$.
+    \end{enumerate}
+\end{definition}
+
+\begin{definition}\label{def:langrecognitiontyped}
+    A typed semigroup $T = (S, G, E)$ \emph{recognizes} a language $L \subseteq \Sigma^+$ if there exists a typed homomorphism from $(\Sigma^+, L, \Sigma)$ to $T$. We let $\mathcal{L}(T)$ denote the set of languages recognized by $T$.
+\end{definition}
+
+We then have the following definitions and facts about typed semigroups:
+
+\begin{proposition}
+    If the base monoid of a typed semigroup $T$ is finite, then $\mathcal{L}(T) \subseteq \emph{\textsc{Reg}}$.
+\end{proposition}
+
+\begin{definition}
+    Let $(S, G, E)$ and $(T, H, F)$ be typed semigroups.
+    \begin{itemize}
+        \item A typed homomorphism $h = (h_1, h_2, h_3) : (S, G, E) \rightarrow (T, H, F)$ is \emph{injective} (\emph{surjective}, or \emph{bijective}) if $h_1$, $h_2$, and $h_3$ are.
+        \item $(S, G, E)$ is a \emph{typed subsemigroup} (or, simply, ``subsemigroup'' when context is obvious) of $(T, H, F)$, denoted $(S, G, E) \leq (T, H, F)$, if $S$ is a subsemigroup of $T$ and there exists an injective typed homomorphism $h : (S, G, E) \rightarrow (T, H, F)$.
+        \item $(S, G, E)$ divides $(T, H, F)$, denoted $(S, G, E) \preceq (T, H, F)$, if there exists a surjective  typed homomorphism from a typed subsemigroup of $(T, H, F)$ to $(S, G, E)$.
+        \iffalse TODO: remove before submission
+            \item A  typed semigroup $(S, G', E)$ is a \emph{shift} of $(S, G, E)$ if there exist $p,q \in S$, with \[G' = \{\{s \in S \mid psq \in A\} \mid A \in G\}.\]
+            \item Let $E' \subseteq S$ be any finite set. Then, we call $(S, G, E')$ a \emph{unit relaxation} of $(S, G, E)$.
+        \fi
+    \end{itemize}
+\end{definition}
+
+\begin{proposition}[\cite{behle2011typed}]\label{prop:typedsemigroupprops}
+    Let $T_1$, $T_2$, and $T_3$ be typed semigroup.
+    \begin{itemize}
+        \item Typed homomorphisms are closed under composition.
+        \item Division is transitive: if $T_1 \preceq T_2$ and $T_2 \preceq T_3$, then $T_1 \preceq T_3$.
+        \item If $T_1 \preceq T_2$, then $\mathcal{L}(T_1) \subseteq \mathcal{L}(T_2)$.
+    \end{itemize}
+\end{proposition}
+
+\begin{definition}\label{def:syncong}
+    Let $L$ be a language. We define the \emph{syntactic congruence} of $L$ as the relation $\sim_L$ on $\Sigma^+$ such that for all $x, y \in \Sigma^+$, $x \sim_L y$ if and only if for all $w,v \in \Sigma^+$, $wxv \in L$ iff $wyv \in L$.
+\end{definition}
+\begin{definition}
+    The \emph{syntactic semigroup} of a language $L \subseteq \Sigma^+$ is the quotient semigroup $\Sigma^+/{\sim_L}$. We call the canonical homomorphism $\eta_L : \Sigma^+ \to \Sigma^+/{\sim_L}$ the \emph{syntactic homomorphism} of $L$.
+\end{definition}
+\begin{remark}
+    Observe that $\eta_L$ is surjective.
+\end{remark}
+
+\begin{definition}\label{def:typedcongmin}
+    Let $T = (S, G, E)$ be a typed semigroup. A congruence $\sim$ over $S$ is a \emph{typed congruence over $T$} if for every $A \in G$ and $s_1,s_2\in S$, if $s_1 \sim s_2$ and $s_1 \in A$, then $s_2 \in A$.
+
+    For a typed congruence $\sim$ over $T$, let
+    \begin{align*}
+        S'/{\sim} &= \{[x]_\sim \mid x \in S'\} \text{ where $S' \subseteq S$}\\
+        G/{\sim} &= \{A/{\sim} \mid A \in G\}\\
+        E/{\sim} &= \{[x]_\sim \mid x \in E\}.
+    \end{align*}
+    \noindent Then, $T/{\sim} := (S/{\sim}, G/{\sim}, E/{\sim})$ is the \emph{typed quotient semigroup of $T$ by $\sim$}.
+
+    Let $\sim_T$ denote the typed congruence on $T$ such that for $s_1,s_2 \in S$, $s_1 \sim_T s_2$ iff for all $x,y \in S$ and $A \in G$, $xs_1y \in A$ iff $xs_2y \in A$. We then refer to the quotient semigroup $T/{\sim_T}$ as the \emph{minimal reduced semigroup of $T$}.
+\end{definition}
+
+\begin{definition}
+    For a language $L \subseteq \Sigma^+$, we define the \emph{syntactic typed semigroup of $L$}, denoted $\emph{syn}(L)$, to be the typed semigroup $(\Sigma^+, L, \Sigma)/{\sim_L}$. Recall that ${\sim_L}$ is the syntactic congruence of $L$, defined in Definition \ref{def:syncong}.
+
+    We also get the \emph{canonical typed homomorphism}, $\eta_L : (\Sigma^+, L, \Sigma) \rightarrow \emph{syn}(L)$ induced by the syntactic homomorphism of $L$.
+\end{definition} 
+
+
+\begin{definition}\label{def:origtypedquantsemi}
+    For a \emph{unary} multiplication quantifier $Q = \Gamma^{S,A}_{1,\gamma}$ where $\gamma : \{0,1\}^k \rightarrow S$, we define the \emph{typed quantifier semigroup} of $Q$, denoted $\mathcal{S}(Q)$, to be the syntactic typed semigroup of the language $L_Q \subseteq (\{0,1\}^k)^+$ where $w \in L_Q$ iff \[
+        w \models Q x \langle B_1(x), \dots, B_k(x) \rangle
+    \] where $w_{x=i} \models B_jx$ iff the $j^{\text{th}}$ bit of $w_i$ equals 1. Thus, $\mathcal{S}(Q) = ((\{0,1\}^k)^+, L_Q, \{0,1\}^k) / {\sim_{L_Q}}$.
+\end{definition}
+
+\begin{proposition}[\cite{krebs2008typed}]
+    A typed semigroup is the syntactic semigroup of a language iff it is reduced, generated by its unites, and has four or two types. (In the case of two types, then it only recognizes the empty language or the language of all strings.)
+\end{proposition}
+
+\begin{definition}
+    For a set of typed semigroups $T$, we denote by $\emph{sbpc}_<(T)$ the \emph{ordered strong block product closure of $T$}. Because the definition of this closure is quite technical but not needed to understand the proofs in this paper, we include it in \autoref{app:bp}.
+\end{definition}
+
+From \cite[Theorem 4.14]{krebs2008typed}, we then get the following relationship between logics and algebras:\footnote{The theorem in \cite{krebs2008typed} is actually more general as it accounts for more predicates than just order; however, for our purposes, order alone suffices.}
+\begin{theorem}\label{thm:logcircalgequiv}
+    Let $\mathfrak{Q}$ be a set of quantifiers and $\bm{Q}$ its set of typed quantifier semigroups for $\mathfrak{Q}$. Then, \(
+        \mathcal{L}((\mathfrak{Q})[<]) = \mathcal{L}(\emph{sbpc}_<(\bm{Q}))
+    \).
+\end{theorem}
+\iffalse
+TODO: remove comments before submission if not needed
+Then, via \cite[Corollary 5.13]{krebs2008typed}, we obtain an algebraic characterization of \textsc{DLogTime}-uniform TC${}^0$:
+\begin{corollary}\label{cor:algfortc0}
+    \(\textsc{DLogTime}\emph{-uniform}\ \emph{TC}^0 = \mathcal{L}(\emph{sbpc}_<(\{(\mathbb{Z}, \mathbb{Z}^+, \pm 1), (\mathbb{N}, \mathbb{S}, \{0,1\})\}))\)
+\end{corollary}
+\fi
+\section{Simplifying Multiplication Quantifiers}\label{sec:mult}
+
+
+We aim to construct an algebraic characterization of \textsc{DLogTime}-uniform NC${}^1$ by taking advantage of Theorem \ref{thm:logcircalgequiv}. To do so, however, we need a logic which characterizes \textsc{DLogTime}-uniform NC${}^1$ using only unary first-order quantifiers.
+
+Now, from Remark \ref{thm:s5logfornc1}, we know of a logic containing non-unary first-order quantifiers:
+\begin{equation*}\label{eq:foo1}
+    \text{\textsc{DLogTime}-uniform NC${}^1$} = \mathcal{L}((\text{FO} \cup \Gamma^{S_5})[+,\times])
+\end{equation*} Thus, to take us a step closer to applying Theorem \ref{thm:logcircalgequiv}, we will prove in this section that having unary quantifiers alone suffices to express the same languages: \[
+    \mathcal{L}((\text{FO} \cup \Gamma^{S_5})[+,\times]) = \mathcal{L}((\text{FO} \cup \Gamma^{S_5}_1)[+,\times]),
+\] which answers an open question first raised in \cite{lautemann2001descriptive}.
+
+While we only need to show an equivalence of $(\emph{FO} + \Gamma^{S_5})[+,\times]$ and $(\emph{FO} + \Gamma^{S_5}_1)[+,\times]$ at the language level---i.e., that they express the same languages---we will actually prove the stronger claim that for every finite semigroup $S$, all quantifiers in $\Gamma^{S}$ are definable in $(\Gamma^S_1)[\varnothing]$. In other words, we will prove that any use of $\Gamma^{S}$ quantifiers may be substituted by a $(\Gamma^S_1)[\varnothing]$ formulae without loss or gain in expressive power. Moreover, we will prove that we don't need an infinite number of quantifiers to express \textsc{DLogTime}-uniform NC${}^1$. Simply a finite set of multiplication quantifiers binding one variable and extending over $k$-tuples (for some fixed $k$) will suffice.
+
+We first prove that we can fix the size of the tuple over which the quantifier acts:
+
+\begin{lemma}\label{lem:finitetuple}
+    For every finite semigroup $S$, there exists a function $\delta : \{0,1\}^c \rightarrow S$ such that for every $s \in S$, $l \in \mathbb{N}$, and $\gamma : \{0,1\}^k \rightarrow S$, the quantifier $\Gamma^{S,s}_{l,\gamma}$ is definable in $(\Gamma^{S,s}_{l,\delta})[\varnothing]$.
+\end{lemma}
+
+\begin{proof}
+    Let $\overline{x_l}$ denote the tuple $(x_1,\dots,x_l)$. Let $S$ be an arbitrary finite semigroup.
+
+    To construct $\delta$, we will let $|S|$ be the size of the tuples over which $\delta$ acts; thus, let $c = |S|$. Let $z \in S$ be fixed and arbitrary. Say that $S = \{s_1, \dots, s_c\}$. Let $\delta : \{0,1\}^c \rightarrow S$ such that if $w \in \{0,1\}^c$ is a one-hot encoding of $i$ where $1 \leq i \leq c$, then $\delta(w) = s_i$; else, $\delta(w) = z$. For example, if $|S| = 3$, then $\delta(100) = s_1$, $\delta(010) = s_2$, $\delta(001) = s_3$, $\delta(110) = \delta(000) = z$, etc.
+
+    Now, let $s \in S$, $l \in \mathbb{N}$, and $\gamma : \{0,1\}^k \rightarrow S$ be arbitrary. Let $\tau = \{P_1^{(l)}, \dots, P_k^{(l)}$\} be a relational vocabulary. We will now show that $\Gamma^{S,s}_{l,\gamma}$ is definable in $(\Gamma^{S,s}_{l,\delta})[\varnothing]$.
+
+    Specifically, we will now show that for \[
+        \Phi_1 := \Gamma^{S,s}_{l,\gamma}\overline{x_l}\langle P_1 \overline{x_l}, \dots, P_k \overline{x_l}\rangle
+    \] there exists a $\tau$-sentence \[
+        \Phi_2 := \Gamma^{S,s}_{l,\delta}\overline{x_l}\langle \psi_1(\overline{x_l}), \dots, \psi_c(\overline{x_l})\rangle,
+    \] where each $\psi_i$ is a boolean combination of $P_1,\dots,P_k$,
+    such that \(
+        \text{Mod}(\Phi_1) = \text{Mod}(\Phi_2)
+    \).
+    
+    We now construct $\psi_1, \dots, \psi_c$.
+
+    Let $\gamma^P$ be a map from $S$ to sets of boolean combinations of $P_1,\dots,P_k$ such that if $w_1\dots w_k \in \{0,1\}^k$ maps to $s$ under $\gamma$, then $P'_1 \wedge \dots \wedge P'_k \in \gamma^P(s)$ where $P'_i = P_i \overline{x_l}$ if $w_i = 1$ and $P'_i = \neg P_i \overline{x_l}$ if $w_i = 0$. For example, if $S = \{s_1, s_2, s_3\}$, $k=2$, $\gamma(00) = \gamma(10) = \gamma(01) = s_1$, and $\gamma(11) = s_3$, then $\gamma^P(s_1) = \{\neg P_1\overline{x_l} \wedge \neg P_2\overline{x_l}, P_1\overline{x_l} \wedge \neg P_2\overline{x_l}, \neg P_1\overline{x_l} \wedge P_2\overline{x_l}\}$, $\gamma^P(s_2) = \varnothing$, and $\gamma^P(s_3) = \{P_1\overline{x_l} \wedge P_2\overline{x_l}\}$. We then set \[\psi_i := \bigvee_{\phi \in \gamma^P(s_i)} \phi.\] By construction since $\gamma$ is a total function, observe that for every structure, there will be \emph{exactly} one $i$ such that $\psi_i$ evaluates to true. We have now defined $\psi_1, \dots, \psi_c$ and, thus, $\Phi_2$.
+    
+    We now show that $\text{Mod}(\Phi_1) = \text{Mod}(\Phi_2)$.
+
+    Let $\mathfrak{A}$ be an arbitrary $\tau$-structure. Let $\gamma^\mathfrak{A} : |\mathfrak{A}|^l \rightarrow S$ and $\delta^\mathfrak{A} : |\mathfrak{A}|^l \rightarrow S$ be the evaluator functions for $\Phi_1$ and $\Phi_2$, respectively. Thus, for $\overline{a_l} \in |\mathfrak{A}|^l$,
+    \begin{align*}
+        &\gamma^\mathfrak{A}(\overline{a_l}) = \gamma(\langle P^\mathfrak{A}_1[\overline{a_l}], \dots, P^\mathfrak{A}_k[\overline{a_l}]\rangle)\\
+        \text{and }&\delta^\mathfrak{A}(\overline{a_l}) = \delta(\langle \psi^\mathfrak{A}_1[\overline{a_l}], \dots, \psi^\mathfrak{A}_c[\overline{a_l}]\rangle).
+    \end{align*}
+
+    \noindent By construction of $\delta$ and $\psi_i$, observe that $\gamma^\mathfrak{A}$ and $\delta^\mathfrak{A}$ are in fact the same function. Let $s_i \in S = \{s_1, \dots, s_c\}$ be arbitrary:
+    \begin{align*}
+        &\gamma^\mathfrak{A}(\overline{a_l}) = s_i \\
+        \text{ iff } &\gamma(\langle P^\mathfrak{A}_1[\overline{a_l}], \dots, P^\mathfrak{A}_k[\overline{a_l}]\rangle) = s_i &\text{by definition of $\gamma^\mathfrak{A}$}\\
+        \text{ iff } &\psi^\mathfrak{A}_i[\overline{a_l}] = 1 &\text{by construction of $\psi_i$}\\
+        \text{ iff } &\delta(\langle \psi^\mathfrak{A}_1[\overline{a_l}], \dots, \psi^\mathfrak{A}_c[\overline{a_l}]\rangle) = s_i &\text{by construction of $\delta$}\\
+        \text{ iff } &\delta^\mathfrak{A}(\overline{a_l}) = s_i &\text{by definition of $\delta^\mathfrak{A}$}
+    \end{align*}
+    
+    \noindent Therefore, \[
+        \prod_{a_1 \in |\mathfrak{A}|}\cdots\prod_{a_l \in |\mathfrak{A}|}\gamma^\mathfrak{A}(a_1,\dots,a_l) = \prod_{a_1 \in |\mathfrak{A}|}\cdots\prod_{a_l \in |\mathfrak{A}|}\delta^\mathfrak{A}(a_1,\dots,a_l)
+    \] so by definition of our multiplication quantifiers, \[
+        \mathfrak{A} \models \Phi_1 \text{ iff } \mathfrak{A} \models \Phi_2
+    \] and, thus, $\text{Mod}(\Phi_1) = \text{Mod}(\Phi_2)$.
+\end{proof}
+
+We now prove that having quantifiers binding only one variable is sufficient:
+
+\begin{theorem}\label{thm:finitebinding}
+    For every finite semigroup $S$, there exists a function $\delta : \{0,1\}^c \rightarrow S$ such that for every $s \in S$, $l \in \mathbb{N}$, and $\gamma : \{0,1\}^k \rightarrow S$, the quantifier $\Gamma^{S,s}_{l,\gamma}$ is definable in $(\Gamma^{S}_{1,\delta})[\varnothing]$.
+\end{theorem}
+\begin{proof}
+    Let $S = \{s_1, \dots, s_c\}$ be an arbitrary finite semigroup and let $\delta : \{0,1\}^c \rightarrow S$ be constructed as done in Lemma \ref{lem:finitetuple}. Let $l \in \mathbb{N}$ and $\gamma : \{0,1\}^k \rightarrow S$ be arbitrary and let $\tau = \{P_1^{(l)}, \dots, P_k^{(l)}\}$ be a relational vocabulary. Finally, for each $s \in S$, let \[
+        \Phi_1^s := \Gamma^{S,s}_{l,\gamma}\overline{x_l}\langle P_1 \overline{x_l}, \dots, P_k \overline{x_l}\rangle.
+    \] We want to show that for each $s \in S$, there exists a $\tau$-sentence $\Phi_2^s$ in $(\Gamma^S_{1,\delta})[\varnothing]$ such that $\text{Mod}(\Phi_1^s) = \text{Mod}(\Phi_2^s)$.
+
+    We proceed by induction on $l$. If $l=1$, then the result follows from Lemma \ref{lem:finitetuple}. Thus, assume that for each $s \in S$,
+    \begin{align*}
+        \text{$\Gamma^{S,s}_{l-1,\gamma}$ is definable in $(\Gamma^{S}_{1,\delta})[\varnothing]$.}\tag{I.H.}
+    \end{align*}
+    We now show that for each $s \in S$, $\Gamma^{S,s}_{l,\gamma}$ is definable in $(\Gamma^{S}_{1,\delta})[\varnothing]$.
+
+    \iffalse
+    By Lemma \ref{lem:finitetuple}, we know that there is a sentence of the form \[
+        \Phi_1' := \Gamma^{S,s}_{l,\delta}\overline{x_l}\langle \psi_1(\overline{x_l}), \dots, \psi_c(\overline{x_l})\rangle,
+    \] where each $\psi_i$ is a boolean combination of $P_1,\dots,P_k$, such that $\text{Mod}(\Phi_1) = \text{Mod}(\Phi_1')$.
+    \fi
+
+    Let $s \in S$ be arbitrary. We now construct a sentence $\Phi^s$ and prove that $\text{Mod}(\Phi_1^s) = \text{Mod}(\Phi^s)$; we will then use the inductive hypothesis to convert $\Phi^s$ into a sentence $\Phi_2^s$ in $(\Gamma^S_{1,\delta})[\varnothing]$ such that $\text{Mod}(\Phi^s) = \text{Mod}(\Phi_2^s)$. Let \[
+        \Phi^s := \Gamma^{S,s}_{1,\delta}x_1\langle \theta_1(x_1), \dots, \theta_c(x_1)\rangle
+    \] where \[
+        \theta_i (x_1) = \Gamma^{S,s_i}_{l-1,\gamma}x_2\dots x_l\langle P_1 x_1x_2\dots x_l, \dots, P_k x_1x_2\dots x_l\rangle
+    \]
+
+    Let $\mathfrak{A}$ be an arbitrary $\tau$-structure. Let $\gamma^\mathfrak{A} : |\mathfrak{A}|^l \rightarrow S$ and $\delta^\mathfrak{A} : |\mathfrak{A}| \rightarrow S$ be the evaluator functions for $\Phi^s_1$ and $\Phi^s$, respectively. To show that $\text{Mod}(\Phi^s_1) = \text{Mod}(\Phi^s)$, we will show that \[
+        \prod_{a_1 \in |\mathfrak{A}|}\cdots\prod_{a_l \in |\mathfrak{A}|}\gamma^\mathfrak{A}(a_1,\dots,a_l) = \prod_{a \in |\mathfrak{A}|}\delta^\mathfrak{A}(a).
+    \] 
+    First, note that by construction of $\theta_1, \dots, \theta_c$, we get that \begin{align*}
+        \text{for every $a \in |\mathfrak{A}|$, if $\theta_i^\mathfrak{A}[a] = \theta_j^\mathfrak{A}[a] = 1$, then $i = j$}\tag{$\star$}
+    \end{align*} since each $\theta_i$ will perform the same multiplication within $S$ during evaluation but each $\theta_i$ will check if the product is equal to a different $s_i$. Then, for every $a \in |\mathfrak{A}|$ and $s_i \in S$,
+    \begin{align*}
+        &\delta^\mathfrak{A}(a) = s_i \\
+        \text{ iff } &\delta(\langle \theta_1^\mathfrak{A}[a], \dots, \theta_c^\mathfrak{A}[a]\rangle) = s_i &\text{by definition of $\delta^\mathfrak{A}$}\\
+        \text{ iff } &\theta_i^\mathfrak{A}[a] = 1 &\text{by construction of $\delta$ and $(\star)$}
+    \end{align*}
+    Then, by construction of $\theta_i$, we get that $\delta^\mathfrak{A}(a) = s_i$ iff \[
+        \prod_{a_2 \in |\mathfrak{A}|}\cdots\prod_{a_l \in |\mathfrak{A}|}\gamma(\langle P_1^\mathfrak{A}[a, a_2, \dots, a_l], \dots, P_k^\mathfrak{A}[a, a_2, \dots, a_l] \rangle) = s_i
+    \] and, thus, \[
+        \delta^\mathfrak{A}(a) = \prod_{a_2 \in |\mathfrak{A}|}\cdots\prod_{a_l \in |\mathfrak{A}|}\gamma(\langle P_1^\mathfrak{A}[a, a_2, \dots, a_l], \dots, P_k^\mathfrak{A}[a, a_2, \dots, a_l] \rangle)
+    \] Therefore, 
+    \begin{align*}
+        \prod_{a \in |\mathfrak{A}|}\delta^\mathfrak{A}(a)
+        &=  \prod_{a \in |\mathfrak{A}|} \prod_{a_2 \in |\mathfrak{A}|}\cdots\prod_{a_l \in |\mathfrak{A}|}\gamma(\langle P_1^\mathfrak{A}[a, a_2, \dots, a_l], \dots, P_k^\mathfrak{A}[a, a_2, \dots, a_l] \rangle)\\
+        &= \prod_{a_1 \in |\mathfrak{A}|}\cdots\prod_{a_l \in |\mathfrak{A}|}\gamma^\mathfrak{A}(a_1,\dots,a_l) \text{ by definition of $\gamma^\mathfrak{A}$}
+    \end{align*}
+    and, thus, $\mathfrak{A} \models \Phi^s_1$ iff $\mathfrak{A} \models \Phi^s$ so $\text{Mod}(\Phi^s_1) = \text{Mod}(\Phi^s)$.
+
+    By the I.H., we know that each quantifier $\Gamma^{S,s_i}_{l-1,\gamma}$ is definable in $(\Gamma^S_{1,\delta})[\varnothing]$. Therefore, we know that for each $\theta_i$, there exists a formula $\theta_i'$ in $(\Gamma^S_{1,\delta})[\varnothing]$ such that $\text{Mod}(\theta_i) = \text{Mod}(\theta_i')$. Thus, we can construct a sentence $\Phi_2^s$ by replacing each $\theta_i$ in $\Phi^s$ with $\theta_i'$; we immediately get that $\text{Mod}(\Phi^s) = \text{Mod}(\Phi_2^s)$. Therefore, we have constructed a sentence $\Phi_2^s$ in $(\Gamma^S_{1,\delta})[\varnothing]$ such that $\text{Mod}(\Phi_1^s) = \text{Mod}(\Phi_2^s)$. Since $s \in S$ was arbitrary, this completes the inductive step.
+
+    All together, we get that for every $l \in \mathbb{N}$, $\gamma : \{0,1\}^k \rightarrow S$, and $s \in S$, the quantifier $\Gamma^{S,s}_{l,\gamma}$ is definable in $(\Gamma^{S}_{1,\delta})[\varnothing]$.
+
+    %Observe that $\Gamma^{M',m}_{2,\gamma_c}$ performs a multiplication of $||\mathfrak{A}||^2$ elements of $M'$ and checks to see if it equals $m$. Each iteration of $\Gamma^{M',m}_{1,\gamma_c} x_1 \langle \dots \rangle$ in $\Phi_2$ performs a multiplication of $||\mathfrak{A}||$ elements of $M'$. \todo{finish}
+
+\end{proof}
+
+\begin{corollary}\label{cor:unarymqssuffice}
+    For every finite semigroup $S$, there exists a function $\delta : \{0,1\}^c \rightarrow S$ such that for any set of quantifiers $\mathfrak{Q}$ and set of numerical predicates $\mathfrak{N}$,\[
+        \mathcal{L}((\mathfrak{Q} \cup \Gamma^{S})[\mathfrak{N}]) = \mathcal{L}((\mathfrak{Q} \cup \Gamma^{S}_{1,\delta})[\mathfrak{N}])
+    \]
+\end{corollary}
+\begin{remark}
+    Because we are considering finite semigroups, we can always take disjunctions of the multiplication quantifiers which check if the product is equal to a single element of a semigroup in order to define multiplication quantifiers which check if the product is equal to any element of a specified subset of a semigroup.
+\end{remark}
+\begin{remark}
+    Note that for a finite semigroup $S$, while $\Gamma^{S}$ and $\Gamma^{S}_1$ are infinite sets, $\Gamma^{S}_{1,\delta}$ is a finite set.
+\end{remark}
+
+Therefore, this gives us a logic characterizing \textsc{DLogTime}-uniform NC${}^1$ which not only uses unary quantifiers but also only has a finite number of quantifiers:
+\begin{corollary}\label{cor:alogtimelogicbetter}
+    There exists a $\delta : \{0,1\}^k \rightarrow S_5$ such that \[
+        \emph{\textsc{DLogTime}-uniform NC${}^1$} = \mathcal{L}((\emph{FO} \cup \Gamma^{S_5}_{1,\delta})[+,\times])
+    \]
+\end{corollary}
+\noindent This will simplify our construction of an algebra capturing \textsc{DLogTime}-uniform NC${}^1$.
+
+Moreover, this theorem serves as an alternative proof of Theorem \ref{thm:unaryfologforreg} (\cite[Theorem 5.1]{lautemann2001descriptive}) which, unlike the original proof, does not rely on the use of automata:
+\begin{corollary}\label{cor:reglogicbetter}
+    \emph{\textsc{Reg}} $= \mathcal{L}((\emph{FO} \cup \Gamma^\emph{fin})[<]) = \mathcal{L}((\emph{FO} \cup \Gamma^\emph{fin}_1)[<])$.
+\end{corollary}
+\noindent and, furthermore, resolves an open question from \cite{lautemann2001descriptive}:
+\begin{corollary}\label{cor:openquestionfromlautemann}
+    $\mathcal{L}((\emph{FO} \cup \Gamma^\emph{fin})[+,\times]) = \mathcal{L}((\emph{FO} \cup \Gamma^\emph{fin}_1)[+,\times])$
+\end{corollary}
+
+
+\section{The Algebraic Characterization}\label{sec:alg}
+
+
+Now that we have a first-order logic with only unary quantifiers capturing \textsc{DLogTime}-uniform NC${}^1$, we are closer to applying Theorem \ref{thm:logcircalgequiv} to construct an algebra for it.
+
+We first need to prove some results concerning the typed quantifier semigroups of multiplication quantifiers:
+
+\begin{theorem}\label{thm:typedquantifiersemigroup}
+    Let $s \in S_5$ and $\gamma : \{0,1\}^k \rightarrow S_5$, where $\emph{Img}(\gamma) = S_5$, be arbitrary. Then, the typed quantifier semigroup of $\Gamma^{S_5,s}_{1,\gamma}$ equals $(S_5, s, S_5)$.
+\end{theorem}
+\begin{proof}
+    Let $s \in S_5$ and $\gamma : \{0,1\}^k \rightarrow S_5$ be arbitrary. Let $T = (S_5, s, S_5)$. We will show that $T$ is isomorphic to the typed quantifier semigroup of $\Gamma^{S_5,s}_{1,\gamma}$.
+
+    Let $Q = ((\{0,1\}^k)^+, L_\Gamma, \{0,1\}^k)$ such that for $w = w_1\dots w_n \in (\{0,1\}^k)^+$, $w \in L_\Gamma$ iff $w \models \Gamma^{S_5,s}_{1,\gamma}x\langle P_1 x, \dots, P_k x\rangle$ where $P_i^\mathfrak{w} = \{a \in [n] \mid (w_a)_i = 1\}$. To be clear, $(w_a)_i$ denotes the $i^\text{th}$ bit of $w_a \in \{0,1\}^k$. Let $\gamma^* : (\{0,1\}^k)^+ \rightarrow S_5$ be the homomorphism induced by $\gamma$.
+
+    By definition of typed quantifier semigroup, we now want to show that $T \cong \text{syn}(L_\Gamma)$. We know (1) that there exists a syntactic typed homomorphism $\eta = (\eta_1, \eta_2, \eta_3)$ from $Q$ to $\text{syn}(L_\Gamma)$ and (2) that for $w \in (\{0,1\}^k)^+$,
+    \begin{align*}
+        w \in L_\Gamma \text{ iff } &w \models \Gamma^{S_5,s}_{1,\gamma}x\langle P_1 x, \dots, P_k x\rangle\\
+        \text{ iff } &\prod_{a \in [n]} \gamma(\langle P_1^\mathfrak{w}[a], \dots, P_k^\mathfrak{w}[a]\rangle) = s\\
+        \text{ iff } &\gamma^*(w) = s.
+    \end{align*}
+
+    Say $\text{syn}(L_\Gamma) = (S_\Gamma, B_\Gamma, E_\Gamma)$. We first prove that
+    \begin{lemma}\label{lem:multtoalghelper}
+        For every $v_1,v_2 \in \{0,1\}^k$, $\gamma(v_1) = \gamma(v_2)$ iff $\eta_3(v_1) = \eta_3(v_2)$.
+    \end{lemma}
+    \begin{proof}
+        Assume that $\gamma(v_1) = \gamma(v_2)$. Let $x,y \in (\{0,1\}^k)^+$ be arbitrary. 
+        \begin{align*}
+            xv_1y \in L_\Gamma &\text{ iff } \gamma^*(xv_1y) = s&\text{by (2)}\\
+            &\text{ iff } \gamma^*(x)\gamma(v_1)\gamma^*(y) = s&\text{by definition}\\
+            &\text{ iff } \gamma^*(x)\gamma(v_2)\gamma^*(y) = s&\text{since $\gamma(v_1) = \gamma(v_2)$}\\
+            &\text{ iff } \gamma^*(xv_2y) = s&\text{by definition}\\
+            &\text{ iff } xv_2y \in L_\Gamma&\text{by (2)}
+        \end{align*}
+        Thus, $v_1 \sim_{L_\Gamma} v_2$ so $\eta_3(v_1) = \eta_3(v_2)$.
+
+        Assume that $\eta_3(v_1) = \eta_3(v_2)$. Thus, $v_1 \sim_{L_\Gamma} v_2$ so for every $x,y \in (\{0,1\}^k)^+$, $xv_1y \in L_\Gamma$ iff $xv_2y \in L_\Gamma$. Therefore, for every $x,y \in (\{0,1\}^k)^+$,
+        \begin{align*}
+            \gamma^*(x)\gamma(v_1)\gamma^*(y) = s &\text{ iff } \gamma^*(xv_1y) = s&\text{by definition}\\
+            &\text{ iff } xv_1y \in L_\Gamma&\text{by (2)}\\
+            &\text{ iff } xv_2y \in L_\Gamma&\text{by the above}\\
+            &\text{ iff } \gamma^*(xv_2y) = s&\text{by (2)}\\
+            &\text{ iff } \gamma^*(x)\gamma(v_2)\gamma^*(y) = s&\text{by definition}
+        \end{align*}
+        Because $S_5$ is a group, it is cancellative (cf. \autoref{prop:groupcanc}); thus, $\gamma(v_1) = \gamma(v_2)$.
+        
+        We have now shown that $\gamma(v_1) = \gamma(v_2)$ iff $\eta_3(v_1) = \eta_3(v_2)$.
+    \end{proof}
+    
+    We now construct a typed isomorphism $f = (f_1, f_2, f_3)$ from $T$ to $\text{syn}(L_\Gamma)$. We start with $f_3$.
+    
+    For each $t \in S_5$, let $f_3(t) = \eta_3(w)$ for some $w \in \gamma^{-1}(t)$; by \autoref{lem:multtoalghelper}, the specific choice of $w \in \gamma^{-1}(t)$ does not matter. 
+    
+    We now prove that $f_3$ is injective. Let $s_1,s_2 \in S_5$ and assume that $f_3(s_1) = f_3(s_2)$. Then, by construction of $f_3$, there exists $w_1 \in \gamma^{-1}(s_1)$ and $w_2 \in \gamma^{-1}(s_2)$ such that $f_3(s_1) = \eta_3(w_1) = \eta_3(w_2) = f_3(s_2)$. By \autoref{lem:multtoalghelper}, $\gamma(w_1) = \gamma(w_2)$, so $s_1 = s_2$ since $s_i \in \gamma^{-1}(s_i)$.
+
+    We now prove that $f_3$ is surjective. Let $v \in E_\Gamma \subseteq S_\Gamma$ be arbitrary. Because $\eta$ is the syntactic morphism to $\text{syn}(L_\Gamma)$, it is surjective; therefore, $\eta_3(\{0,1\}^k) = E_\Gamma$ so there exists $w \in \{0,1\}^k$ such that $\eta_3(w) = v$. Let $t = \gamma(w)$. By construction of $f_3$ and \autoref{lem:multtoalghelper}, $f_3(t) = \eta_3(w) = v$ so $f_3$ is surjective.
+
+    Therefore, $f_3$ is a bijection from $S_5$ to $E_\Gamma$.
+
+    Let $f_1$ be the homomorphism induced by $f_3$. The proof of $f_1$'s bijectivity is analogous to the proof of $f_3$'s bijectivity. Thus, $f_3$ is a isomorphism from $S_5$ to $S_\Gamma$.
+
+    We now must construct and show that $f_2 : \{\varnothing, \{s\}, S_5 - \{s\}, S_5\} \rightarrow B_\Gamma$ is an isomorphism of Boolean algebras. $B_\Gamma$ will only have four elements---$\varnothing$, $X = \eta_1(L_\Gamma)$, $S_\Gamma -X$, and $S_\Gamma$---since $(S_\Gamma, B_\Gamma, E_\Gamma)$ is a syntactic typed semigroup. Let $f_2(\varnothing) = \varnothing$, $f_2(\{s\}) = X$, $f_2(S_5 - \{s\}) = S_\Gamma - X$, and $f_2(S_5) = S_\Gamma$. $f_2$ is clearly bijective and preserves the Boolean algebra structure.
+
+    Lastly, we must prove that $f = (f_1, f_2, f_3)$ is actually a typed homomorphism by proving that $f_1(\{s\}) = f_2(\{s\}) \cap f_1(S_5)$. (The other condition on \autoref{def:typedhom} is trivially satisfied.)
+
+    We know that for an element $g \in (\{0,1\})^+$,
+    \begin{align*}
+        \eta_1(g) \in \eta_1(L_\Gamma) \text{ iff }\gamma^*(g) = s\tag{$\star$}
+    \end{align*}
+    
+    We first prove that $f_1(\{s\}) \subseteq f_2(\{s\}) \cap f_1(S_5)$. Since $s \in S_5$, $f_1(\{s\}) \subseteq f_1(S_5)$. We know $f_1(\{s\}) = \{f_1(s)\}$ by definition so we must show that $f_1(s) \in f_2(\{s\}) = X = \eta_1(L_\Gamma)$. Since $f_1(s) = \eta_3(g) = \eta_1(g)$ for some $g \in \gamma^{-1}(s)$, $\gamma^*(g) = s$ so, by $(\star)$, $\eta_1(g) \in \eta_1(L_\Gamma)$ so $f_1(s) \in \eta_1(L_\Gamma)$.
+
+    We now prove that $f_2(\{s\}) \cap f_1(S_5) \subseteq f_1(\{s\})$. Let $\eta_1(g) \in f_2(\{s\}) \cap f_1(S_5)$ be arbitrary. Since $f_2(\{s\}) = \eta_1(L_\Gamma)$, by $(\star)$, $\gamma^*(g) = s$. Therefore, by construction of $f_1$, $\eta_1(g) = f_1(s) \in f_1(\{s\}) = \{f_1(s)\}$.
+
+    All together, we get that $f$ is a typed isomorphism from $T$ to $\text{syn}(L_\Gamma)$ so the typed quantifier semigroup of $\Gamma^{S_5,s}_{1,\gamma}$ is isomorphic to $(S_5, s, S_5)$.
+\end{proof}
+
+We also know the following from the literature:
+\begin{lemma}\label{lem:superhelperalogtime}
+    \,
+    \begin{enumerate}[\ \ \ \ (i)]
+        \item \emph{\textsc{DLogTime}-uniform NC${}^1$} can compute majority.
+        \item The quantifiers in \emph{FO} are definable in $(\emph{Maj})[<]$. (\cite[Theorem 3.2]{lange2004some})
+        \item The numerical predicate $+$ is definable in $(\emph{Maj})[<]$. (\cite[Theorem 4.1]{lange2004some})
+        \item The numerical predicate $\times$ is definable in $(\{\emph{Maj}, \emph{Sq}\})[<]$ and \emph{Sq} is definable in $(\emph{Maj})[<,+,\times]$. (cf. \cite[Theorem 2.3.f]{schweikardt2002expressive} and \cite[Section 2.3]{krebs2007characterizing})
+    \end{enumerate}
+\end{lemma}
+
+and, all together, we get our main result: 
+
+
+\begin{theorem}\label{thm:algebraforalogtime}
+    \[\text{\emph{\textsc{DLogTime}-uniform NC${}^1$}} = \mathcal{L}(\emph{sbpc}_<(\{(\mathbb{Z}, \mathbb{Z}^+, \pm 1), (\mathbb{N}, \mathbb{S}, \{0,1\}), (S_5, \wp(S_5), S_5)\})).\]
+\end{theorem}
+\begin{proof}
+    Let $\delta : \{0,1\}^c \rightarrow S_5$ be as it was defined in Lemma \ref{lem:finitetuple}.
+    \begin{align*}
+        \text{\textsc{DLogTime}-uniform NC${}^1$} &= \mathcal{L}((\text{FO} \cup \Gamma^{S_5})[+,\times])\text{ via \cite{barrington1990uniformity}}\\
+        &=\mathcal{L}((\text{FO} \cup \Gamma^{S_5}_{1,\delta})[+,\times])\text{ via Corollary \ref{cor:alogtimelogicbetter}}\\
+        &=\mathcal{L}((\Gamma^{S_5}_{1,\delta} \cup \{\text{Maj}, \text{Sq}\})[<])\text{ via Lemma \ref{lem:superhelperalogtime}}\\
+        &=\mathcal{L}(\text{sbpc}_<(\{(\mathbb{Z}, \mathbb{Z}^+, \pm 1), (\mathbb{N}, \mathbb{S}, \{0,1\})\}\\
+        &\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \cup \{(S_5, s, S_5) \mid s \in S_5\}))\\
+        &\text{\ \ \ \ \ \ via Theorems \ref{thm:logcircalgequiv} and \ref{thm:typedquantifiersemigroup}}\\
+        &= \mathcal{L}(\text{sbpc}_<(\{(\mathbb{Z}, \mathbb{Z}^+, \pm 1), (\mathbb{N}, \mathbb{S}, \{0,1\}), 
+        (S_5, \wp(S_5), S_5)\}))\\
+        &\text{\ \ \ \ \ \ since $\forall s \in S_5, (S_5, s, S_5) \preceq (S_5, \wp(S_5), S_5)$}\\
+        &\text{\ \ \ \ \ \ and $\mathcal{L}((S_5, \wp(S_5), S_5)) \subseteq \textsc{Reg} \subseteq \textsc{ALogTime}$}
+    \end{align*}
+\end{proof}
+
+\iffalse
+TODO: remove before submission if not included
+\begin{corollary}
+    \textsc{ALogTime}'s unique pseudovariety is the pseudovariety generated by $\emph{sbpc}_<(\{(\mathbb{Z}, \mathbb{Z}^+, \pm 1), (\mathbb{N}, \mathbb{S}, \{0,1\}), (S_5, \wp(S_5), S_5)\})$.
+\end{corollary}
+
+
+
+\begin{remark}
+    Note that this is the same construction as the algebra for \textsc{DLogTime}-uniform TC${}^0$ except for the addition of the typed semigroup $(S_5, \wp(S_5), S_5)$.
+\end{remark}
+\fi
+
+\section{Conclusion}\label{sec:conc}
+
+\todo{}
+
+
+%%
+%% Bibliography
+%%
+
+%% Please use bibtex, 
+
+\bibliography{main}
+
+\appendix
+
+\section{Strong Block Product Closure}\label{app:bp}
+
+\subsection{Weakly Closed Classes}
+
+\begin{definition}[Direct Product of Semigroups]
+    The \emph{direct product} of two semigroups $(S, \cdot_S)$ and $(T, \cdot_T)$ is the semigroup $(S \times T, \cdot)$ where $(s_1, t_1) \cdot (s_2, t_2) = (s_1 \cdot_S s_2, t_1 \cdot_T t_2)$.
+\end{definition}
+\begin{definition}[Direct Product of Boolean Algebras]
+    We define the \emph{direct product} of Boolean algebras $B_1$ and $B_2$, denoted $B_1 \times B_2$, to be the Boolean algebra generated by the set $\{A_1 \times A_2 \mid A_1 \in B_1 \text{ and } A_2 \in B_2\}$.
+\end{definition}
+
+\begin{definition}[Direct Product of Typed Semigroups]
+    \item The \emph{direct product} $(S, G, E) \times (T, H, F)$ is the typed semigroup $(S \times T, G \times H, E \times F)$.
+\end{definition}
+
+\begin{definition}[Trivial Extension]
+    If there exists a surjective typed homomorphism from $(S, G, E)$ to $(T, H, F)$, then we say that $(S, G, E)$ is a \emph{trivial extension} of $(T, H, F)$.
+\end{definition}
+
+
+\begin{definition}[Weakly Closed Class]
+    We call a set of typed semigroups $T$ a \emph{weakly closed class} if it is closed under
+    \begin{itemize}
+        \item Division: If $(S, G, E) \in T$ and $(S, G, E) \preceq (T, H, F)$, then $(T, H, F) \in T$.
+        \item Direct Product: If $(S, G, E), (T, H, F) \in T$, then $(S, G, E) \times (T, H, F) \in T$.
+        \item Trivial Extension: If $(S, G, E)$ is a trivial extension of $(T, H, F)$ and $(T, H, F) \in T$, then $(S, G, E) \in T$.
+    \end{itemize}
+    We write $\emph{wc(T)}$ to denote the smallest weakly closed set of typed semigroups containing $T$.
+\end{definition}
+
+
+\subsection{The Block Product}
+The block product will be our main tool for the construction of algebraic characterizations of language classes via logic.\footnote{Historically, the ``\emph{wreath product}'' was first used for this purpose. Since \cite{rhodes1989kernel}, however, the block product has been the preferred and easier-to-work-with tool of choice.} We now build up to its definition:
+
+\begin{definition}[Left and Right Actions]
+    A \emph{left action} $\star_l$ of a semigroup $(N, \cdot)$ on a semigroup $(M, +)$ is a function from $N \times M$ to $M$ such that for $n_1,n_2 \in N$ and $m_1,m_2 \in M$, \begin{align*}
+        n \star_l (m_1 + m_2) &= n \star_l m_1 + n \star_l m_2\\
+        (n_1 \cdot n_2) \star_l m &= n_1 \star_l (n_2 \star_l m)\\
+    \end{align*}
+    The \emph{right action} $\star_r$ of $(N, \cdot)$ on $(M, +)$ is defined dually. We say that left and right actions of $(N, \cdot)$ on $(M,+)$ are \emph{compatible} if for all $n_1,n_2 \in N$ and $m \in M$, \[
+        (n_1 \star_l m) \star_r n_2 = n_1 \star_l (m \star_r n_2).
+    \] When clear from context, we may simply write $nm$ for $n \star_l m$ and $mn$ for $m \star_r n$.
+\end{definition}
+
+\begin{definition}[Two-sided Semidirect Product]
+    For a pair of compatible left and right actions, $\star_l$ and $\star_r$ of $(N, \cdot)$ on $(M, +)$, the \emph{two-sided (or bilateral) semidirect product} of $(M, +)$ and $(N, \cdot)$ with respect to $\star_l$ and $\star_r$ is the semigroup $(M \times N, \circ)$ where for $(m_1,n_1),(m_2,n_2) \in M \times N$, \[
+        (m_1,n_1) \circ (m_2,n_2) = (m_1n_2 + n_1m_2, n_1 \cdot n_2).
+    \]
+\end{definition}
+
+\begin{definition}[Block Product]
+    The \emph{block product} of $(M, \cdot_M)$ with $(N, \cdot_N)$, denoted $M \Box N$, is the two-sided semidirect product of $(M^{N^1 \times N^1}, +)$ and $(N, \cdot)$ with respect to the left and right actions $\star_l$ and $\star_r$ where for $f,g \in M^{N^1 \times N^1}$ and $n,n_1,n_2 \in N^1$,
+    \begin{itemize}
+        \item $(M^{N^1 \times N^1}, +)$ is the monoid of all functions from $N^1 \times N^1$ to $M$ under componentwise product $+$: \[
+            (f + g)(n_1,n_2) = f(n_1,n_2) \cdot_M g(n_1,n_2).
+        \]
+        \item The left action $\star_l$ of $(N, \cdot)$ on $(M^{N^1 \times N^1}, +)$ is defined by \[
+            (n \star_l f)(n_1, n_2) = f(n_1 \cdot_N n, n_2).
+        \]
+        \item The right action $\star_r$ of $(N, \cdot)$ on $(M^{N^1 \times N^1}, +)$ is defined by \[
+            (f \star_r n)(n_1, n_2) = f(n_1, n \cdot_N n_2).
+        \]
+    \end{itemize}
+\end{definition}
+
+\subsection{The Typed Block Product}
+
+\begin{definition}[Typed Block Product]\label{def:typedblockproduct}
+    Let $(S, G, E)$ and $(S', G', E')$ be typed semigroups and $C \subseteq S'$ be a finite set. Then, the \emph{typed block product with $C$} of $(S, G, E)$ and $(S', G', E')$, denoted $(S, G, E) \boxdot_C (S', G', E')$, is the typed semigroup $(T, H, F)$ where
+    \begin{enumerate}[\ \ \ \ (1)]
+        \item $T \leq S \Box S'$ such that $T$ is generated by the elements $(f,s')$ such that
+        \begin{enumerate}[\ \ \ \ (a)]
+            \item $s' \in E' \cup C$ and
+            \item $f \in E^{S'^1 \times S'^1}$ such that for $b_1,b_2,b_3,b_4 \in S'$, if for all $c \in C$ and all $A' \in G'$, \(
+                b_1cb_2 \in A' \text{ iff } b_3cb_4 \in A',
+            \) then $f(b_1,b_2) = f(b_3,b_4)$,
+        \end{enumerate}
+        \item $H = \{\{(f,s) \mid f(1,1) \in A\} \mid A \in G\}$ where $1$ is the identity of $S'^1$,
+        \item and $F = \{(f,s') \mid \text{$(f,s)$ is a generator of $T$ and } s' \in E'\}$.
+    \end{enumerate}
+\end{definition}
+\begin{definition}\label{def:orderedtypedblockproduct}
+    Because the typed semigroup corresponding to the order predicate will be a very common, it is convenient to define an \emph{ordered typed block product}, $(S, G, E) \boxtimes_C (S', G', E')$ which will help simplify our algebraic representations whose numerical predicates only include order; this is defined the same as the typed block product above but with a change to condition (1)(b):
+    \begin{enumerate}[\ \ \ \ {(1)}(b${}_<$)]
+        \setcounter{enumi}{1}
+        \item $f \in E^{S'^{1} \times S'^{1}}$ such that for $b_1,b_2,b_3,b_4 \in S'$, if for all $c \in C$ and all $A' \in G'$,
+        \begin{enumerate}[\ \ \ \ (i)]
+            \item $b_1cb_2 \in A'$ iff $b_3cb_4 \in A'$,
+            \item $b_1c \in A'$ iff $b_3c \in A'$,
+            \item and $cb_2 \in A'$ iff $cb_4 \in A'$,
+        \end{enumerate}
+        then $f(b_1,b_2) = f(b_3,b_4)$.
+    \end{enumerate}
+\end{definition}
+
+\begin{definition}
+    For a set of typed semigroups $W$, we let \[
+        W_0 = \emph{wc}(W)
+    \] and for each $k \geq 1$,
+    \begin{itemize}
+        \item $W_k = \{S_1 \boxdot_C S_2 \mid S_1 \in W_0 \text{, } S_2 \in W_{k-1} \text{, and finite } C \subseteq S_2\}$
+        \item $W_k^< = \{S_1 \boxtimes_C S_2 \mid S_1 \in W_0 \text{, } S_2 \in W_{k-1}^< \text{, and finite } C \subseteq S_2\}$
+    \end{itemize}
+    We define the \emph{(ordered) strong block product closure of $W$}, denoted $\text{sbpc}(W)$ ($\text{sbpc}_<(W)$), as
+    \begin{itemize}
+        \item $\text{sbpc}(W) = \bigcup_{k \in \mathbb{N}} W_k$
+        \item $\text{sbpc}_<(W) = \bigcup_{k \in \mathbb{N}} W_k^<$.
+    \end{itemize}
+\end{definition}
+
+\end{document}
