@@ -1,11 +1,5 @@
 \begin{thebibliography}{10}
 
-\bibitem{aaronson2009algebrization}
-Scott Aaronson and Avi Wigderson.
-\newblock {Algebrization: A new barrier in complexity theory}.
-\newblock {\em ACM Transactions on Computation Theory (TOCT)}, 1(1):1--54,
-  2009.
-
 \bibitem{barrington1990uniformity}
 David A~Mix Barrington, Neil Immerman, and Howard Straubing.
 \newblock {On uniformity within NC1}.
@@ -37,16 +31,16 @@ Stephen~A Cook.
   Computers}.
 \newblock {\em Journal of the ACM (JACM)}, 18(1):4--18, 1971.
 
+\bibitem{Ebb85}
+H.-D. Ebbinghaus.
+\newblock Extended logics: The general framework.
+\newblock In J.~Barwise and S.~Feferman, editors, {\em Model-Theoretic Logics},
+  pages 25--76. Springer-Verlag, New York, 1985.
+
 \bibitem{eilenberg1976automata}
 Samuel Eilenberg.
 \newblock {\em {Automata, Languages, and Machines (Vol. B)}}.
 \newblock Academic Press, 1976.
-
-\bibitem{fagin1974generalized}
-Ronald Fagin.
-\newblock Generalized first-order spectra and polynomial-time recognizable
-  sets.
-\newblock {\em Complexity of computation}, 7:43--73, 1974.
 
 \bibitem{hennie1965one}
 Fred~C Hennie.
@@ -84,11 +78,5 @@ Nicole Schweikardt.
 \newblock {\em {On the Expressive Power of First-order Logic with Built in
   Predicates}}.
 \newblock Logos-Verlag, 2002.
-
-\bibitem{wigderson2019mathematics}
-Avi Wigderson.
-\newblock {\em {Mathematics and computation: A theory revolutionizing
-  technology and science}}.
-\newblock Princeton University Press, 2019.
 
 \end{thebibliography}

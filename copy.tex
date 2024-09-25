@@ -150,7 +150,6 @@ $Q \tup{x}_1\cdots \tup{x}_l (\phi_1,\ldots,\phi_l)$ is true in a structure $\st
 
 We are particularly interested in interpretations $I$ where both $\sigma$ and $\tau$ are vocabularies of strings.  These are also known in the literature as \emph{string-to-string tranducers}~\cite{CITE3}.    We further restrict ourselves to interpretations in which the definition of the linear order in $I(\str{A},\alpha)$ is always the lexicographic order on $d$-tuples of $\str{A}$ induced by the order in $\str{A}$.  This order is easily defined by a (quantifier-free) first-order formula, and we simply omit it from the description of $I$.  Hence, we only need to specify the interpretation giving the unary relations in $\tau$ and an interpretation of dimension $d$ has the simple form $(\phi_1(\tup{x}_1),\ldots, \phi_l(\tup{x}_l))$, where all tuples of variables have length $d$.  We can then assume, without loss of generality, that they are all the same tuple $\tup{x}$ and we thus write a formula with a string quantifier $Q$ as
 $$Q \tup{x} (\phi_1,\ldots,\phi_l).$$
-\noindent Observe that a quantifier of dimension $d$ will then bind $d$ variables.
 
 We say that an interpretation is \emph{unary} if it has dimension $1$.  We now introduce some notation we use in the rest of the paper for various logics formed by combining particular choices of quantifiers and numerical predicates.
 \begin{definition}
@@ -158,9 +157,9 @@ We say that an interpretation is \emph{unary} if it has dimension $1$.  We now i
 
    We denote by \emph{FO} the set of standard first-order quantifiers: $\{\exists, \forall\}$.
 \end{definition}
-    For a singleton set of quantifiers $\mathfrak{Q} = \{Q\}$, we sometimes denote $(\mathfrak{Q})[\mathfrak{N}]$ as $(Q)[\mathfrak{N}]$. We use similar notation for the sets of numerical predicates. We use $\mathcal{L}((\mathfrak{Q})[\mathfrak{N}])$ to denote the languages expressible by the logic $(\mathfrak{Q})[\mathfrak{N}]$.
+    For a singleton set of quantifiers $\mathfrak{Q} = \{Q\}$, we sometimes denote $(\mathfrak{Q})[\mathfrak{N}]$ as $(Q)[\mathfrak{N}]$. We use similar notation for the sets of numerical predicates.
 
-All the logics we consider are \emph{substitution closed} in the sense of~\cite{Ebb85}.  This means in particular that if a quantifier $Q$ is definable in a logic $(\mathfrak{Q})[\mathfrak{N}]$, then extending the logic with the quantifier $Q$ does not add to its expressive power.  This is because we can replace occurrences of the quantifier $Q$ by its definition, with a suitable substitution of the interpretation for the relation symbols.  Hence, if $Q$ is definable in $(\mathfrak{Q})[\mathfrak{N}]$, then $\mathcal{L}((\mathfrak{Q})[\mathfrak{N}]) = \mathcal{L}((\mathfrak{Q} \cup \{Q\})[\mathfrak{N}])$.
+All the logics we consider are \emph{substitution closed} in the sense of~\cite{Ebb85}.  This means in particular that if a quantifier $Q$ is definable in a logic $(\mathfrak{Q})[\mathfrak{N}]$, then extending the logic with the quantifier $Q$ does not add to its expressive power.  This is because we can replace occurrences of the quantifier $Q$ by its definition, with a suitable substitution of the interpretation for the relation symbols.  Hence, if $Q$ is definable in $(\mathfrak{Q})[\mathfrak{N}]$, then $(\mathfrak{Q})[\mathfrak{N}] = (\mathfrak{Q} \cup \{Q\})[\mathfrak{N}]$.
     
 \subsection{Multiplication Quantifiers}
 
@@ -173,7 +172,7 @@ We can now define a \emph{multiplication quantifier}.  In the following, $w_{\st
 Let $\tau$ be a vocabulary including an order symbol $<$ and $k$ unary relations.
 For a semigroup $S$, a set $B \subseteq S$, a positive integer $k$ and a function $\gamma: \{0,1\}^k \rightarrow S$, the quantifier $\Gamma_{\gamma}^{S,B}$ is the Lindstr\"om quantifier associated with the class of structures
 $$\{ \str{A} \mid w_{\str{A}} \in L^{S,B}_{\gamma}\}.$$
-We also write $\Gamma_{d,\gamma}^{S,B}$ for the vectorization of this quantifier of dimension $d$. If $B$ is a singleton $\{s\}$, then we often write $\Gamma^{S,s}_{d,\gamma}$ for short.
+We also write $\Gamma_{d,\gamma}^{S,B}$ for the vectorization of this quantifier of dimension $d$.
 \end{definition}
 
 Recall that $U_1$ denotes the two-element semigroup $\{0,1\}$ with standard multiplication.  Then, it is easily seen that $\Gamma^{U_1,0}_{1,\gamma}$,  where $\gamma : \{0,1\} \rightarrow U_1$ such that $\gamma(0) = 1$ and $\gamma(1) = 0$, is the standard existential quantifier.  The universal quantifier can be defined similarly.
@@ -280,10 +279,10 @@ We then have the following definitions and facts about typed semigroups:
     Let $L$ be a language. We define the \emph{syntactic congruence} of $L$ as the relation $\sim_L$ on $\Sigma^+$ such that for all $x, y \in \Sigma^+$, $x \sim_L y$ if and only if for all $w,v \in \Sigma^+$, $wxv \in L$ iff $wyv \in L$.
 \end{definition}
 \begin{definition}
-    The \emph{syntactic semigroup} of a language $L \subseteq \Sigma^+$ is the quotient semigroup $\Sigma^+/{\sim_L}$. We call the canonical homomorphism $\eta_d : \Sigma^+ \to \Sigma^+/{\sim_L}$ the \emph{syntactic homomorphism} of $L$.
+    The \emph{syntactic semigroup} of a language $L \subseteq \Sigma^+$ is the quotient semigroup $\Sigma^+/{\sim_L}$. We call the canonical homomorphism $\eta_L : \Sigma^+ \to \Sigma^+/{\sim_L}$ the \emph{syntactic homomorphism} of $L$.
 \end{definition}
 \begin{remark}
-    Observe that $\eta_d$ is surjective.
+    Observe that $\eta_L$ is surjective.
 \end{remark}
 
 \begin{definition}\label{def:typedcongmin}
@@ -303,7 +302,7 @@ We then have the following definitions and facts about typed semigroups:
 \begin{definition}
     For a language $L \subseteq \Sigma^+$, we define the \emph{syntactic typed semigroup of $L$}, denoted $\emph{syn}(L)$, to be the typed semigroup $(\Sigma^+, L, \Sigma)/{\sim_L}$. Recall that ${\sim_L}$ is the syntactic congruence of $L$, defined in Definition \ref{def:syncong}.
 
-    We also get the \emph{canonical typed homomorphism}, $\eta_d : (\Sigma^+, L, \Sigma) \rightarrow \emph{syn}(L)$ induced by the syntactic homomorphism of $L$.
+    We also get the \emph{canonical typed homomorphism}, $\eta_L : (\Sigma^+, L, \Sigma) \rightarrow \emph{syn}(L)$ induced by the syntactic homomorphism of $L$.
 \end{definition} 
 
 
@@ -342,136 +341,117 @@ We aim to construct an algebraic characterization of \textsc{DLogTime}-uniform N
 Now, from Remark \ref{thm:s5logfornc1}, we know of a logic containing non-unary first-order quantifiers:
 \begin{equation*}\label{eq:foo1}
     \text{\textsc{DLogTime}-uniform NC${}^1$} = \mathcal{L}((\text{FO} \cup \Gamma^{S_5})[+,\times])
-\end{equation*} To take us a step closer to applying Theorem \ref{thm:logcircalgequiv}, we will prove that we can substitute multiplication quantifiers of higher dimension with unary ones, therefore proving that having unary quantifiers alone suffices to express the same languages: \[
+\end{equation*} Thus, to take us a step closer to applying Theorem \ref{thm:logcircalgequiv}, we will prove in this section that having unary quantifiers alone suffices to express the same languages: \[
     \mathcal{L}((\text{FO} \cup \Gamma^{S_5})[+,\times]) = \mathcal{L}((\text{FO} \cup \Gamma^{S_5}_1)[+,\times]),
-\] Answering a question left open in \cite{lautemann2001descriptive}.
+\] which answers an open question first raised in \cite{lautemann2001descriptive}.
 
 While we only need to show an equivalence of $(\emph{FO} + \Gamma^{S_5})[+,\times]$ and $(\emph{FO} + \Gamma^{S_5}_1)[+,\times]$ at the language level---i.e., that they express the same languages---we will actually prove the stronger claim that for every finite semigroup $S$, all quantifiers in $\Gamma^{S}$ are definable in $(\Gamma^S_1)[\varnothing]$. In other words, we will prove that any use of $\Gamma^{S}$ quantifiers may be substituted by a $(\Gamma^S_1)[\varnothing]$ formulae without loss or gain in expressive power. Moreover, we will prove that we don't need an infinite number of quantifiers to express \textsc{DLogTime}-uniform NC${}^1$. Simply a finite set of multiplication quantifiers binding one variable and extending over $k$-tuples (for some fixed $k$) will suffice.
 
 We first prove that we can fix the size of the tuple over which the quantifier acts:
 
-%For any finite semigroup $S$, there exists a fixed alphabet $\Sigma$ such that if $Q = \{\mathfrak{A} \mid w_\mathfrak{A} \in L\}$ where $L$ is a language recognized by $S$, 
 
 \begin{lemma}\label{lem:finitetuple}
-    For every finite semigroup $S$, there exists a function $\delta : \{0,1\}^c \rightarrow S$ such that for every $s \in S$, $d \in \mathbb{N}$, and $\gamma : \{0,1\}^k \rightarrow S$, the quantifier $\Gamma^{S,s}_{d,\gamma}$ is definable in $(\Gamma^{S,s}_{d,\delta})[\varnothing]$.
+    For every finite semigroup $S$, there exists a function $\delta : \{0,1\}^c \rightarrow S$ such that for every $s \in S$, $l \in \mathbb{N}$, and $\gamma : \{0,1\}^k \rightarrow S$, the quantifier $\Gamma^{S,s}_{l,\gamma}$ is definable in $(\Gamma^{S,s}_{l,\delta})[\varnothing]$.
 \end{lemma}
 
 \begin{proof}
-    Let $S$ be an arbitrary finite semigroup. 
-    
-    To fix the tuple size, we will increase the tuple size so that each element $s \in S$ may be associated with a unique element of $v \in \{0,1\}^c$ and set $\delta(v) = s$. We will then construct the formulas $\psi_1(\tup{x}),\dots,\psi_c(\tup{x})$ defining the interpretation $I_\delta$ of $\Gamma^{S,s}_{d,\delta}\tup{x}(\psi_1(\tup{x}), \dots, \psi_c(\tup{x}))$ in such a way that for the interpretation $I_\gamma$ of $\Gamma^{S,s}_{d,\gamma}\tup{x}(P_1,\dots,P_k)$, structure $\mathfrak{A}$, and assignment $\alpha$, $\gamma(w_{I_\gamma(\mathfrak{A},\alpha)}) = s = \delta(w_{I_\delta(\mathfrak{A},\alpha)})$ and the letters of $w_{I_\delta(\mathfrak{A}, \alpha)}$ are only from the subset of $\{0,1\}^c$ consisting of the unique elements used to construct $\delta$. 
+    Let $\overline{x_l}$ denote the tuple $(x_1,\dots,x_l)$. Let $S$ be an arbitrary finite semigroup.
 
-    To construct $\delta$, we will let $c = |S|$ be the size of the tuples over which $\delta$ acts and we'll use one-hot encodings to associate each element of $S$ with an element in the domain of $\delta$. Let $z \in S$ be fixed and arbitrary. Say that $S = \{s_1, \dots, s_c\}$. Let $\delta : \{0,1\}^c \rightarrow S$ such that if $w \in \{0,1\}^c$ is a one-hot encoding of $i$ where $1 \leq i \leq c$, then $\delta(w) = s_i$; else, $\delta(w) = z$. For example, if $|S| = 3$, then $\delta(100) = s_1$, $\delta(010) = s_2$, $\delta(001) = s_3$, $\delta(110) = \delta(000) = z$, etc. Note that $z$ is simply used to ensure that $\delta$ is total; the construction of our formulas $\psi_1,\dots,\psi_c$ bound by the multiplication quantifier using $\delta$ will ensure that no non-one-hot encoding in $\{0,1\}^c$ is ever passed into $\delta$ during evaluation of the quantifier.
+    To construct $\delta$, we will let $|S|$ be the size of the tuples over which $\delta$ acts; thus, let $c = |S|$. Let $z \in S$ be fixed and arbitrary. Say that $S = \{s_1, \dots, s_c\}$. Let $\delta : \{0,1\}^c \rightarrow S$ such that if $w \in \{0,1\}^c$ is a one-hot encoding of $i$ where $1 \leq i \leq c$, then $\delta(w) = s_i$; else, $\delta(w) = z$. For example, if $|S| = 3$, then $\delta(100) = s_1$, $\delta(010) = s_2$, $\delta(001) = s_3$, $\delta(110) = \delta(000) = z$, etc.
 
-    Now that we've defined $\delta$, let $s \in S$, $d \in \mathbb{N}$, and $\gamma : \{0,1\}^k \rightarrow S$ be arbitrary. Let $\tau = \{P_1^{(d)}, \dots, P_k^{(d)}$\} be a relational vocabulary. We will now show that $\Gamma^{S,s}_{d,\gamma}$ is definable in $(\Gamma^{S,s}_{d,\delta})[\varnothing]$.
+    Now, let $s \in S$, $l \in \mathbb{N}$, and $\gamma : \{0,1\}^k \rightarrow S$ be arbitrary. Let $\tau = \{P_1^{(l)}, \dots, P_k^{(l)}$\} be a relational vocabulary. We will now show that $\Gamma^{S,s}_{l,\gamma}$ is definable in $(\Gamma^{S,s}_{l,\delta})[\varnothing]$.
 
     Specifically, we will now show that for \[
-        \Phi_1 := \Gamma^{S,s}_{d,\gamma}\overline{x}( P_1 \overline{x}, \dots, P_k \overline{x_d})
+        \Phi_1 := \Gamma^{S,s}_{l,\gamma}\overline{x_l}\langle P_1 \overline{x_l}, \dots, P_k \overline{x_l}\rangle
     \] there exists a $\tau$-sentence \[
-        \Phi_2 := \Gamma^{S,s}_{d,\delta}\overline{x}( \psi_1(\overline{x}), \dots, \psi_c(\overline{x_d})),
+        \Phi_2 := \Gamma^{S,s}_{l,\delta}\overline{x_l}\langle \psi_1(\overline{x_l}), \dots, \psi_c(\overline{x_l})\rangle,
     \] where each $\psi_i$ is a boolean combination of $P_1,\dots,P_k$,
     such that \(
         \text{Mod}(\Phi_1) = \text{Mod}(\Phi_2)
     \).
     
-    We now construct $\psi_1, \dots, \psi_c$ so that for each structure $\mathfrak{A}$, assignment $\alpha$, and all $\tup{a} \in |\mathfrak{A}|^d$, if $\gamma(P^{\mathfrak{A},\alpha}_1[\overline{a}] \circ \cdots \circ P^{\mathfrak{A},\alpha}_k[\overline{a}]) = s_j$, then $\psi_j[\overline{a}] = 1$ and $\psi_i[\overline{a}] = 0$ for all $i \neq j$. Thus, $\psi_1^{\mathfrak{A},\alpha}[\overline{a}] \circ \cdots \circ \psi_c^{\mathfrak{A},\alpha}[\overline{a}]$ will be the one-hot encoding of $s_j$, causing the application of $\delta$ to output $s_j$.
+    We now construct $\psi_1, \dots, \psi_c$.
 
-    Let $\gamma^P$ be a map from $S$ to sets of boolean combinations of $P_1,\dots,P_k$ such that if $w_1\dots w_k \in \{0,1\}^k$ maps to $s$ under $\gamma$, then $P'_1 \wedge \dots \wedge P'_k \in \gamma^P(s)$ where $P'_i = P_i \overline{x}$ if $w_i = 1$ and $P'_i = \neg P_i \overline{x}$ if $w_i = 0$. For example, if $S = \{s_1, s_2, s_3\}$, $k=2$, $\gamma(00) = \gamma(10) = \gamma(01) = s_1$, and $\gamma(11) = s_3$, then $\gamma^P(s_1) = \{\neg P_1\overline{x} \wedge \neg P_2\overline{x}, P_1\overline{x} \wedge \neg P_2\overline{x}, \neg P_1\overline{x} \wedge P_2\overline{x}\}$, $\gamma^P(s_2) = \varnothing$, and $\gamma^P(s_3) = \{P_1\overline{x} \wedge P_2\overline{x}\}$. We then set \[\psi_i := \bigvee_{\phi \in \gamma^P(s_i)} \phi.\] By construction since $\gamma$ is a total function, observe that for every structure, there will be \emph{exactly} one $i$ such that $\psi_i$ evaluates to true. We have now defined $\psi_1, \dots, \psi_c$ and, thus, $\Phi_2$.
+    Let $\gamma^P$ be a map from $S$ to sets of boolean combinations of $P_1,\dots,P_k$ such that if $w_1\dots w_k \in \{0,1\}^k$ maps to $s$ under $\gamma$, then $P'_1 \wedge \dots \wedge P'_k \in \gamma^P(s)$ where $P'_i = P_i \overline{x_l}$ if $w_i = 1$ and $P'_i = \neg P_i \overline{x_l}$ if $w_i = 0$. For example, if $S = \{s_1, s_2, s_3\}$, $k=2$, $\gamma(00) = \gamma(10) = \gamma(01) = s_1$, and $\gamma(11) = s_3$, then $\gamma^P(s_1) = \{\neg P_1\overline{x_l} \wedge \neg P_2\overline{x_l}, P_1\overline{x_l} \wedge \neg P_2\overline{x_l}, \neg P_1\overline{x_l} \wedge P_2\overline{x_l}\}$, $\gamma^P(s_2) = \varnothing$, and $\gamma^P(s_3) = \{P_1\overline{x_l} \wedge P_2\overline{x_l}\}$. We then set \[\psi_i := \bigvee_{\phi \in \gamma^P(s_i)} \phi.\] By construction since $\gamma$ is a total function, observe that for every structure, there will be \emph{exactly} one $i$ such that $\psi_i$ evaluates to true. We have now defined $\psi_1, \dots, \psi_c$ and, thus, $\Phi_2$.
     
     We now show that $\text{Mod}(\Phi_1) = \text{Mod}(\Phi_2)$.
 
-    Let $\mathfrak{A}$ be an arbitrary $\tau$-structure and $\alpha$ a variable assignment. Because we are operating over dimension $d$, the length of $w_{I_\gamma(\mathfrak{A},\alpha)}$ is $||\mathfrak{A}||^d$. 
+    Let $\mathfrak{A}$ be an arbitrary $\tau$-structure. Let $\gamma^\mathfrak{A} : |\mathfrak{A}|^l \rightarrow S$ and $\delta^\mathfrak{A} : |\mathfrak{A}|^l \rightarrow S$ be the evaluator functions for $\Phi_1$ and $\Phi_2$, respectively. Thus, for $\overline{a_l} \in |\mathfrak{A}|^l$,
+    \begin{align*}
+        &\gamma^\mathfrak{A}(\overline{a_l}) = \gamma(\langle P^\mathfrak{A}_1[\overline{a_l}], \dots, P^\mathfrak{A}_k[\overline{a_l}]\rangle)\\
+        \text{and }&\delta^\mathfrak{A}(\overline{a_l}) = \delta(\langle \psi^\mathfrak{A}_1[\overline{a_l}], \dots, \psi^\mathfrak{A}_c[\overline{a_l}]\rangle).
+    \end{align*}
+
+    \noindent By construction of $\delta$ and $\psi_i$, observe that $\gamma^\mathfrak{A}$ and $\delta^\mathfrak{A}$ are in fact the same function. Let $s_i \in S = \{s_1, \dots, s_c\}$ be arbitrary:
+    \begin{align*}
+        &\gamma^\mathfrak{A}(\overline{a_l}) = s_i \\
+        \text{ iff } &\gamma(\langle P^\mathfrak{A}_1[\overline{a_l}], \dots, P^\mathfrak{A}_k[\overline{a_l}]\rangle) = s_i &\text{by definition of $\gamma^\mathfrak{A}$}\\
+        \text{ iff } &\psi^\mathfrak{A}_i[\overline{a_l}] = 1 &\text{by construction of $\psi_i$}\\
+        \text{ iff } &\delta(\langle \psi^\mathfrak{A}_1[\overline{a_l}], \dots, \psi^\mathfrak{A}_c[\overline{a_l}]\rangle) = s_i &\text{by construction of $\delta$}\\
+        \text{ iff } &\delta^\mathfrak{A}(\overline{a_l}) = s_i &\text{by definition of $\delta^\mathfrak{A}$}
+    \end{align*}
     
-    We first aim to prove that $\gamma((w_{I_\gamma(\mathfrak{A},\alpha)})_i) = \delta((w_{I_\delta(\mathfrak{A},\alpha)})_i)$ for all $i \in [||\mathfrak{A}||^d]$. Call this proposition $(\star)$. Let $i \in [||\mathfrak{A}||^d]$ and $s_j \in S = \{s_1, \dots, s_c\}$ be arbitrary. Let $\tup{a}$ be a tuple of length $d$ and denote the base-$||\mathfrak{A}||$ encoding of $i$. Then,
-    \begin{align*}
-        &\gamma((w_{I_\gamma(\mathfrak{A},\alpha)})_i) = s_j \\
-        \text{ iff } &\gamma(P^{\mathfrak{A},\alpha}_1[\overline{a}] \circ \cdots \circ P^{\mathfrak{A},\alpha}_k[\overline{a}]) = s_j &\text{by definition of $w_{I_\gamma(\mathfrak{A},\alpha)}$}\\
-        \text{ iff } &\psi^{\mathfrak{A},\alpha}_j[\overline{a}] = 1 &\text{by construction of $\psi_j$}\\
-        \text{ iff } &\delta(\psi^{\mathfrak{A},\alpha}_1[\overline{a}] \circ \cdots \circ \psi^{\mathfrak{A},\alpha}_c[\overline{a}]) = s_j &\text{by construction of $\delta$}\\
-        \text{ iff } &\delta((w_{I_\delta(\mathfrak{A},\alpha)})_i) = s_j &\text{by definition of $\delta((w_{I_\delta(\mathfrak{A},\alpha)})_i)$}
-    \end{align*}
-    Because $s_i$ was arbitrary, it follows that $\gamma((w_{I_\gamma(\mathfrak{A},\alpha)})_i) = \delta((w_{I_\delta(\mathfrak{A},\alpha)})_i)$.
-    We will use this fact to help prove that $\Phi_1$ and $\Phi_2$ have the same models:
-    \begin{align*}
-        &\mathfrak{A} \models \Phi_1\ [\alpha]&\\
-        \text{iff}\ &w_{I_\gamma(\mathfrak{A},\alpha)} \in L^{S,s}_\gamma &\text{by definition of $\Gamma^{S,s}_{d,\gamma}$}\\
-        \text{iff}\ &\gamma(w_{I_\gamma(\mathfrak{A},\alpha)}) = s&\text{by definition of $L^{S,s}_\gamma$}\\
-        \text{iff}\ &\prod_{1 \leq i \leq ||\mathfrak{A}||^d} \gamma((w_{I_\gamma(\mathfrak{A},\alpha)})_i) = s&\text{because $\gamma$ is a homomorphism}\\
-        \text{iff}\ &\prod_{1 \leq i \leq ||\mathfrak{A}||^d} \delta((w_{I_\delta(\mathfrak{A},\alpha)})_i) = s&\text{by $(\star)$}\\
-        \text{iff}\ &\delta(w_{I_\delta(\mathfrak{A},\alpha)}) = s&\text{because $\delta$ is a homomorphism}\\
-        \text{iff}\ &w_{I_\delta(\mathfrak{A},\alpha)} \in L^{S,s}_\delta &\text{by definition of $L^{S,s}_\delta$}\\
-        \text{iff}\ &\mathfrak{A} \models \Phi_2\ [\alpha]&\text{by definition of $\Gamma^{S,s}_{l,\delta}$}
-    \end{align*}
-    We have now proved that $\text{Mod}(\Phi_1) = \text{Mod}(\Phi_2)$.
+    \noindent Therefore, \[
+        \prod_{a_1 \in |\mathfrak{A}|}\cdots\prod_{a_l \in |\mathfrak{A}|}\gamma^\mathfrak{A}(a_1,\dots,a_l) = \prod_{a_1 \in |\mathfrak{A}|}\cdots\prod_{a_l \in |\mathfrak{A}|}\delta^\mathfrak{A}(a_1,\dots,a_l)
+    \] so by definition of our multiplication quantifiers, \[
+        \mathfrak{A} \models \Phi_1 \text{ iff } \mathfrak{A} \models \Phi_2
+    \] and, thus, $\text{Mod}(\Phi_1) = \text{Mod}(\Phi_2)$.
 \end{proof}
 
 We now prove that having quantifiers binding only one variable is sufficient:
-\iffalse
-\begin{theorem}
-    For any finite semigroup $S$, if $Q = \{\mathfrak{A} \mid w_\mathfrak{A} \in L\}$ where $L$ is a language recognized by $S$, then for any sentence $Q_d(\varphi_1, \dots, \varphi_k)$, there is an 
-\end{theorem}
-\fi
 
 \begin{theorem}\label{thm:finitebinding}
-    For every finite semigroup $S$, there exists a function $\delta : \{0,1\}^c \rightarrow S$ such that for every $s \in S$, $d \in \mathbb{N}$, and $\gamma : \{0,1\}^k \rightarrow S$, the quantifier $\Gamma^{S,s}_{d,\gamma}$ is definable in $(\Gamma^{S}_{1,\delta})[\varnothing]$.
+    For every finite semigroup $S$, there exists a function $\delta : \{0,1\}^c \rightarrow S$ such that for every $s \in S$, $l \in \mathbb{N}$, and $\gamma : \{0,1\}^k \rightarrow S$, the quantifier $\Gamma^{S,s}_{l,\gamma}$ is definable in $(\Gamma^{S}_{1,\delta})[\varnothing]$.
 \end{theorem}
 \begin{proof}
-    Let $S = \{s_1, \dots, s_c\}$ be an arbitrary finite semigroup and let $\delta : \{0,1\}^c \rightarrow S$ be constructed as done in Lemma \ref{lem:finitetuple}. Let $d \in \mathbb{N}$ and $\gamma : \{0,1\}^k \rightarrow S$ be arbitrary and let $\tau = \{P_1^{(d)}, \dots, P_k^{(d)}\}$ be a relational vocabulary. Finally, for each $s \in S$, let \[
-        \Phi_1^s := \Gamma^{S,s}_{d,\gamma}\overline{x}(P_1 \overline{x}, \dots, P_k \overline{x})
-    \] and $I_\gamma$ the interpretation of $\Phi^s_1$. We want to show that for each $s \in S$, there exists a $\tau$-sentence $\Phi_2^s$ in $(\Gamma^S_{1,\delta})[\varnothing]$ such that $\text{Mod}(\Phi_1^s) = \text{Mod}(\Phi_2^s)$. 
-    
-    We will approach this by taking our multiplication quantifier of dimension $d$ and ``unpacking'' it into a nesting of quantifiers of dimension one, with quantifier depth $d$. The evaluation of a $d$-dimensional quantifier may be viewed as being factored through the evaluation of each successive level of nesting. For example, a multiplication quantifier $\Gamma^{S,s}_{2,\gamma}$ with interpretation $I$ is evaluated in a structure $\mathfrak{A}$ and assignment $\alpha$ by checking whether $\gamma(w_{I(\mathfrak{A},\alpha)}) = s$. Because the quantifier has dimension two, the length of $w_{I(\mathfrak{A},\alpha)}$ is $||\mathfrak{A}||^2$. Instead of applying $\gamma$ to the entire tuple, we may first apply $\gamma$ to each consecutive $|\mathfrak{A}|$-length subword to obtain $|\mathfrak{A}|$ elements of $S$ which may then be multiplied together to obtain our result. Our outermost quantifier performs the multiplication of the $|\mathfrak{A}|$ elements, i.e., the intermediate results, while the innermost quantifier performs the multiplication of the elements of each subword. We will pass the intermediate result from the innermost quantifier to the outermost by encoding the result in the evaluation of the outermost quantifier's tuple of formulas. Because we don't know which element of $S$ the application of $\gamma$ to the subword will be, we need to ensure our tuple of large enough to encode any possible element of $S$. Thus, by fixing the tuple size using the same encoding as Lemma \ref{lem:finitetuple}, we may then pass the intermediate result of the innermost quantifier's multiplication to the outermost quantifier. We now go into the details of this construction.
+    Let $S = \{s_1, \dots, s_c\}$ be an arbitrary finite semigroup and let $\delta : \{0,1\}^c \rightarrow S$ be constructed as done in Lemma \ref{lem:finitetuple}. Let $l \in \mathbb{N}$ and $\gamma : \{0,1\}^k \rightarrow S$ be arbitrary and let $\tau = \{P_1^{(l)}, \dots, P_k^{(l)}\}$ be a relational vocabulary. Finally, for each $s \in S$, let \[
+        \Phi_1^s := \Gamma^{S,s}_{l,\gamma}\overline{x_l}\langle P_1 \overline{x_l}, \dots, P_k \overline{x_l}\rangle.
+    \] We want to show that for each $s \in S$, there exists a $\tau$-sentence $\Phi_2^s$ in $(\Gamma^S_{1,\delta})[\varnothing]$ such that $\text{Mod}(\Phi_1^s) = \text{Mod}(\Phi_2^s)$.
 
-    We proceed by induction on the dimension $d$. If $d=1$, then the result follows from Lemma \ref{lem:finitetuple}. Thus, assume that for each $s \in S$,
+    We proceed by induction on $l$. If $l=1$, then the result follows from Lemma \ref{lem:finitetuple}. Thus, assume that for each $s \in S$,
     \begin{align*}
-        \text{$\Gamma^{S,s}_{d-1,\gamma}$ is definable in $(\Gamma^{S}_{1,\delta})[\varnothing]$.}\tag{I.H.}
+        \text{$\Gamma^{S,s}_{l-1,\gamma}$ is definable in $(\Gamma^{S}_{1,\delta})[\varnothing]$.}\tag{I.H.}
     \end{align*}
-    We now show that for each $s \in S$, $\Gamma^{S,s}_{d,\gamma}$ is definable in $(\Gamma^{S}_{1,\delta})[\varnothing]$.
+    We now show that for each $s \in S$, $\Gamma^{S,s}_{l,\gamma}$ is definable in $(\Gamma^{S}_{1,\delta})[\varnothing]$.
 
     \iffalse
     By Lemma \ref{lem:finitetuple}, we know that there is a sentence of the form \[
-        \Phi_1' := \Gamma^{S,s}_{d,\delta}\overline{x_l}\langle \psi_1(\overline{x_l}), \dots, \psi_c(\overline{x_l})\rangle,
+        \Phi_1' := \Gamma^{S,s}_{l,\delta}\overline{x_l}\langle \psi_1(\overline{x_l}), \dots, \psi_c(\overline{x_l})\rangle,
     \] where each $\psi_i$ is a boolean combination of $P_1,\dots,P_k$, such that $\text{Mod}(\Phi_1) = \text{Mod}(\Phi_1')$.
     \fi
 
     Let $s \in S$ be arbitrary. We now construct a sentence $\Phi^s$ and prove that $\text{Mod}(\Phi_1^s) = \text{Mod}(\Phi^s)$; we will then use the inductive hypothesis to convert $\Phi^s$ into a sentence $\Phi_2^s$ in $(\Gamma^S_{1,\delta})[\varnothing]$ such that $\text{Mod}(\Phi^s) = \text{Mod}(\Phi_2^s)$. Let \[
-        \Phi^s := \Gamma^{S,s}_{1,\delta}x_1( \theta_1(x_1), \dots, \theta_c(x_1))
+        \Phi^s := \Gamma^{S,s}_{1,\delta}x_1\langle \theta_1(x_1), \dots, \theta_c(x_1)\rangle
     \] where \[
-        \theta_i (x_1) := \Gamma^{S,s_i}_{d-1,\gamma}x_2\dots x_d( P_1 x_1x_2\dots x_d, \dots, P_k x_1x_2\dots x_d)
+        \theta_i (x_1) = \Gamma^{S,s_i}_{l-1,\gamma}x_2\dots x_l\langle P_1 x_1x_2\dots x_l, \dots, P_k x_1x_2\dots x_l\rangle
     \]
 
-    Let $\mathfrak{A}$ be an arbitrary $\tau$-structure and $\alpha$ a variable assignment. Let $I_\delta$ be the interpretation of $\Phi^s$ and $I^i_\gamma$ denote the interpretation of $\theta_i$. To show that $\text{Mod}(\Phi^s_1) = \text{Mod}(\Phi^s)$, we will show that $\gamma(w_{I_\gamma(\mathfrak{A},\alpha)}) = \delta(w_{I_\delta(\mathfrak{A},\alpha)})$.
-    
-    First, note that $w_{I_\gamma(\mathfrak{A},\alpha)}$ is of length $||\mathfrak{A}||^d$ while $w_{I_\delta(\mathfrak{A},\alpha)}$ is of length $||\mathfrak{A}||$. Also, by construction of $\theta_1, \dots, \theta_c$, we get that \begin{align*}
-        \text{for every $a \in |\mathfrak{A}|$, if $\theta_i^{\mathfrak{A},\alpha}[a] = \theta_j^{\mathfrak{A},\alpha}[a] = 1$, then $i = j$}\tag{$\star$}
-    \end{align*} since each $\theta_i$ will perform the same multiplication within $S$ during evaluation but each $\theta_i$ will check if the product is equal to a different $s_i$. Then, for every $a \in [||\mathfrak{A}||]$ and $s_i \in S$,
+    Let $\mathfrak{A}$ be an arbitrary $\tau$-structure. Let $\gamma^\mathfrak{A} : |\mathfrak{A}|^l \rightarrow S$ and $\delta^\mathfrak{A} : |\mathfrak{A}| \rightarrow S$ be the evaluator functions for $\Phi^s_1$ and $\Phi^s$, respectively. To show that $\text{Mod}(\Phi^s_1) = \text{Mod}(\Phi^s)$, we will show that \[
+        \prod_{a_1 \in |\mathfrak{A}|}\cdots\prod_{a_l \in |\mathfrak{A}|}\gamma^\mathfrak{A}(a_1,\dots,a_l) = \prod_{a \in |\mathfrak{A}|}\delta^\mathfrak{A}(a).
+    \] 
+    First, note that by construction of $\theta_1, \dots, \theta_c$, we get that \begin{align*}
+        \text{for every $a \in |\mathfrak{A}|$, if $\theta_i^\mathfrak{A}[a] = \theta_j^\mathfrak{A}[a] = 1$, then $i = j$}\tag{$\star$}
+    \end{align*} since each $\theta_i$ will perform the same multiplication within $S$ during evaluation but each $\theta_i$ will check if the product is equal to a different $s_i$. Then, for every $a \in |\mathfrak{A}|$ and $s_i \in S$,
     \begin{align*}
-        &\delta((w_{I_\delta(\mathfrak{A},\alpha)})_a) = s_i \\
-        \text{iff}\ &\delta(\theta_1^{\mathfrak{A},\alpha}[a]\circ \cdots\circ \theta_c^{\mathfrak{A},\alpha}[a]) = s_i &\text{by definition of $w_{I_\delta(\mathfrak{A},\alpha)}$}\\
-        \text{iff}\ &\theta_i^{\mathfrak{A},\alpha}[a] = 1 &\text{by construction of $\delta$ and $(\star)$}\\
-        \text{iff}\ &\gamma(w_{I^i_\gamma(\mathfrak{A},\alpha[a/x_1])}) = s_i&\text{by definition of $\theta_i$}
+        &\delta^\mathfrak{A}(a) = s_i \\
+        \text{ iff } &\delta(\langle \theta_1^\mathfrak{A}[a], \dots, \theta_c^\mathfrak{A}[a]\rangle) = s_i &\text{by definition of $\delta^\mathfrak{A}$}\\
+        \text{ iff } &\theta_i^\mathfrak{A}[a] = 1 &\text{by construction of $\delta$ and $(\star)$}
     \end{align*}
-    Because $s_i$ was arbitrary, we get that
+    Then, by construction of $\theta_i$, we get that $\delta^\mathfrak{A}(a) = s_i$ iff \[
+        \prod_{a_2 \in |\mathfrak{A}|}\cdots\prod_{a_l \in |\mathfrak{A}|}\gamma(\langle P_1^\mathfrak{A}[a, a_2, \dots, a_l], \dots, P_k^\mathfrak{A}[a, a_2, \dots, a_l] \rangle) = s_i
+    \] and, thus, \[
+        \delta^\mathfrak{A}(a) = \prod_{a_2 \in |\mathfrak{A}|}\cdots\prod_{a_l \in |\mathfrak{A}|}\gamma(\langle P_1^\mathfrak{A}[a, a_2, \dots, a_l], \dots, P_k^\mathfrak{A}[a, a_2, \dots, a_l] \rangle)
+    \] Therefore, 
     \begin{align*}
-        \delta((w_{I_\delta(\mathfrak{A},\alpha)})_a) = \gamma(w_{I^i_\gamma(\mathfrak{A},\alpha[a/x_1])})
+        \prod_{a \in |\mathfrak{A}|}\delta^\mathfrak{A}(a)
+        &=  \prod_{a \in |\mathfrak{A}|} \prod_{a_2 \in |\mathfrak{A}|}\cdots\prod_{a_l \in |\mathfrak{A}|}\gamma(\langle P_1^\mathfrak{A}[a, a_2, \dots, a_l], \dots, P_k^\mathfrak{A}[a, a_2, \dots, a_l] \rangle)\\
+        &= \prod_{a_1 \in |\mathfrak{A}|}\cdots\prod_{a_l \in |\mathfrak{A}|}\gamma^\mathfrak{A}(a_1,\dots,a_l) \text{ by definition of $\gamma^\mathfrak{A}$}
     \end{align*}
-    and, therefore,
-    \begin{align*}
-        &\mathfrak{A} \models \Phi^s\ [\alpha]\\
-        \text{iff}\ &w_{I_\delta(\mathfrak{A},\alpha)} \in L^{S,s}_\delta &\text{by definition of $\Gamma^{S,s}_{d,\delta}$}\\
-        \text{iff}\ &\delta(w_{I_\delta(\mathfrak{A},\alpha)}) = s &\text{by definition of $L^{S,s}_\delta$}\\
-        \text{iff}\ &\prod_{1 \leq a \leq ||\mathfrak{A}||} \delta((w_{I_\delta(\mathfrak{A},\alpha)})_a) = s &\text{because $\delta$ is a homomorphism}\\
-        \text{iff}\ &\prod_{1 \leq a \leq ||\mathfrak{A}||} \gamma(w_{I^i_\gamma(\mathfrak{A},\alpha[a/x_1])}) = s &\text{by above, where $i$ is s.t. $s_i = s$}\\
-        \text{iff}\ &\prod_{1 \leq a \leq ||\mathfrak{A}||} \gamma(w_{I_\gamma(\mathfrak{A},\alpha[a/x_1])}) = s&\text{by definition of $I_\gamma$ and $I^i_\gamma$, and $s_i = s$}\\
-        \text{iff}\ &\gamma(w_{I_\gamma(\mathfrak{A},\alpha)}) = s &\text{because $\gamma$ is a homomorphism}\\
-        \text{iff}\ &w_{I_\gamma(\mathfrak{A},\alpha)} \in L^{S,s}_\gamma &\text{by definition of $L^{S,s}_\gamma$}\\
-        \text{iff}\ &\mathfrak{A} \models \Phi^s_1\ [\alpha]&\text{by definition of $\Gamma^{S,s}_{d,\gamma}$}
-    \end{align*}
-    so $\text{Mod}(\Phi^s_1) = \text{Mod}(\Phi^s)$.
+    and, thus, $\mathfrak{A} \models \Phi^s_1$ iff $\mathfrak{A} \models \Phi^s$ so $\text{Mod}(\Phi^s_1) = \text{Mod}(\Phi^s)$.
 
-    By the I.H., we know that each quantifier $\Gamma^{S,s_i}_{d-1,\gamma}$ is definable in $(\Gamma^S_{1,\delta})[\varnothing]$. Therefore, we know that for each $\theta_i$, there exists a formula $\theta_i'$ in $(\Gamma^S_{1,\delta})[\varnothing]$ such that $\text{Mod}(\theta_i) = \text{Mod}(\theta_i')$. Thus, we can construct a sentence $\Phi_2^s$ by replacing each $\theta_i$ in $\Phi^s$ with $\theta_i'$; we immediately get that $\text{Mod}(\Phi^s) = \text{Mod}(\Phi_2^s)$. Therefore, we have constructed a sentence $\Phi_2^s$ in $(\Gamma^S_{1,\delta})[\varnothing]$ such that $\text{Mod}(\Phi_1^s) = \text{Mod}(\Phi_2^s)$. Since $s \in S$ was arbitrary, this completes the inductive step.
+    By the I.H., we know that each quantifier $\Gamma^{S,s_i}_{l-1,\gamma}$ is definable in $(\Gamma^S_{1,\delta})[\varnothing]$. Therefore, we know that for each $\theta_i$, there exists a formula $\theta_i'$ in $(\Gamma^S_{1,\delta})[\varnothing]$ such that $\text{Mod}(\theta_i) = \text{Mod}(\theta_i')$. Thus, we can construct a sentence $\Phi_2^s$ by replacing each $\theta_i$ in $\Phi^s$ with $\theta_i'$; we immediately get that $\text{Mod}(\Phi^s) = \text{Mod}(\Phi_2^s)$. Therefore, we have constructed a sentence $\Phi_2^s$ in $(\Gamma^S_{1,\delta})[\varnothing]$ such that $\text{Mod}(\Phi_1^s) = \text{Mod}(\Phi_2^s)$. Since $s \in S$ was arbitrary, this completes the inductive step.
 
-    All together, we get that for every $d \in \mathbb{N}$, $\gamma : \{0,1\}^k \rightarrow S$, and $s \in S$, the quantifier $\Gamma^{S,s}_{l,\gamma}$ is definable in $(\Gamma^{S}_{1,\delta})[\varnothing]$.
+    All together, we get that for every $l \in \mathbb{N}$, $\gamma : \{0,1\}^k \rightarrow S$, and $s \in S$, the quantifier $\Gamma^{S,s}_{l,\gamma}$ is definable in $(\Gamma^{S}_{1,\delta})[\varnothing]$.
 
     %Observe that $\Gamma^{M',m}_{2,\gamma_c}$ performs a multiplication of $||\mathfrak{A}||^2$ elements of $M'$ and checks to see if it equals $m$. Each iteration of $\Gamma^{M',m}_{1,\gamma_c} x_1 \langle \dots \rangle$ in $\Phi_2$ performs a multiplication of $||\mathfrak{A}||$ elements of $M'$. \todo{finish}
 
