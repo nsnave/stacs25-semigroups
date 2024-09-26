@@ -510,82 +510,11 @@ Moreover, this theorem serves as an alternative proof of Theorem \ref{thm:unaryf
 \section{The Algebraic Characterization}\label{sec:alg}
 
 
-Now that we have a first-order logic with only unary quantifiers capturing \textsc{DLogTime}-uniform NC${}^1$, we are closer to applying Theorem \ref{thm:logcircalgequiv} to construct an algebra for it.
+Now that we have a first-order logic with only unary quantifiers capturing \textsc{DLogTime}-uniform NC${}^1$, we are closer to applying Theorem \ref{thm:logcircalgequiv} to construct an algebra for it. We now just need to convert the logic to a form whose only numerical predicate is $<$ without introducing any new non-unary quantifiers.
 
-We first need to prove some results concerning the typed quantifier semigroups of multiplication quantifiers:
+To do this, we first define two unary quantifiers. The quantifier \text{Maj} which is true if the majority of the assignments to the bound variable satisfy the formula. The quantifier \text{Sq} which is true if the number of assignments to the bound variable satisfying the formula is a positive square number. 
 
-\begin{theorem}\label{thm:typedquantifiersemigroup}
-    Let $s \in S_5$ and $\gamma : \{0,1\}^k \rightarrow S_5$, where $\emph{Img}(\gamma) = S_5$, be arbitrary. Then, the typed quantifier semigroup of $\Gamma^{S_5,s}_{1,\gamma}$ equals $(S_5, s, S_5)$.
-\end{theorem}
-\begin{proof}
-    Let $s \in S_5$ and $\gamma : \{0,1\}^k \rightarrow S_5$ be arbitrary. Let $T = (S_5, s, S_5)$. We will show that $T$ is isomorphic to the typed quantifier semigroup of $\Gamma^{S_5,s}_{1,\gamma}$.
-
-    Let $Q = ((\{0,1\}^k)^+, L_\Gamma, \{0,1\}^k)$ such that for $w = w_1\dots w_n \in (\{0,1\}^k)^+$, $w \in L_\Gamma$ iff $w \models \Gamma^{S_5,s}_{1,\gamma}x\langle P_1 x, \dots, P_k x\rangle$ where $P_i^\mathfrak{w} = \{a \in [n] \mid (w_a)_i = 1\}$. To be clear, $(w_a)_i$ denotes the $i^\text{th}$ bit of $w_a \in \{0,1\}^k$. Let $\gamma^* : (\{0,1\}^k)^+ \rightarrow S_5$ be the homomorphism induced by $\gamma$.
-
-    By definition of typed quantifier semigroup, we now want to show that $T \cong \text{syn}(L_\Gamma)$. We know (1) that there exists a syntactic typed homomorphism $\eta = (\eta_1, \eta_2, \eta_3)$ from $Q$ to $\text{syn}(L_\Gamma)$ and (2) that for $w \in (\{0,1\}^k)^+$,
-    \begin{align*}
-        w \in L_\Gamma \text{ iff } &w \models \Gamma^{S_5,s}_{1,\gamma}x\langle P_1 x, \dots, P_k x\rangle\\
-        \text{ iff } &\prod_{a \in [n]} \gamma(\langle P_1^\mathfrak{w}[a], \dots, P_k^\mathfrak{w}[a]\rangle) = s\\
-        \text{ iff } &\gamma^*(w) = s.
-    \end{align*}
-
-    Say $\text{syn}(L_\Gamma) = (S_\Gamma, B_\Gamma, E_\Gamma)$. We first prove that
-    \begin{lemma}\label{lem:multtoalghelper}
-        For every $v_1,v_2 \in \{0,1\}^k$, $\gamma(v_1) = \gamma(v_2)$ iff $\eta_3(v_1) = \eta_3(v_2)$.
-    \end{lemma}
-    \begin{proof}
-        Assume that $\gamma(v_1) = \gamma(v_2)$. Let $x,y \in (\{0,1\}^k)^+$ be arbitrary. 
-        \begin{align*}
-            xv_1y \in L_\Gamma &\text{ iff } \gamma^*(xv_1y) = s&\text{by (2)}\\
-            &\text{ iff } \gamma^*(x)\gamma(v_1)\gamma^*(y) = s&\text{by definition}\\
-            &\text{ iff } \gamma^*(x)\gamma(v_2)\gamma^*(y) = s&\text{since $\gamma(v_1) = \gamma(v_2)$}\\
-            &\text{ iff } \gamma^*(xv_2y) = s&\text{by definition}\\
-            &\text{ iff } xv_2y \in L_\Gamma&\text{by (2)}
-        \end{align*}
-        Thus, $v_1 \sim_{L_\Gamma} v_2$ so $\eta_3(v_1) = \eta_3(v_2)$.
-
-        Assume that $\eta_3(v_1) = \eta_3(v_2)$. Thus, $v_1 \sim_{L_\Gamma} v_2$ so for every $x,y \in (\{0,1\}^k)^+$, $xv_1y \in L_\Gamma$ iff $xv_2y \in L_\Gamma$. Therefore, for every $x,y \in (\{0,1\}^k)^+$,
-        \begin{align*}
-            \gamma^*(x)\gamma(v_1)\gamma^*(y) = s &\text{ iff } \gamma^*(xv_1y) = s&\text{by definition}\\
-            &\text{ iff } xv_1y \in L_\Gamma&\text{by (2)}\\
-            &\text{ iff } xv_2y \in L_\Gamma&\text{by the above}\\
-            &\text{ iff } \gamma^*(xv_2y) = s&\text{by (2)}\\
-            &\text{ iff } \gamma^*(x)\gamma(v_2)\gamma^*(y) = s&\text{by definition}
-        \end{align*}
-        Because $S_5$ is a group, it is cancellative (cf. \autoref{prop:groupcanc}); thus, $\gamma(v_1) = \gamma(v_2)$.
-        
-        We have now shown that $\gamma(v_1) = \gamma(v_2)$ iff $\eta_3(v_1) = \eta_3(v_2)$.
-    \end{proof}
-    
-    We now construct a typed isomorphism $f = (f_1, f_2, f_3)$ from $T$ to $\text{syn}(L_\Gamma)$. We start with $f_3$.
-    
-    For each $t \in S_5$, let $f_3(t) = \eta_3(w)$ for some $w \in \gamma^{-1}(t)$; by \autoref{lem:multtoalghelper}, the specific choice of $w \in \gamma^{-1}(t)$ does not matter. 
-    
-    We now prove that $f_3$ is injective. Let $s_1,s_2 \in S_5$ and assume that $f_3(s_1) = f_3(s_2)$. Then, by construction of $f_3$, there exists $w_1 \in \gamma^{-1}(s_1)$ and $w_2 \in \gamma^{-1}(s_2)$ such that $f_3(s_1) = \eta_3(w_1) = \eta_3(w_2) = f_3(s_2)$. By \autoref{lem:multtoalghelper}, $\gamma(w_1) = \gamma(w_2)$, so $s_1 = s_2$ since $s_i \in \gamma^{-1}(s_i)$.
-
-    We now prove that $f_3$ is surjective. Let $v \in E_\Gamma \subseteq S_\Gamma$ be arbitrary. Because $\eta$ is the syntactic morphism to $\text{syn}(L_\Gamma)$, it is surjective; therefore, $\eta_3(\{0,1\}^k) = E_\Gamma$ so there exists $w \in \{0,1\}^k$ such that $\eta_3(w) = v$. Let $t = \gamma(w)$. By construction of $f_3$ and \autoref{lem:multtoalghelper}, $f_3(t) = \eta_3(w) = v$ so $f_3$ is surjective.
-
-    Therefore, $f_3$ is a bijection from $S_5$ to $E_\Gamma$.
-
-    Let $f_1$ be the homomorphism induced by $f_3$. The proof of $f_1$'s bijectivity is analogous to the proof of $f_3$'s bijectivity. Thus, $f_3$ is a isomorphism from $S_5$ to $S_\Gamma$.
-
-    We now must construct and show that $f_2 : \{\varnothing, \{s\}, S_5 - \{s\}, S_5\} \rightarrow B_\Gamma$ is an isomorphism of Boolean algebras. $B_\Gamma$ will only have four elements---$\varnothing$, $X = \eta_1(L_\Gamma)$, $S_\Gamma -X$, and $S_\Gamma$---since $(S_\Gamma, B_\Gamma, E_\Gamma)$ is a syntactic typed semigroup. Let $f_2(\varnothing) = \varnothing$, $f_2(\{s\}) = X$, $f_2(S_5 - \{s\}) = S_\Gamma - X$, and $f_2(S_5) = S_\Gamma$. $f_2$ is clearly bijective and preserves the Boolean algebra structure.
-
-    Lastly, we must prove that $f = (f_1, f_2, f_3)$ is actually a typed homomorphism by proving that $f_1(\{s\}) = f_2(\{s\}) \cap f_1(S_5)$. (The other condition on \autoref{def:typedhom} is trivially satisfied.)
-
-    We know that for an element $g \in (\{0,1\})^+$,
-    \begin{align*}
-        \eta_1(g) \in \eta_1(L_\Gamma) \text{ iff }\gamma^*(g) = s\tag{$\star$}
-    \end{align*}
-    
-    We first prove that $f_1(\{s\}) \subseteq f_2(\{s\}) \cap f_1(S_5)$. Since $s \in S_5$, $f_1(\{s\}) \subseteq f_1(S_5)$. We know $f_1(\{s\}) = \{f_1(s)\}$ by definition so we must show that $f_1(s) \in f_2(\{s\}) = X = \eta_1(L_\Gamma)$. Since $f_1(s) = \eta_3(g) = \eta_1(g)$ for some $g \in \gamma^{-1}(s)$, $\gamma^*(g) = s$ so, by $(\star)$, $\eta_1(g) \in \eta_1(L_\Gamma)$ so $f_1(s) \in \eta_1(L_\Gamma)$.
-
-    We now prove that $f_2(\{s\}) \cap f_1(S_5) \subseteq f_1(\{s\})$. Let $\eta_1(g) \in f_2(\{s\}) \cap f_1(S_5)$ be arbitrary. Since $f_2(\{s\}) = \eta_1(L_\Gamma)$, by $(\star)$, $\gamma^*(g) = s$. Therefore, by construction of $f_1$, $\eta_1(g) = f_1(s) \in f_1(\{s\}) = \{f_1(s)\}$.
-
-    All together, we get that $f$ is a typed isomorphism from $T$ to $\text{syn}(L_\Gamma)$ so the typed quantifier semigroup of $\Gamma^{S_5,s}_{1,\gamma}$ is isomorphic to $(S_5, s, S_5)$.
-\end{proof}
-
-We also know the following from the literature:
+We note the following from the literature:
 \begin{lemma}\label{lem:superhelperalogtime}
     \,
     \begin{enumerate}[\ \ \ \ (i)]
@@ -596,21 +525,21 @@ We also know the following from the literature:
     \end{enumerate}
 \end{lemma}
 
-and, all together, we get our main result: 
+
 
 
 \begin{theorem}\label{thm:algebraforalogtime}
     \[\text{\emph{\textsc{DLogTime}-uniform NC${}^1$}} = \mathcal{L}(\emph{sbpc}_<(\{(\mathbb{Z}, \mathbb{Z}^+, \pm 1), (\mathbb{N}, \mathbb{S}, \{0,1\}), (S_5, \wp(S_5), S_5)\})).\]
 \end{theorem}
 \begin{proof}
-    Let $\delta : \{0,1\}^c \rightarrow S_5$ be as it was defined in Lemma \ref{lem:finitetuple}.
+    Let $\delta : \{0,1\}^c \rightarrow S_5$ be as it was defined in Lemma \ref{lem:finitetuple}. Note that the typed quantifier semigroup for Maj is $(\mathbb{Z}, \mathbb{Z}^+, \pm 1)$, for Sq is $(\mathbb{N}, \mathbb{S}, \{0,1\})$, and for $\Gamma^{S_5,s}_{1,\delta}$ is $(S_5, \{s\}, S_5)$. Then,
     \begin{align*}
         \text{\textsc{DLogTime}-uniform NC${}^1$} &= \mathcal{L}((\text{FO} \cup \Gamma^{S_5})[+,\times])\text{ via \cite{barrington1990uniformity}}\\
         &=\mathcal{L}((\text{FO} \cup \Gamma^{S_5}_{1,\delta})[+,\times])\text{ via Corollary \ref{cor:alogtimelogicbetter}}\\
         &=\mathcal{L}((\Gamma^{S_5}_{1,\delta} \cup \{\text{Maj}, \text{Sq}\})[<])\text{ via Lemma \ref{lem:superhelperalogtime}}\\
         &=\mathcal{L}(\text{sbpc}_<(\{(\mathbb{Z}, \mathbb{Z}^+, \pm 1), (\mathbb{N}, \mathbb{S}, \{0,1\})\}\\
         &\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \cup \{(S_5, s, S_5) \mid s \in S_5\}))\\
-        &\text{\ \ \ \ \ \ via Theorems \ref{thm:logcircalgequiv} and \ref{thm:typedquantifiersemigroup}}\\
+        &\text{\ \ \ \ \ \ via Theorem \ref{thm:logcircalgequiv}}\\
         &= \mathcal{L}(\text{sbpc}_<(\{(\mathbb{Z}, \mathbb{Z}^+, \pm 1), (\mathbb{N}, \mathbb{S}, \{0,1\}), 
         (S_5, \wp(S_5), S_5)\}))\\
         &\text{\ \ \ \ \ \ since $\forall s \in S_5, (S_5, s, S_5) \preceq (S_5, \wp(S_5), S_5)$}\\
