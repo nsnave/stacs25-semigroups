@@ -354,12 +354,12 @@ To use Theorem~\ref{thm:logcircalgequiv} to obtain an algebraic characterization
     For every finite semigroup $S$, there exists a function $\delta : \{0,1\}^{|S|} \rightarrow S$ such that for every $s \in S$ and $\gamma : \{0,1\}^k \rightarrow S$, the quantifier $\Gamma^{S,s}_{\gamma}$ is definable in $(\Gamma^{S,s}_{\delta})[\varnothing]$.
   \end{lemma}
   \begin{proof}
-    Recall that $\Gamma^{S,s}_{\gamma}$ is the class of structures $\str{A}$ in a vocabulary $\tau$ with one binary relation $<$ and $k$ unary relations $R_1,\ldots,R_k$ such that $\gamma(w_{\str{A}) = 1$ where $w_{\str{A}$ is the string associated with $\str{A}$ as in Def.~\ref{def:associated}.
+    Recall that $\Gamma^{S,s}_{\gamma}$ is the class of structures $\str{A}$ in a vocabulary $\tau$ with one binary relation $<$ and $k$ unary relations $R_1,\ldots,R_k$ such that $\gamma(w_{\str{A}}) = 1$ where $w_{\str{A}}$ is the string associated with $\str{A}$ as in Def.~\ref{def:associated}.
 
         Let $c = |S|$, fix an enumeration $\{s_1,\ldots,s_c\}$ of $S$ and let $z$ be an arbitrary element of $S$.  Let $\delta : \{0,1\}^c \rightarrow S$ be the function where $\delta(w) = s_i$ if $w$ is the one-hot encoding of $i$ and $\delta(w) = z$ otherwise (that is, if the number of occurrences of the symbol $1$ in the string $w$ is not exactly one).
 
         For each $t \in S$, define the formula $\psi_t(x)$ as follows:
-        $$ \psi_t(x) : = \bigvee_{w \in \{0,1\}^k : \gamma(w) = t \left( \bigwedge_{i \in [k] : w_i = 1} R_i(x) \land \bigwedge_{i \in [k] : w_i = =} \neg R_i(x) \right).$$
+        $$ \psi_t(x) : = \bigvee_{w \in \{0,1\}^k : \gamma(w) = t} \left( \bigwedge_{i \in [k] : w_i = 1} R_i(x) \land \bigwedge_{i \in [k] : w_i = =} \neg R_i(x) \right).$$
 
           It is easy to see that in a $\tau$-structure $\str{A}$, we have $\str{A} \models \psi_t[a]$ if, and only if, the $a$th element of $w_{\str{A}}$ is mapped by $\gamma$ to $t$.  Thus, in particular, the formulas $\psi_{s_1},\ldots,\psi_{s_c}$ define disjoint sets that partition the universe of $\str{A}$.  We now claim that the quantifier $\Gamma^{S,s}_{\gamma}$ is defined by the formula:
           $$ \Gamma^{S,s}_{\delta}(\psi_{s_1}\ldots,\psi_{s_c}).$$
@@ -368,7 +368,7 @@ To use Theorem~\ref{thm:logcircalgequiv} to obtain an algebraic characterization
           \begin{align*}
             & \delta((w_{I(\str{A})})_a)  =  s_i \\
             \text{iff} & \str{A} \models\psi_i[a] \\
-            \text{iff} & \gamma((w_{\str{A}))_a) = s_i.
+            \text{iff} & \gamma((w_{\str{A}}))_a) = s_i.
           \end{align*}
 Hence, $\delta(w_{I(\str{A})}) = \gamma(w_{\str{A}})$ and therefore $I(\str{A}) \in \Gamma^{S,s}_{\delta}$ if, and only if $\str{A} \in \Gamma^{S,s}_{\gamma}$ as required.
         
