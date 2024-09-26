@@ -175,7 +175,7 @@ For a singleton set of quantifiers $\mathfrak{Q} = \{Q\}$, we sometimes denote $
 
 All the logics we consider are \emph{substitution closed} in the sense of~\cite{Ebb85}.  This means in particular that if a quantifier $Q$ is definable in a logic $(\mathfrak{Q})[\mathfrak{N}]$, then extending the logic with the quantifier $Q$ does not add to its expressive power.  This is because we can replace occurrences of the quantifier $Q$ by its definition, with a suitable substitution of the interpretation for the relation symbols.  Hence, if $Q$ is definable in $(\mathfrak{Q})[\mathfrak{N}]$, then $\mathcal{L}((\mathfrak{Q})[\mathfrak{N}]) = \mathcal{L}((\mathfrak{Q} \cup \{Q\})[\mathfrak{N}])$.
 
-A remark is due on our notation for numerical predicates.  All structures we consider are ordered, including those defining the quantifiers.  Thus the order predicate is implicitly present in the collection of numerical predicates $\mathfrak{N}$ and is used (implicitly) to define the interpretations to a quantifier.  We sometimes write $(\mathfrak{Q})[\emptyset]$ to indicate a logic in which this is the only use of the order that is allowed.  By our choice of notation, the order symbol then does not appear explicitly in the syntax of the formulas.
+A remark is due on our notation for numerical predicates.  All structures we consider are ordered, including those defining the quantifiers.  Thus the order predicate is implicitly present in the collection of numerical predicates $\mathfrak{N}$ and is used (implicitly) to define the interpretations to a quantifier.  We sometimes write $(\mathfrak{Q})[\varnothing]$ to indicate a logic in which this is the only use of the order that is allowed.  By our choice of notation, the order symbol then does not appear explicitly in the syntax of the formulas.
 
 \subsection{Multiplication Quantifiers}
 
@@ -225,7 +225,7 @@ We denote this logic $(\Gamma^{\fin}_1)[<])$.
     \emph{\textsc{Reg}} $= \mathcal{L}((\Gamma^{\fin})[<])$.
   \end{theorem}
 
-Our main technical result shows that this is true even in the presence of numerical predicates and therefore $\Gamma^{\fin}$ can be replaced by $\Gamma^{\fin}_1$ even in Theorem~\ref{thm:logfornc1}.  
+Our main technical result shows that this is true even in the presence of any numerical predicates and therefore $\Gamma^{\fin}$ can be replaced by $\Gamma^{\fin}_1$ even in Theorem~\ref{thm:logfornc1}.  
 
 % TODO mention in meeting:
 % defining L(logic)
@@ -354,12 +354,12 @@ To use Theorem~\ref{thm:logcircalgequiv} to obtain an algebraic characterization
     For every finite semigroup $S$, there exists a function $\delta : \{0,1\}^{|S|} \rightarrow S$ such that for every $s \in S$ and $\gamma : \{0,1\}^k \rightarrow S$, the quantifier $\Gamma^{S,s}_{\gamma}$ is definable in $(\Gamma^{S,s}_{\delta})[\varnothing]$.
   \end{lemma}
   \begin{proof}
-    Recall that $\Gamma^{S,s}_{\gamma}$ is the class of structures $\str{A}$ in a vocabulary $\tau$ with one binary relation $<$ and $k$ unary relations $R_1,\ldots,R_k$ such that $\gamma(w_{\str{A}}) = 1$ where $w_{\str{A}}$ is the string associated with $\str{A}$ as in Def.~\ref{def:associated}.
+    Recall that $\Gamma^{S,s}_{\gamma}$ is the class of structures $\str{A}$ in a vocabulary $\tau$ with one binary relation $<$ and $k$ unary relations $R_1,\ldots,R_k$ such that $\gamma(w_{\str{A}}) = s$ where $w_{\str{A}}$ is the string associated with $\str{A}$ as in Def.~\ref{def:associated}.
 
-        Let $c = |S|$, fix an enumeration $\{s_1,\ldots,s_c\}$ of $S$ and let $z$ be an arbitrary element of $S$.  Let $\delta : \{0,1\}^c \rightarrow S$ be the function where $\delta(w) = s_i$ if $w$ is the one-hot encoding of $i$ and $\delta(w) = z$ otherwise (that is, if the number of occurrences of the symbol $1$ in the string $w$ is not exactly one).
+        Let $c = |S|$, fix an enumeration $\{s_1,\ldots,s_c\}$ of $S$, and let $z$ be an arbitrary element of $S$.  Let $\delta : \{0,1\}^c \rightarrow S$ be the function where $\delta(w) = s_i$ if $w$ is the one-hot encoding of $i$ and $\delta(w) = z$ otherwise (that is, if the number of occurrences of the symbol $1$ in the string $w$ is not exactly one).
 
         For each $t \in S$, define the formula $\psi_t(x)$ as follows:
-        $$ \psi_t(x) : = \bigvee_{w \in \{0,1\}^k : \gamma(w) = t} \left( \bigwedge_{i \in [k] : w_i = 1} R_i(x) \land \bigwedge_{i \in [k] : w_i = =} \neg R_i(x) \right).$$
+        $$ \psi_t(x) : = \bigvee_{w \in \{0,1\}^k : \gamma(w) = t} \left( \bigwedge_{i \in [k] : w_i = 1} R_i(x) \land \bigwedge_{i \in [k] : w_i = 0} \neg R_i(x) \right).$$
 
           It is easy to see that in a $\tau$-structure $\str{A}$, we have $\str{A} \models \psi_t[a]$ if, and only if, the $a$th element of $w_{\str{A}}$ is mapped by $\gamma$ to $t$.  Thus, in particular, the formulas $\psi_{s_1},\ldots,\psi_{s_c}$ define disjoint sets that partition the universe of $\str{A}$.  We now claim that the quantifier $\Gamma^{S,s}_{\gamma}$ is defined by the formula:
           $$ \Gamma^{S,s}_{\delta}(\psi_{s_1}\ldots,\psi_{s_c}).$$
@@ -367,8 +367,8 @@ To use Theorem~\ref{thm:logcircalgequiv} to obtain an algebraic characterization
           To see this, let $I$ denote the unary interpretation $(\psi_{s_1}\ldots,\psi_{s_c})$ so that $w_{I(\str{A})}$ is a string over $\{0,1\}^c$.  Moreover, by the fact that the sets defined by the formulas $\psi_{s_1},\ldots,\psi_{s_c}$ partition $|\str{A}|$ it follows that each letter of $w_{I(\str{A})}$ is a vector in $\{0,1\}^c$ with exactly one $1$.  Indeed, the $a$ element of $w_{I(\str{A})}$ is the one-hot encoding of $i$ precisely if $\str{A} \models \psi_{s_i}[a]$.  Since $\delta$ takes the one-hot encoding of $i$ to $s_i$, we have for any $a \in |\str{A}|$
           \begin{align*}
             & \delta((w_{I(\str{A})})_a)  =  s_i \\
-            \text{iff} & \str{A} \models\psi_i[a] \\
-            \text{iff} & \gamma((w_{\str{A}}))_a) = s_i.
+            \text{iff}\ & \str{A} \models\psi_i[a] \\
+            \text{iff}\ & \gamma((w_{\str{A}}))_a) = s_i.
           \end{align*}
 Hence, $\delta(w_{I(\str{A})}) = \gamma(w_{\str{A}})$ and therefore $I(\str{A}) \in \Gamma^{S,s}_{\delta}$ if, and only if $\str{A} \in \Gamma^{S,s}_{\gamma}$ as required.
         
@@ -550,29 +550,28 @@ Moreover, this theorem serves as an alternative proof of Theorem \ref{thm:unaryf
 \section{The Algebraic Characterization}\label{sec:alg}
 
 
-Now that we have a first-order logic with only unary quantifiers capturing \textsc{DLogTime}-uniform NC${}^1$, we are closer to applying Theorem \ref{thm:logcircalgequiv} to construct an algebra for it. We now just need to convert the logic to a form whose only numerical predicate is $<$ without introducing any new non-unary quantifiers.
+Now that we have a first-order logic with only quantifiers containing interpretations of unary dimension capturing \textsc{DLogTime}-uniform NC${}^1$, we are closer to applying Theorem \ref{thm:logcircalgequiv} to construct an algebra for it. We now just need to convert the logic to a form whose only numerical predicate is $<$ without introducing quantifiers of a higher dimension.
 
-To do this, we first define two unary quantifiers. The quantifier \text{Maj} which is true if the majority of the assignments to the bound variable satisfy the formula. The quantifier \text{Sq} which is true if the number of assignments to the bound variable satisfying the formula is a positive square number. 
+To do this, we follow what was done for the construction of an algebra for $\TC^0$. First, we note that the quantifier \text{Maj} is true if the majority of the assignments to the bound variable satisfy the formula and the quantifier \text{Sq} which is true if the number of assignments to the bound variable satisfying the formula is a positive square number. In the below, we always assume the use of unary interpretations with these quantifiers.
 
-We note the following from the literature:
+The following lemma displays some known results about the expressiveness of these quantifiers:
 \begin{lemma}\label{lem:superhelperalogtime}
     \,
     \begin{enumerate}[\ \ \ \ (i)]
-        \item \emph{\textsc{DLogTime}-uniform NC${}^1$} can compute majority.
+        \item \emph{Maj} is definable in $(\Gamma^\fin)[+,\times]$. (cf. \cite{barrington1990uniformity})
         \item The quantifiers in \emph{FO} are definable in $(\emph{Maj})[<]$. (\cite[Theorem 3.2]{lange2004some})
         \item The numerical predicate $+$ is definable in $(\emph{Maj})[<]$. (\cite[Theorem 4.1]{lange2004some})
         \item The numerical predicate $\times$ is definable in $(\{\emph{Maj}, \emph{Sq}\})[<]$ and \emph{Sq} is definable in $(\emph{Maj})[<,+,\times]$. (cf. \cite[Theorem 2.3.f]{schweikardt2002expressive} and \cite[Section 2.3]{krebs2007characterizing})
     \end{enumerate}
 \end{lemma}
 
-
-
+Bringing everything together, we get the following algebraic characterization of \textsc{DLogTime}-uniform NC${}^1$:
 
 \begin{theorem}\label{thm:algebraforalogtime}
     \[\text{\emph{\textsc{DLogTime}-uniform NC${}^1$}} = \mathcal{L}(\emph{sbpc}_<(\{(\mathbb{Z}, \mathbb{Z}^+, \pm 1), (\mathbb{N}, \mathbb{S}, \{0,1\}), (S_5, \wp(S_5), S_5)\})).\]
 \end{theorem}
 \begin{proof}
-    Let $\delta : \{0,1\}^c \rightarrow S_5$ be as it was defined in Lemma \ref{lem:finitetuple}. Note that the typed quantifier semigroup for Maj is $(\mathbb{Z}, \mathbb{Z}^+, \pm 1)$, for Sq is $(\mathbb{N}, \mathbb{S}, \{0,1\})$, and for $\Gamma^{S_5,s}_{1,\delta}$ is $(S_5, \{s\}, S_5)$. Then,
+    Let $\delta : \{0,1\}^c \rightarrow S_5$ be as it was defined in Lemma \ref{lem:finitetuple}. It is easy to see that the typed quantifier semigroup for Maj is $(\mathbb{Z}, \mathbb{Z}^+, \pm 1)$, for Sq is $(\mathbb{N}, \mathbb{S}, \{0,1\})$, and for $\Gamma^{S_5,s}_{1,\delta}$ is $(S_5, \{s\}, S_5)$. Then,
     \begin{align*}
         \text{\textsc{DLogTime}-uniform NC${}^1$} &= \mathcal{L}((\text{FO} \cup \Gamma^{S_5})[+,\times])\text{ via \cite{barrington1990uniformity}}\\
         &=\mathcal{L}((\text{FO} \cup \Gamma^{S_5}_{1,\delta})[+,\times])\text{ via Corollary \ref{cor:alogtimelogicbetter}}\\
@@ -583,7 +582,7 @@ We note the following from the literature:
         &= \mathcal{L}(\text{sbpc}_<(\{(\mathbb{Z}, \mathbb{Z}^+, \pm 1), (\mathbb{N}, \mathbb{S}, \{0,1\}), 
         (S_5, \wp(S_5), S_5)\}))\\
         &\text{\ \ \ \ \ \ since $\forall s \in S_5, (S_5, s, S_5) \preceq (S_5, \wp(S_5), S_5)$}\\
-        &\text{\ \ \ \ \ \ and $\mathcal{L}((S_5, \wp(S_5), S_5)) \subseteq \textsc{Reg} \subseteq \textsc{ALogTime}$}
+        &\text{\ \ \ \ \ \ and $\mathcal{L}((S_5, \wp(S_5), S_5)) \subseteq \textsc{Reg} \subseteq \textsc{DLT}\text{-uniform\ }\textsc{NC}^1$}
     \end{align*}
 \end{proof}
 

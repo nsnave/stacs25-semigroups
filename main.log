@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.10.12)  26 SEP 2024 16:19
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.10.12)  26 SEP 2024 19:06
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -742,42 +742,52 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <5.25> on input line 98.
  [2.2{/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}] [3.3{/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}]
-LaTeX Font Info:    Trying to load font information for U+euf on input line 133.
+Package hyperref Info: bookmark level for unknown definition defaults to 0 on input line 130.
+LaTeX Font Info:    Trying to load font information for U+euf on input line 137.
  (/usr/local/texlive/2023/texmf-dist/tex/latex/amsfonts/ueuf.fd
 File: ueuf.fd 2013/01/14 v3.01 Euler Fraktur
 ) (/usr/local/texlive/2023/texmf-dist/tex/latex/microtype/mt-euf.cfg
 File: mt-euf.cfg 2006/07/03 v1.1 microtype config. file: AMS Euler Fraktur (RS)
-)
-Package hyperref Info: bookmark level for unknown definition defaults to 0 on input line 137.
- [4.4]
+) [4.4]
 
-LaTeX Warning: Citation `CITE3' on page 5 undefined on input line 151.
+LaTeX Warning: Citation `CITE3' on page 5 undefined on input line 164.
 
-[5.5]
-Package hyperref Info: bookmark level for unknown theorem defaults to 0 on input line 194.
-Package hyperref Info: bookmark level for unknown remark defaults to 0 on input line 199.
- [6.6{/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}]
+[5.5] [6.6{/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}]
+Package hyperref Info: bookmark level for unknown theorem defaults to 0 on input line 209.
+Package hyperref Info: bookmark level for unknown remark defaults to 0 on input line 214.
+
+
+LaTeX Warning: Citation `REF1' on page 7 undefined on input line 239.
+
+
+LaTeX Warning: Citation `REF2' on page 7 undefined on input line 239.
+
+[7.7]
 LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <10> not available
-(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 242.
+(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 263.
 LaTeX Font Info:    Font shape `T1/lmss/bx/it' in size <10> not available
-(Font)              Font shape `T1/lmss/bx/sl' tried instead on input line 242.
-Package hyperref Info: bookmark level for unknown proposition defaults to 0 on input line 254.
- [7.7]
-LaTeX Font Info:    Calculating math sizes for size <8.5> on input line 324.
+(Font)              Font shape `T1/lmss/bx/sl' tried instead on input line 263.
+
+
+LaTeX Warning: Citation `REF' on page 8 undefined on input line 267.
+
+Package hyperref Info: bookmark level for unknown proposition defaults to 0 on input line 276.
+[8.8]
+LaTeX Font Info:    Calculating math sizes for size <8.5> on input line 342.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8.5> on input line 324.
+(Font)              <8.5> on input line 342.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5.94997> on input line 324.
+(Font)              <5.94997> on input line 342.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <4.25> on input line 324.
- [8.8]
-Package hyperref Info: bookmark level for unknown lemma defaults to 0 on input line 355.
- [9.9] [10.10] [11.11]
-Package hyperref Info: bookmark level for unknown corollary defaults to 0 on input line 480.
+(Font)              <4.25> on input line 342.
+ [9.9]
+Package hyperref Info: bookmark level for unknown lemma defaults to 0 on input line 353.
+ [10.10] [11.11]
+Package hyperref Info: bookmark level for unknown corollary defaults to 0 on input line 520.
  [12.12] [13.13] (./main.bbl) [14.14] [15.15]
 
 LaTeX Warning: The counter will not be printed.
-             The label is: \ \ \ \ {(1)}(b${}_<$) on input line 661.
+             The label is: \ \ \ \ {(1)}(b${}_<$) on input line 700.
 
 [16.16] (./main.aux)
 
@@ -787,18 +797,18 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: A51F3927B9FF629DE8C3E89816C293C7;2397.
  ) 
 Here is how much of TeX's memory you used:
- 24585 strings out of 476025
- 434003 string characters out of 5790016
- 1879388 words of memory out of 5000000
- 44038 multiletter control sequences out of 15000+600000
- 713994 words of font info for 374 fonts, out of 8000000 for 9000
+ 24582 strings out of 476025
+ 433954 string characters out of 5790016
+ 1874388 words of memory out of 5000000
+ 44041 multiletter control sequences out of 15000+600000
+ 714018 words of font info for 374 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 90i,14n,90p,1798b,696s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/euler/eufm10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/euler/eufm7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmcsc10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmex10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmmi5.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmmi7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmmib10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmmib7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmr10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmr5.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmr6.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmr7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmr9.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmri10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmri7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmri9.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmss10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmss8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmssbx10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmsy5.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmsy7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb>
-Output written on main.pdf (16 pages, 609900 bytes).
+ 90i,14n,90p,1804b,696s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/euler/eufm10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/euler/eufm7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmcsc10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmex10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmmi5.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmmi7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmmib10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmmib7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmr10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmr5.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmr6.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmr7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmr9.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmri10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmri9.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmss10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmss8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmssbx10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmsy5.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmsy7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb>
+Output written on main.pdf (16 pages, 600127 bytes).
 PDF statistics:
- 554 PDF objects out of 1000 (max. 8388607)
- 434 compressed objects within 5 object streams
- 155 named destinations out of 1000 (max. 500000)
+ 544 PDF objects out of 1000 (max. 8388607)
+ 426 compressed objects within 5 object streams
+ 149 named destinations out of 1000 (max. 500000)
  110713 words of extra memory for PDF output out of 128383 (max. 10000000)
 
