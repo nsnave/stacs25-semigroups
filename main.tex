@@ -142,6 +142,15 @@ More generally, let $\tau$ be any relational vocabulary consisting of a binary r
   For $\tau$ a relational vocabulary consisting of a binary relation symbol $<$ and unary relation symbols $R_1,\ldots,R_k$, and $\str{A}$ a $\tau$-structure with $n$ elements that interprets the symbol $<$ as a linear order of its universe, we define the string $w_{\str{A}}$ \emph{associated} with $\str{A}$ as the string of length $n$ over the alphabet $\Sigma_k = \{0,1\}^k$ of size $2^k$ so that if $a$ is the $i$th element  of $w_{\str{A}}$, then $a$ is the $k$-tuple where $a_j =1$ if, and only if, $R_j$ holds at the $i$th element of $\str{A}$.
 \end{definition}
 
+This way, we can assocate a language with any isomorphism-closed class of structures over the vocabulary $\tau$.  We formalise this definition for future use.
+\begin{definition}\label{def:associated-lang}
+  For $\tau$ a relational vocabulary consisting of a binary relation symbol $<$ and unary relation symbols $R_1,\ldots,R_k$, and $\mathcal{A}$ a class of $\tau$-structures, we define the language $L_{\mathcal{A}}$ over the alphabet $\Sigma_k = \{0,1\}^k$ to be
+  $$L_{\mathcal{A}} = \{ w_{\str{A}} \mid \str{A} \in \mathcal{A} \}.$$
+
+  Conversely, for any language $L$ over the alphabet $\Sigma_k$, we define the class of $\tau$-structures $\mathcal{S}_L$ to be
+  $$\mathcal{S}_L = \{ \str{A} \mid w_{\str{A}} \in L \}.$$
+\end{definition}
+
 As the elements of a string $\str{A}$ are linearly ordered, we can identify them with an initial segment $\{1,\ldots,n\}$ of the positive integers.  In other words, we treat a string with universe $\{1,\ldots,n\}$ and the standard order on these elements as a canonical representative of its isomorphism class.  In addition to the order predicate, we may allow other \emph{numerical predicates} to appear in formulas of our logics.  These are predicates whose meaning is completely determined by the size $n$ of the structure and the ordering of its elements.  In particular, we have ternary predicates $+$ and $\times$ for the partial addition and multiplication functions.
 
 An insight due to Lindstr\"om allows us to define a \emph{quantifier} from any isomorphism-closed class of structures (see~\cite{Ebb85}).  Specifically, let $Q$ be any isomorphism-closed class of structures in a relational vocabulary $\tau = \langle R_1,\ldots,R_l\rangle$, where for each $i$, $R_i$ is a relation symbol of arity $r_i$.  For any vocabulary $\sigma$ and positive integer $d$, an \emph{interpretation} of $\tau$ in $\sigma$ of dimension $d$ is a tuple of formulas $I = (\phi_1(\tup{x}_1),\dots, \phi_l(\tup{x}_l))$ of vocabulary $\sigma$ where $\phi_i$ is associated with a tuple $\tup{x}_i$ of variables of length $dr_i$.  Suppose we are given a $\sigma$-structure $\str{A}$ and an assignment $\alpha$ that takes variables to elements of $\str{A}$.  Then let $\phi_i^{\str{A},\alpha}$ denote the relation of arity $dr_i$ consisting of the set of tuples $\{\tup{a} \in |\str{A}|^{dr_i} \mid \str{A} \models \phi_i[\alpha[\tup{x}_i/\tup{a}]] \}$.  Then, the interpretation $I$ defines a map that takes a $\sigma$-structure $\str{A}$, along with an assignment $\alpha$ to the  $\tau$-structure $I(\str{A},\alpha)$ with universe $|\str{A}|^d$ where the interpretation of $R_i$ is the set $\phi_i^{\str{A},\alpha}$, seen as a relation of arity $r_i$ on $|\str{A}|^d$.
@@ -172,11 +181,11 @@ The definition of multiplication quantifier has its origin in Barrington, Immerm
 
 Fix a semigroup $S$, a set $B \subseteq S$ and a positive integer $k$.  Let $\Sigma_k$ denote the set $\{0,1\}^k$ which we think of as an alphabet of size $2^k$, and fix a function $\gamma: \Sigma_k \rightarrow S$.  We extend $\gamma$ to strings in $\Sigma_k^+$ inductively in the standard way: $\gamma(wa) = \gamma(w)\gamma(a)$.  Together these define a language
 $$L^{S,B}_{\gamma} = \{ x \in \Sigma_k^* \mid \gamma(x) \in B\}.$$
-We can now define a \emph{multiplication quantifier}.  In the following, $w_{\str{A}}$ denotes the string associated with a structure $\str{A}$ in the sense of Definition~\ref{def:associated}.
+We can now define a \emph{multiplication quantifier}.  In the following, $\mathcal{S}_L$ denotes the class of structures associated with a language $L$ in the sense of Definition~\ref{def:associated-lang}.
 \begin{definition}\label{def:multquant}
 Let $\tau$ be a vocabulary including an order symbol $<$ and $k$ unary relations.
-For a semigroup $S$, a set $B \subseteq S$, a positive integer $k$ and a function $\gamma: \{0,1\}^k \rightarrow S$, the \emph{multiplication quantifier} $\Gamma_{\gamma}^{S,B}$ is the Lindstr\"om quantifier associated with the class of structures
-$$\{ \str{A} \mid w_{\str{A}} \in L^{S,B}_{\gamma}\}.$$
+For a semigroup $S$, a set $B \subseteq S$, a positive integer $k$ and a function $\gamma: \{0,1\}^k \rightarrow S$, the \emph{multiplication quantifier} $\Gamma_{\gamma}^{S,B}$ is the Lindstr\"om quantifier associated with the class of structures $\mathcal{S}_{L^{S,B}_{\gamma}}$.
+
 We also write $\Gamma_{d,\gamma}^{S,B}$ for the vectorization of this quantifier of dimension $d$. If $B$ is a singleton $\{s\}$, then we often write $\Gamma^{S,s}_{d,\gamma}$ for short.
 \end{definition}
 
@@ -225,6 +234,9 @@ Our main technical result shows that this is true even in the presence of numeri
 
 \subsection{Typed Semigroups}\label{sec:backgroundtyped}
 
+In this subsection, we review the definitions and results from~\cite{REF1,REF2} on typed semigroups, their relationship to languages and corresponding characterizations of complexity classes.
+
+A typed semigroup is a semigroup equipped with a collection of \emph{types}, which form a Boolean algebra, and a set of \emph{units}.  We only deal with concrete Boolean algebras, given as collections of subsets of a fixed universe.
 
 \begin{definition}[Boolean Algebra]
     A \emph{Boolean algebra} over a set $S$ is a set $B \subseteq \wp(S)$ such that $\varnothing, S \in B$ and $B$ is closed under union, intersection, and complementation. If $B$ is finite, we call it a \emph{finite} Boolean algebra.
@@ -232,17 +244,17 @@ Our main technical result shows that this is true even in the presence of numeri
     We call $\varnothing$ and $S$ the \emph{trivial elements} (or in some contexts, the \emph{trivial types}) of $B$.
 \end{definition}
 
-\begin{definition}
-    Let $B_1$ and $B_2$ be Boolean algebras over sets $S$ and $T$, respectively. We call $h : B_1 \rightarrow B_2$ a \emph{homomorphism of Boolean algebras} if $h(\varnothing) = \varnothing$, $h(S) = T$, and for all $s_1, s_2 \in B_1$, $h(s_1 \cap s_2) = h(s_1) \cap h(s_2)$, $h(s_1 \cup s_2) = h(s_1) \cup h(s_2)$, and $h(s^C) = (h(s))^C$.
-\end{definition}
+A homomorphism between Boolean algebras is defined as standard.  That is, if $B_1$ and $B_2$ are Boolean algebras over sets $S$ and $T$, respectively, then we call $h : B_1 \rightarrow B_2$ a \emph{homomorphism} if $h(\varnothing) = \varnothing$, $h(S) = T$, and for all $s_1, s_2 \in B_1$, $h(s_1 \cap s_2) = h(s_1) \cap h(s_2)$, $h(s_1 \cup s_2) = h(s_1) \cup h(s_2)$, and $h(s^C) = (h(s))^C$.
+Now we are ready to define typed semigroups.
 
 \begin{definition}[Typed Semigroup]
     Let $S$ be a semigroup, $G$ a Boolean algebra over $S$, and $E$ a finite subset of $S$. We call the tuple $T = (S, G, E)$ a \emph{typed semigroup over $S$} and the elements of $G$ \emph{types} and the elements of $E$ \emph{units}. We call $S$ the \emph{base semigroup} of $T$. If $S$ is a monoid or group, then we may also call $T$ a \emph{typed monoid} or \emph{typed group}, respectively.
 
     If $G = \{\varnothing, A, S - A, S\}$, then we often abbreviate $T$ as $(S, A, E)$, i.e., the Boolean algebra is signified by an element, or elements, which generates it---in this case, $A$. 
 \end{definition}
+We say that a typed semigroup $(S,G,E)$ is finite if $S$ is.
 
-
+We also need a notion of morphism between typed semigroups.
 \begin{definition}\label{def:typedhom}
     A \emph{typed homomorphism} $h : (S, G, E) \rightarrow (T, H, F)$ of typed semigroups is a triple $(h_1, h_2, h_3)$ where $h_1 : S \rightarrow T$ is a semigroup homomorphism, $h_2 : G \rightarrow H$ is a homomorphism of Boolean algebras, and $h_3 : E \rightarrow F$ is a mapping of sets such that the following conditions hold:
     \begin{enumerate}[\ \ \ \ (i)]
@@ -250,22 +262,25 @@ Our main technical result shows that this is true even in the presence of numeri
         \item For all $e \in E$, $h_1(e) = h_3(e)$.
     \end{enumerate}
 \end{definition}
+Note that $h_3$ is redundant in the definition as it is completely determined by $h_1$.  We retain it as part of the definition for consistency with~\cite{REF}.
 
+To motivate the definitions, recall that a language $L \subseteq \Sigma^*$ is recognized by a semigroup $S$ if there is a homomorphism $h: \Sigma^* \rightarrow S$ and a set $B \subseteq S$ such that $L = h^{-1}(B)$.  When the semigroup $S$ is infinite, the languages recognized form a rather rich collection and we aim to restrict this in two ways.  First, $B$ cannot be an arbitrary set but must be an element of the algebra of types.  Secondly, the homomorphism $h$ must map the letters in $\Sigma$ to units of the typed semigroup.  Formally, we have the following definition.
 \begin{definition}\label{def:langrecognitiontyped}
     A typed semigroup $T = (S, G, E)$ \emph{recognizes} a language $L \subseteq \Sigma^+$ if there exists a typed homomorphism from $(\Sigma^+, L, \Sigma)$ to $T$. We let $\mathcal{L}(T)$ denote the set of languages recognized by $T$.
 \end{definition}
 
-We then have the following definitions and facts about typed semigroups:
-
+When the base semigroup of a typed semigroup is finite, we recover the classical definition of a recognition.  Hence, the languages recognized by finite typed semigroup are necessarily regular.
 \begin{proposition}
-    If the base monoid of a typed semigroup $T$ is finite, then $\mathcal{L}(T) \subseteq \emph{\textsc{Reg}}$.
+    If $T$ is a finite typed semigroup, then $\mathcal{L}(T) \subseteq \emph{\textsc{Reg}}$.
 \end{proposition}
+
+We can now state the definitions of the key relationships between typed semigroups.
 
 \begin{definition}
     Let $(S, G, E)$ and $(T, H, F)$ be typed semigroups.
     \begin{itemize}
-        \item A typed homomorphism $h = (h_1, h_2, h_3) : (S, G, E) \rightarrow (T, H, F)$ is \emph{injective} (\emph{surjective}, or \emph{bijective}) if $h_1$, $h_2$, and $h_3$ are.
-        \item $(S, G, E)$ is a \emph{typed subsemigroup} (or, simply, ``subsemigroup'' when context is obvious) of $(T, H, F)$, denoted $(S, G, E) \leq (T, H, F)$, if $S$ is a subsemigroup of $T$ and there exists an injective typed homomorphism $h : (S, G, E) \rightarrow (T, H, F)$.
+        \item A typed homomorphism $h = (h_1, h_2, h_3) : (S, G, E) \rightarrow (T, H, F)$ is \emph{injective} (\emph{surjective}, or \emph{bijective}) if all of $h_1$, $h_2$, and $h_3$ are.
+        \item $(S, G, E)$ is a \emph{typed subsemigroup} (or, simply, ``subsemigroup'' when context is obvious) of $(T, H, F)$, denoted $(S, G, E) \leq (T, H, F)$, if there exists an injective typed homomorphism $h : (S, G, E) \rightarrow (T, H, F)$.
         \item $(S, G, E)$ divides $(T, H, F)$, denoted $(S, G, E) \preceq (T, H, F)$, if there exists a surjective  typed homomorphism from a typed subsemigroup of $(T, H, F)$ to $(S, G, E)$.
         \iffalse TODO: remove before submission
             \item A  typed semigroup $(S, G', E)$ is a \emph{shift} of $(S, G, E)$ if there exist $p,q \in S$, with \[G' = \{\{s \in S \mid psq \in A\} \mid A \in G\}.\]
@@ -274,6 +289,7 @@ We then have the following definitions and facts about typed semigroups:
     \end{itemize}
 \end{definition}
 
+These have the expected properties.
 \begin{proposition}[\cite{behle2011typed}]\label{prop:typedsemigroupprops}
     Let $T_1$, $T_2$, and $T_3$ be typed semigroup.
     \begin{itemize}
@@ -283,16 +299,7 @@ We then have the following definitions and facts about typed semigroups:
     \end{itemize}
 \end{proposition}
 
-\begin{definition}\label{def:syncong}
-    Let $L$ be a language. We define the \emph{syntactic congruence} of $L$ as the relation $\sim_L$ on $\Sigma^+$ such that for all $x, y \in \Sigma^+$, $x \sim_L y$ if and only if for all $w,v \in \Sigma^+$, $wxv \in L$ iff $wyv \in L$.
-\end{definition}
-\begin{definition}
-    The \emph{syntactic semigroup} of a language $L \subseteq \Sigma^+$ is the quotient semigroup $\Sigma^+/{\sim_L}$. We call the canonical homomorphism $\eta_d : \Sigma^+ \to \Sigma^+/{\sim_L}$ the \emph{syntactic homomorphism} of $L$.
-\end{definition}
-\begin{remark}
-    Observe that $\eta_d$ is surjective.
-\end{remark}
-
+We can formulate the notion of the \emph{syntactic typed semigroup} of a language $L$ as an extension of the syntactic semigroup of $L$ with a minimal collection of types and units necessary.
 \begin{definition}\label{def:typedcongmin}
     Let $T = (S, G, E)$ be a typed semigroup. A congruence $\sim$ over $S$ is a \emph{typed congruence over $T$} if for every $A \in G$ and $s_1,s_2\in S$, if $s_1 \sim s_2$ and $s_1 \in A$, then $s_2 \in A$.
 
@@ -307,26 +314,28 @@ We then have the following definitions and facts about typed semigroups:
     Let $\sim_T$ denote the typed congruence on $T$ such that for $s_1,s_2 \in S$, $s_1 \sim_T s_2$ iff for all $x,y \in S$ and $A \in G$, $xs_1y \in A$ iff $xs_2y \in A$. We then refer to the quotient semigroup $T/{\sim_T}$ as the \emph{minimal reduced semigroup of $T$}.
 \end{definition}
 
+Recall that ${\sim_L}$ is the syntactic congruence of $L$, defined in Definition \ref{def:syncong}.
 \begin{definition}
-    For a language $L \subseteq \Sigma^+$, we define the \emph{syntactic typed semigroup of $L$}, denoted $\emph{syn}(L)$, to be the typed semigroup $(\Sigma^+, L, \Sigma)/{\sim_L}$. Recall that ${\sim_L}$ is the syntactic congruence of $L$, defined in Definition \ref{def:syncong}.
-
-    We also get the \emph{canonical typed homomorphism}, $\eta_d : (\Sigma^+, L, \Sigma) \rightarrow \emph{syn}(L)$ induced by the syntactic homomorphism of $L$.
+    For a language $L \subseteq \Sigma^+$, the \emph{syntactic typed semigroup of $L$}, denoted $\emph{syn}(L)$, is the typed semigroup $(\Sigma^+, L, \Sigma)/{\sim_L}$. 
 \end{definition} 
+    We also get the \emph{canonical typed homomorphism}, $\eta_d : (\Sigma^+, L, \Sigma) \rightarrow \emph{syn}(L)$ induced by the syntactic homomorphism of $L$.
 
+
+We now turn to the relationship between the expressive power of logics with multiplication quantifiers and typed semigroups.  A formal association is defined through the definition below.
 
 \begin{definition}\label{def:origtypedquantsemi}
-    For a \emph{unary} multiplication quantifier $Q = \Gamma^{S,A}_{1,\gamma}$ where $\gamma : \{0,1\}^k \rightarrow S$, we define the \emph{typed quantifier semigroup} of $Q$, denoted $\mathcal{S}(Q)$, to be the syntactic typed semigroup of the language $L_Q \subseteq (\{0,1\}^k)^+$ where $w \in L_Q$ iff \[
-        w \models Q x \langle B_1(x), \dots, B_k(x) \rangle
-    \] where $w_{x=i} \models B_jx$ iff the $j^{\text{th}}$ bit of $w_i$ equals 1. Thus, $\mathcal{S}(Q) = ((\{0,1\}^k)^+, L_Q, \{0,1\}^k) / {\sim_{L_Q}}$.
+    For a multiplication quantifier $Q=\Gamma^{S,B}_{\gamma}$ where $\gamma : \{0,1\}^k \rightarrow S$, we define the \emph{typed quantifier semigroup} of $Q$, denoted $\mathcal{S}(Q)$, to be the syntactic typed semigroup of the language $L^{S,B}_{\gamma}$.  
 \end{definition}
+
+It turns out that we can give a purely structural characterization of those typed semigroups that are syntactic semigroups.
 
 \begin{proposition}[\cite{krebs2008typed}]
-    A typed semigroup is the syntactic semigroup of a language iff it is reduced, generated by its unites, and has four or two types. (In the case of two types, then it only recognizes the empty language or the language of all strings.)
+    A typed semigroup is the syntactic semigroup of a language if, and only if it is reduced, generated by its units, and has four or two types.
+
+In case it has just two types, then it only recognizes the empty language or the language of all strings.
 \end{proposition}
 
-\begin{definition}
-    For a set of typed semigroups $T$, we denote by $\emph{sbpc}_<(T)$ the \emph{ordered strong block product closure of $T$}. Because the definition of this closure is quite technical but not needed to understand the proofs in this paper, we include it in \autoref{app:bp}.
-\end{definition}
+We now want to state the formal connection between the languages expressible in a logicwith a collection of quantifiers and the corresponding class of typed semigroups.  For this we need the notion of the \emph{ordered strong block product closure} of a set of typed semigroups $T$, which we denote $\mathrm{sbpc}_<(T)$.  The definition is technical and can be found in~\cite{krebs2008typed} and is also reproduced in the appendix for ease of reference.
 
 From \cite[Theorem 4.14]{krebs2008typed}, we then get the following relationship between logics and algebras:\footnote{The theorem in \cite{krebs2008typed} is actually more general as it accounts for more predicates than just order; however, for our purposes, order alone suffices.}
 \begin{theorem}\label{thm:logcircalgequiv}
@@ -334,13 +343,7 @@ From \cite[Theorem 4.14]{krebs2008typed}, we then get the following relationship
         \mathcal{L}((\mathfrak{Q})[<]) = \mathcal{L}(\emph{sbpc}_<(\bm{Q}))
     \).
 \end{theorem}
-\iffalse
-TODO: remove comments before submission if not needed
-Then, via \cite[Corollary 5.13]{krebs2008typed}, we obtain an algebraic characterization of \textsc{DLogTime}-uniform TC${}^0$:
-\begin{corollary}\label{cor:algfortc0}
-    \(\textsc{DLogTime}\emph{-uniform}\ \emph{TC}^0 = \mathcal{L}(\emph{sbpc}_<(\{(\mathbb{Z}, \mathbb{Z}^+, \pm 1), (\mathbb{N}, \mathbb{S}, \{0,1\})\}))\)
-\end{corollary}
-\fi
+
 \section{Simplifying Multiplication Quantifiers}\label{sec:mult}
 
 
