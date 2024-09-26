@@ -144,13 +144,13 @@ An insight due to Lindstr\"om allows us to define a \emph{quantifier} from any i
 
 Then, in a logic with quantifier $Q$, we can form formulas of the form
 $$Q \tup{x}_1\cdots \tup{x}_l (\phi_1,\ldots,\phi_l)$$
-in which the variables among $\tup{x_i}$ bind free variables in the subformula $\phi_i$.  The semantics of this quantifier are given by the rule that 
-$Q \tup{x}_1\cdots \tup{x}_l (\phi_1,\ldots,\phi_l)$ is true in a structure $\str{A}$ under some interpretation $\alpha$ of values to the free variables if the $\tau$-structure $I(\str{A},\alpha)$ is in $Q$.  Note, we have defined what are usually called \emph{vectorized quantifiers}, in that they can take interpretations of any dimension.  Another way of formulating this is to have a separate quantifier $Q_d$ for each dimension $d$.  We switch between these notations when it causes no confusion.
+in which occurrences in the the subformula $\phi_i$  of variables among $x_i$ are bound.  The semantics of this quantifier are given by the rule that 
+$Q \tup{x}_1\cdots \tup{x}_l (\phi_1,\ldots,\phi_l)$ is true in a structure $\str{A}$ under some interpretation $\alpha$ of values to the free variables if the $\tau$-structure $I(\str{A},\alpha)$ is in $Q$.  Note, we have defined what are usually called \emph{vectorized quantifiers}, in that they can take interpretations of any dimension.  Another way of formulating this is to have a separate quantifier $Q_d$ for each dimension $d$.  We switch between these notations when it causes no confusion and we call $Q_d$ the \emph{vectorization} of $Q$ of dimension $d$.
 
 
 We are particularly interested in interpretations $I$ where both $\sigma$ and $\tau$ are vocabularies of strings.  These are also known in the literature as \emph{string-to-string tranducers}~\cite{CITE3}.    We further restrict ourselves to interpretations in which the definition of the linear order in $I(\str{A},\alpha)$ is always the lexicographic order on $d$-tuples of $\str{A}$ induced by the order in $\str{A}$.  This order is easily defined by a (quantifier-free) first-order formula, and we simply omit it from the description of $I$.  Hence, we only need to specify the interpretation giving the unary relations in $\tau$ and an interpretation of dimension $d$ has the simple form $(\phi_1(\tup{x}_1),\ldots, \phi_l(\tup{x}_l))$, where all tuples of variables have length $d$.  We can then assume, without loss of generality, that they are all the same tuple $\tup{x}$ and we thus write a formula with a string quantifier $Q$ as
 $$Q \tup{x} (\phi_1,\ldots,\phi_l).$$
-\noindent Observe that a quantifier of dimension $d$ will then bind $d$ variables.
+Observe that a quantifier applied to an interpretation of dimension $d$ will then bind $d$ variables.
 
 We say that an interpretation is \emph{unary} if it has dimension $1$.  We now introduce some notation we use in the rest of the paper for various logics formed by combining particular choices of quantifiers and numerical predicates.
 \begin{definition}
