@@ -196,7 +196,7 @@ Recall that $U_1$ denotes the two-element semigroup $\{0,1\}$ with standard mult
 From \cite[Corollary 9.1]{barrington1990uniformity}, we know that $\text{\textsc{DLogTime}-uniform NC${}^1$}$ is characterized by $(\text{FO})[+,\times]$ equipped with finite multiplication quantifiers:
 
 \begin{theorem}[\cite{barrington1990uniformity}]\label{thm:logfornc1}
-    $\emph{\textsc{DLogTime}-uniform NC${}^1$} = \mathcal{L}((\emph{FO} \cup \Gamma^{\fin})[+,\times])$.
+    $\emph{\textsc{DLogTime}-uniform NC${}^1$} = \mathcal{L}((\Gamma^{\fin})[+,\times])$.
 \end{theorem}
 
 % include in this remark that we don't actually need for the exposition what a non-solvable monoid is but S5 will do
@@ -207,11 +207,11 @@ From \cite[Corollary 9.1]{barrington1990uniformity}, we know that $\text{\textsc
 In the absence of the arithmetic predicates for addition and multiplication, the logic of multiplication quantifiers over finite semigroups only allows us to define regular languages.  Specifically, Barrington et al.~\cite{barrington1990uniformity} established that the regular languages are characterized by the logic using such quantifiers with only unary interpretations.
 We denote this logic $(\Gamma^{\fin}_1)[<])$.
 \begin{theorem}[\cite{barrington1990uniformity}]\label{thm:fologforreg}
-    \emph{\textsc{Reg}} $= \mathcal{L}((\emph{FO} \cup \Gamma^{\fin}_1)[<])$.
+    \emph{\textsc{Reg}} $= \mathcal{L}((\Gamma^{\fin}_1)[<])$.
 \end{theorem}
 \noindent Later, Lautemann et al.~\cite[Theorem 5.1]{lautemann2001descriptive} showed that allowing interpretations of higher dimension to the quantifiers does not increase the expressive power when order is the only numerical predicate.
 \begin{theorem}\label{thm:unaryfologforreg}
-    \emph{\textsc{Reg}} $= \mathcal{L}((\emph{FO} \cup \Gamma^{\fin})[<])$.
+    \emph{\textsc{Reg}} $= \mathcal{L}((\Gamma^{\fin})[<])$.
   \end{theorem}
 
 Our main technical result shows that this is true even in the presence of numerical predicates and therefore $\Gamma^{\fin}$ can be replaced by $\Gamma^{fin}_1$ even in Theorem~\ref{thm:logfornc1}.  
@@ -506,11 +506,11 @@ Therefore, this gives us a logic characterizing \textsc{DLogTime}-uniform NC${}^
 
 Moreover, this theorem serves as an alternative proof of Theorem \ref{thm:unaryfologforreg} (\cite[Theorem 5.1]{lautemann2001descriptive}) which, unlike the original proof, does not rely on the use of automata:
 \begin{corollary}\label{cor:reglogicbetter}
-    \emph{\textsc{Reg}} $= \mathcal{L}((\emph{FO} \cup \Gamma^{\fin})[<]) = \mathcal{L}((\emph{FO} \cup \Gamma^{\fin}_1)[<])$.
+    \emph{\textsc{Reg}} $= \mathcal{L}((\Gamma^{\fin})[<]) = \mathcal{L}((\Gamma^{\fin}_1)[<])$.
 \end{corollary}
 \noindent and, furthermore, resolves an open question from \cite{lautemann2001descriptive}:
 \begin{corollary}\label{cor:openquestionfromlautemann}
-    $\mathcal{L}((\emph{FO} \cup \Gamma^{\fin})[+,\times]) = \mathcal{L}((\emph{FO} \cup \Gamma^{\fin}_1)[+,\times])$
+    $\mathcal{L}((\Gamma^{\fin})[+,\times]) = \mathcal{L}((\Gamma^{\fin}_1)[+,\times])$
 \end{corollary}
 
 
