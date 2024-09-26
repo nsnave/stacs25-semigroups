@@ -171,10 +171,12 @@ We say that an interpretation is \emph{unary} if it has dimension $1$.  We now i
 
    We denote by \emph{FO} the set of standard first-order quantifiers: $\{\exists, \forall\}$.
 \end{definition}
-    For a singleton set of quantifiers $\mathfrak{Q} = \{Q\}$, we sometimes denote $(\mathfrak{Q})[\mathfrak{N}]$ as $(Q)[\mathfrak{N}]$. We use similar notation for the sets of numerical predicates. We use $\mathcal{L}((\mathfrak{Q})[\mathfrak{N}])$ to denote the languages expressible by the logic $(\mathfrak{Q})[\mathfrak{N}]$.
+For a singleton set of quantifiers $\mathfrak{Q} = \{Q\}$, we sometimes denote $(\mathfrak{Q})[\mathfrak{N}]$ as $(Q)[\mathfrak{N}]$. We use similar notation for the sets of numerical predicates. We use $\mathcal{L}((\mathfrak{Q})[\mathfrak{N}])$ to denote the languages expressible by the logic $(\mathfrak{Q})[\mathfrak{N}]$.  We also use $(\mathfrak{Q}_1)[\mathfrak{N}]$ to denote the logic obtained as a restriction of $(\mathfrak{Q})[\mathfrak{N}]$ to formulas in which quantifiers in $\mathfrak{Q}$ are only applied to interpretations of dimension $1$.
 
 All the logics we consider are \emph{substitution closed} in the sense of~\cite{Ebb85}.  This means in particular that if a quantifier $Q$ is definable in a logic $(\mathfrak{Q})[\mathfrak{N}]$, then extending the logic with the quantifier $Q$ does not add to its expressive power.  This is because we can replace occurrences of the quantifier $Q$ by its definition, with a suitable substitution of the interpretation for the relation symbols.  Hence, if $Q$ is definable in $(\mathfrak{Q})[\mathfrak{N}]$, then $\mathcal{L}((\mathfrak{Q})[\mathfrak{N}]) = \mathcal{L}((\mathfrak{Q} \cup \{Q\})[\mathfrak{N}])$.
-    
+
+A remark is due on our notation for numerical predicates.  All structures we consider are ordered, including those defining the quantifiers.  Thus the order predicate is implicitly present in the collection of numerical predicates $\mathfrak{N}$ and is used (implicitly) to define the interpretations to a quantifier.  We sometimes write $(\mathfrak{Q})[\emptyset]$ to indicate a logic in which this is the only use of the order that is allowed.  By our choice of notation, the order symbol then does not appear explicitly in the syntax of the formulas.
+
 \subsection{Multiplication Quantifiers}
 
 The definition of multiplication quantifier has its origin in Barrington, Immerman, and Straubing \cite[Section 5]{barrington1990uniformity} where they were referred to as monoid quantifiers; the authors proved that the languages in \textsc{DLogTime}-uniform NC${}^1$ are exactly those expressible by first-order logic with quantifiers whose truth-value is determined via multiplication in a finite semigroup.  The notion was extended by Lautemann et al.~\cite{lautemann2001descriptive} to include quantifiers for the word problem over more general algebras with a binary operation.  Multiplication quantifiers over a finite semigroup $S$ can be understood as generalized quantifiers corresponding to languages recognized by $S$, and here we define them as such.
@@ -339,8 +341,8 @@ We now want to state the formal connection between the languages expressible in 
 
 From \cite[Theorem 4.14]{krebs2008typed}, we then get the following relationship between logics and algebras:\footnote{The theorem in \cite{krebs2008typed} is actually more general as it accounts for more predicates than just order; however, for our purposes, order alone suffices.}
 \begin{theorem}\label{thm:logcircalgequiv}
-    Let $\mathfrak{Q}$ be a set of unary quantifiers and $\bm{Q}$ its set of typed quantifier semigroups for $\mathfrak{Q}$. Then, \(
-        \mathcal{L}((\mathfrak{Q})[<]) = \mathcal{L}(\emph{sbpc}_<(\bm{Q}))
+     Let $\mathfrak{Q}$ be a collection of quantifiers and $\bm{Q}$ the corresponding set of typed quantifier semigroups for $\mathfrak{Q}$. Then, \(
+        \mathcal{L}((\mathfrak{Q}_1)[<]) = \mathcal{L}(\emph{sbpc}_<(\bm{Q}))
     \).
 \end{theorem}
 
