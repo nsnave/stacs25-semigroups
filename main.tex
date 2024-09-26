@@ -21,7 +21,7 @@
 
 \bibliographystyle{plainurl}% the mandatory bibstyle
 
-\title{Characterizing NC${}^1$ with Typed Semigroups} %TODO Please add
+\title{Characterizing NC${}^1$ with Typed Monoids} %TODO Please add
 
 %\titlerunning{Dummy short title} %TODO optional, please use if title is longer than one line
 
@@ -90,13 +90,13 @@
 
 Much work in theoretical computer science is concerned with studying classes of formal languages, whether these are classes defined in terms of grammars and expressions, such as the class of regular or context-free languages, or whether they are \emph{complexity classes} such as $\PT$ and $\NP$, defined by resource bounds on machine models.  Indeed, the distinction between these are largely historical as most classes of interest admit different characterizations based on machine models, grammars, logical definability, or algebraic expressions. The class of regular languages can be characterized as the languages accepted by linear-time-bounded single-tape Turing machines~\cite{hennie1965one} while $\PT$ can be characterized without reference to resources as the languages recognized by multi-head two-way pushdown automata~\cite{cook1971characterizations}.  The advantage of the variety of characterizations is, of course, the fact that these bring with them different mathematical toolkits that can be brought to the study of the classes.
 
-The class of regular languages has arguably the richest theory in this sense of diversity of characterizations.  Virtually all students of computer science learn of the equivalence of deterministic and nondeterministic finite automata, regular languages and linear grammars and many also know that the regular languages are exactly those definable in monadic second-order logic with an order predicate.  Perhaps the most productive approach to the study of regular languages is via their connection to finite semigroups.  Every language $L$ has a syntactic semigroup, which is finite if, and only if, $L$ is regular.  Moreover, closure properties of classes of regular languages relate to natural closure properties of classes of semigroups, via Eilenberg's Correspondence Theorem~\cite{eilenberg1976automata}.  This, together with the tools of  \emph{Krohn-Rhodes theory}, gives rise to \emph{algebraic automata theory}---which leads to the definition of natural subclasses of the class of regular languages, to effective decision procedures for automata recognizing such classes, and to separation results.
+The class of regular languages has arguably the richest theory in this sense of diversity of characterizations.  Virtually all students of computer science learn of the equivalence of deterministic and nondeterministic finite automata, regular languages and linear grammars and many also know that the regular languages are exactly those definable in monadic second-order logic with an order predicate.  Perhaps the most productive approach to the study of regular languages is via their connection to finite monoids.  Every language $L$ has a syntactic monoid, which is finite if, and only if, $L$ is regular.  Moreover, closure properties of classes of regular languages relate to natural closure properties of classes of monoids, via Eilenberg's Correspondence Theorem~\cite{eilenberg1976automata}.  This, together with the tools of  \emph{Krohn-Rhodes theory}, gives rise to \emph{algebraic automata theory}---which leads to the definition of natural subclasses of the class of regular languages, to effective decision procedures for automata recognizing such classes, and to separation results.
 
-When it comes to studying computational complexity, we are mainly interested in classes of languages richer than just the regular languages.  Thus the syntactic semigroups of the languages are not necessarily finite any longer and the extensive tools of Krohn-Rhodes theory are not available to study them.  Nonetheless, some attempts have been made to extend the methods of algebraic automata theory to classes beyond the regular languages.  Most significant is the work of Krebs and collaborators~\cite{behle2007linear,behle2011typed,krebs2007characterizing,krebs2008typed,cano2021positive}, which introduces the notion of \emph{typed semigroups}.  The idea is to allow for languages with infinite syntactic semigroups, but limit the languages they recognize by associating with them a finite collection of types.  This allows for the formulation of a version of Eilenberg's Correspondence theorem associating closure properties on classes of typed semigroups with corresponding closure properties of classes of languages.  In particular, this implies that most complexity classes of interest can be uniquely characterized in terms of an associated class of typed semigroups~\cite{behle2011typed}.  An explicit description of the class characterizing \textsc{DLogTime}-uniform $\TC^0$ is given in~\cite{krebs2007characterizing,krebs2008typed}.  This is obtained through a general method which allows us to construct typed semigroups corresponding to \emph{unary quantifiers} defined from specific languages~\cite{krebs2008typed} (see also Theorem~\ref{thm:logcircalgequiv} below).
+When it comes to studying computational complexity, we are mainly interested in classes of languages richer than just the regular languages.  Thus the syntactic monoids of the languages are not necessarily finite any longer and the extensive tools of Krohn-Rhodes theory are not available to study them.  Nonetheless, some attempts have been made to extend the methods of algebraic automata theory to classes beyond the regular languages.  Most significant is the work of Krebs and collaborators~\cite{behle2007linear,behle2011typed,krebs2007characterizing,krebs2008typed,cano2021positive}, which introduces the notion of \emph{typed monoids}.  The idea is to allow for languages with infinite syntactic monoids, but limit the languages they recognize by associating with them a finite collection of types.  This allows for the formulation of a version of Eilenberg's Correspondence theorem associating closure properties on classes of typed monoids with corresponding closure properties of classes of languages.  In particular, this implies that most complexity classes of interest can be uniquely characterized in terms of an associated class of typed monoids~\cite{behle2011typed}.  An explicit description of the class characterizing \textsc{DLogTime}-uniform $\TC^0$ is given in~\cite{krebs2007characterizing,krebs2008typed}.  This is obtained through a general method which allows us to construct typed monoids corresponding to \emph{unary quantifiers} defined from specific languages~\cite{krebs2008typed} (see also Theorem~\ref{thm:logcircalgequiv} below).
 
-In this paper, we extend this work to obtain a characterization of \textsc{DLogTime}-uniform $\NC^1$ as the class of languages recognized by the collection of typed semigroups obtained as the closure under \emph{ordered strong block products} of three typed semigroups: the group of integers with types for positive and negative integers; the group of natural numbers with types for the square numbers and non-square numbers; and a finite non-solvable group such as $S_5$ with a type for each subset of the group.  Full definitions of these terms follow below.  Our result is obtained by first characterizing \textsc{DLogTime}-uniform $\NC^1$ in terms of logical definability in an extension of first-order logic with only unary quantifiers.  It is known that any regular language whose syntactic semigroup is a non-solvable groups is complete for $\NC^1$ under reductions definable in first-order logic with arithmetic predicates ($\FO(+,\times)$)~\cite{barrington1990uniformity}.  From this, we know we can describe $\NC^1$ as the class of languages definable in an extension of $\FO(+,\times)$ with quantifiers (of arbitrary arity) associated with the regular language corresponding to the word problem for $S_5$.  Our main technical contribution is to show that the family of such quantifiers associated with any regular language $L$ can be replaced with just the unary quantifiers.  This also answers a question left open in~\cite{lautemann2001descriptive}.
+In this paper, we extend this work to obtain a characterization of \textsc{DLogTime}-uniform $\NC^1$ as the class of languages recognized by the collection of typed monoids obtained as the closure under \emph{ordered strong block products} of three typed monoids: the group of integers with types for positive and negative integers; the group of natural numbers with types for the square numbers and non-square numbers; and a finite non-solvable group such as $S_5$ with a type for each subset of the group.  Full definitions of these terms follow below.  Our result is obtained by first characterizing \textsc{DLogTime}-uniform $\NC^1$ in terms of logical definability in an extension of first-order logic with only unary quantifiers.  It is known that any regular language whose syntactic monoid is a non-solvable groups is complete for $\NC^1$ under reductions definable in first-order logic with arithmetic predicates ($\FO(+,\times)$)~\cite{barrington1990uniformity}.  From this, we know we can describe $\NC^1$ as the class of languages definable in an extension of $\FO(+,\times)$ with quantifiers (of arbitrary arity) associated with the regular language corresponding to the word problem for $S_5$.  Our main technical contribution is to show that the family of such quantifiers associated with any regular language $L$ can be replaced with just the unary quantifiers.  This also answers a question left open in~\cite{lautemann2001descriptive}.
 
-In \autoref{sec:prelim}, we cover the relevant background material on semigroup theory, typed semigroups, and multiplication quantifiers.   In \autoref{sec:mult}, we establish the main technical result showing that quantifiers of higher arity over a regular language $L$ can be defined using just unary quantifiers over the syntactic semigroup of $L$.  Finally, in \autoref{sec:alg}, we apply this to obtain the algebraic characterization of \textsc{DLogTime}-uniform $\NC^1$.
+In \autoref{sec:prelim}, we cover the relevant background material on semigroup theory, typed monoids, and multiplication quantifiers.   In \autoref{sec:mult}, we establish the main technical result showing that quantifiers of higher arity over a regular language $L$ can be defined using just unary quantifiers over the syntactic monoid of $L$.  Finally, in \autoref{sec:alg}, we apply this to obtain the algebraic characterization of \textsc{DLogTime}-uniform $\NC^1$.
 
 
 
@@ -113,24 +113,24 @@ For a fixed $n \in \mathbb{Z}^+$ and an integer $i \in [n]$, we define the \emph
 \subsection{Semigroups, Monoids and Groups}
 \label{sec:backgroundsemi}
 
-A \emph{semigroup} $(S, \cdot)$ is a set $S$ equipped with an \emph{associative} binary operation.  We call a semigroup \emph{finite} if $S$ is finite. Context permitting, we may refer to a semigroup $(S, \cdot)$ simply by its underlying set $S$.  A \emph{monoid} $(M, \cdot)$ is a semigroup with a distinguished element $1 \in M$ such that for all $m \in M$, $1 \cdot m = m \cdot 1 = m$.  We call $1$ the \emph{identity} or \emph{neutral} element of $M$.  A \emph{group} $(G, \cdot)$ is a monoid such that for every $g \in G$, there exists an element $g^{-1} \in G$ such that $g \cdot g^{-1} = g^{-1} \cdot g = 1$.  We call $g^{-1}$ the \emph{inverse} of $g$.  
+A \emph{semigroup} $(S, \cdot)$ is a set $S$ equipped with an \emph{associative} binary operation.  We call a semigroup \emph{finite} if $S$ is finite. Context permitting, we may refer to a semigroup $(S, \cdot)$ simply by its underlying set $S$.  A \emph{monoid} $(M, \cdot)$ is a semigroup with a distinguished element $1_M \in M$ such that for all $m \in M$, $1_M \cdot m = m \cdot 1_M = m$.  We call $1_M$ the \emph{identity} or \emph{neutral} element of $M$.  A \emph{group} $(G, \cdot)$ is a monoid such that for every $g \in G$, there exists an element $g^{-1} \in G$ such that $g \cdot g^{-1} = g^{-1} \cdot g = 1$.  We call $g^{-1}$ the \emph{inverse} of $g$.  
 
 % TODO: remove: A semigroup $(S, \cdot)$ is \emph{cancellative} if for $a,b,c \in S$, (1) if $a \cdot b = a \cdot c$, then $b = c$ and (2) if $b \cdot a = c \cdot a$, then $b = c$.  In particular, every group is a cancellative semigroup.
 
-Note that $(\mathbb{Z},+)$ is a group, $(\mathbb{N},+)$ is a monoid but not a group and $(\mathbb{Z}^+,+)$ is a semigroup but not a monoid.  In the first two cases, the identity element is $0$.  When we refer to the semigroups $\mathbb{Z}$ or $\mathbb{N}$ we assume that the operation referred to is standard addition.
+Note that $(\mathbb{Z},+)$ is a group, $(\mathbb{N},+)$ is a monoid but not a group and $(\mathbb{Z}^+,+)$ is a semigroup but not a monoid.  In the first two cases, the identity element is $0$.  When we refer to the monoids $\mathbb{Z}$ or $\mathbb{N}$ we assume that the operation referred to is standard addition.
 
-For a semigroup $(S, \cdot)$, we say that a set $G \subseteq S$ \emph{generates} $S$ if $S$ is equal to the closure of $G$ under $\cdot$; we denote this by $S = \langle G \rangle_{\cdot}$, or, simply, $\langle G \rangle$ if the operation is clear from context, and call $G$ a \emph{generating set of} $S$. We say that $S$ is \emph{finitely generated} if there exists a finite generating set of $S$.  All semigroups we consider are finitely generated.  Note that $\mathbb{Z}^+$ is generated by $\{1\}$, $\mathbb{N}$ by $\{0,1\}$ and $\mathbb{Z}$ by $\{1,-1\}$.
+For a monoid $(M, \cdot)$, we say that a set $G \subseteq M$ \emph{generates} $M$ if $M$ is equal to the closure of $G$ under $\cdot$; we denote this by $M = \langle G \rangle_{\cdot}$, or, simply, $\langle G \rangle$ if the operation is clear from context, and call $G$ a \emph{generating set of} $M$. We say that $M$ is \emph{finitely generated} if there exists a finite generating set of $M$.  All monoids we consider are finitely generated.  Note that $\mathbb{Z}^+$ is generated by $\{1\}$, $\mathbb{N}$ by $\{0,1\}$ and $\mathbb{Z}$ by $\{1,-1\}$.
 
 We write $U_1$ for the monoid $(\{0,1\},\cdot)$ where the binary operation is the standard multiplication.  Note that $1$ is the identity element here.
 For any set $S$, we denote by $S^+$ the set of non-empty finite strings over $S$ and by $S^*$ the set of all finite strings over $S$.  Equipped with the concatenation operation on strings, which we denote by either $\circ$ or simply juxtaposition, $S^*$ is a monoid and $S^+$ is a semigroup but not a monoid.  We refer to these as the \emph{free monoid} and \emph{free semigroup} over $S$, respectively.  Note that $S$ is a set of generators for $S^+$ and $S \cup \{\epsilon\}$ is a set of generators for $S^*$.
 
-A homomorphism from a semigroup $(S, \cdot_S)$ to a semigroup $(T, \cdot_T)$ is a function $h : S \rightarrow T$ such that for all $s_1, s_2 \in S$, $h(s_1 \cdot_S s_2) = h(s_1) \cdot_T h(s_2)$.     A \emph{congruence} on a semigroup $(S, \cdot)$ is an equivalence relation $\sim$ on $S$ such that for all $a,b,c,d \in S$, if $a \sim b$ and $c \sim d$, then $a \cdot c \sim b \cdot d$.  We denote by $S/{\sim}$ the set of equivalence classes of $\sim$ on $S$.  We denote by $[a]_{\sim}$, or simply $[a]$, the equivalence class of $a \in S$ under $\sim$.  Any congruence $\sim$ gives rise to the \emph{quotient semigroup} of $S$ by $\sim$, namely the semigroup $(S/{\sim}, \star)$ where for $[a],[b] \in S/{\sim}$, $[a] \star [b] = [a \cdot b]$.  The map $\eta : S \rightarrow S/{\sim}$ defined by $\eta(a) = [a]$ is then a homomorphism, known as the  \emph{canonical homomorphism} of $S$ onto $S/{\sim}$.
+A homomorphism from a monoid $(S, \cdot_S)$ to a monoid $(T, \cdot_T)$ is a function $h : S \rightarrow T$ such that for all $s_1, s_2 \in S$, $h(s_1 \cdot_S s_2) = h(s_1) \cdot_T h(s_2)$ and $h(1_S) = 1_T$.     A \emph{congruence} on a monoid $(M, \cdot)$ is an equivalence relation $\sim$ on $M$ such that for all $a,b,c,d \in M$, if $a \sim b$ and $c \sim d$, then $a \cdot c \sim b \cdot d$.  We denote by $M/{\sim}$ the set of equivalence classes of $\sim$ on $M$.  We denote by $[a]_{\sim}$, or simply $[a]$, the equivalence class of $a \in M$ under $\sim$.  Any congruence $\sim$ gives rise to the \emph{quotient monoid} of $M$ by $\sim$, namely the monoid $(M/{\sim}, \star)$ where for $[a],[b] \in M/{\sim}$, $[a] \star [b] = [a \cdot b]$.  The map $\eta : M \rightarrow M/{\sim}$ defined by $\eta(a) = [a]$ is then a homomorphism, known as the  \emph{canonical homomorphism} of $M$ onto $M/{\sim}$.
 
 For future reference, we formally define the syntactic congruence associated with a language $L$.
 \begin{definition}\label{def:syncong}
-    Let $L$ be a language. We define the \emph{syntactic congruence} of $L$ as the equivalence relation $\sim_L$ on $\Sigma^+$ such that for all $x, y \in \Sigma^+$, $x \sim_L y$ if and only if for all $w,v \in \Sigma^+$, $wxv \in L$ iff $wyv \in L$.
+    Let $L$ be a language. We define the \emph{syntactic congruence} of $L$ as the equivalence relation $\sim_L$ on $\Sigma^*$ such that for all $x, y \in \Sigma^*$, $x \sim_L y$ if and only if for all $w,v \in \Sigma^*$, $wxv \in L$ iff $wyv \in L$.
   \end{definition}
- It is easily seen that this relation is a congruence on the free monoid $\Sigma^*$.  The quotient semigroup $\Sigma^*/\sim_L$ is known as the \emph{syntactic semigroup} of $L$.  More generally, we say that a semigroup $S$ \emph{recognizes} the language $L$ if there is a homomorphism $h: \Sigma^+ \rightarrow S$ and a set $A \subseteq S$ such that $L = h^{-1}(A)$.  It is easily seen that the syntactic semigroup of $L$ recognizes $L$.  A language is regular if, and only if, its syntactic semigroup is finite.
+ It is easily seen that this relation is a congruence on the free monoid $\Sigma^*$.  The quotient monoid $\Sigma^*/{\sim_L}$ is known as the \emph{syntactic monoid} of $L$.  More generally, we say that a monoid $M$ \emph{recognizes} the language $L$ if there is a homomorphism $h: \Sigma^* \rightarrow M$ and a set $A \subseteq M$ such that $L = h^{-1}(A)$.  It is easily seen that the syntactic monoid of $L$ recognizes $L$.  A language is regular if, and only if, its syntactic monoid is finite.
 
 \subsection{Logics and Quantifiers}\label{sec:backgroundmult}
 
@@ -142,7 +142,7 @@ More generally, let $\tau$ be any relational vocabulary consisting of a binary r
   For $\tau$ a relational vocabulary consisting of a binary relation symbol $<$ and unary relation symbols $R_1,\ldots,R_k$, and $\str{A}$ a $\tau$-structure with $n$ elements that interprets the symbol $<$ as a linear order of its universe, we define the string $w_{\str{A}}$ \emph{associated} with $\str{A}$ as the string of length $n$ over the alphabet $\Sigma_k = \{0,1\}^k$ of size $2^k$ so that if $a$ is the $i$th element  of $w_{\str{A}}$, then $a$ is the $k$-tuple where $a_j =1$ if, and only if, $R_j$ holds at the $i$th element of $\str{A}$.
 \end{definition}
 
-This way, we can assocate a language with any isomorphism-closed class of structures over the vocabulary $\tau$.  We formalise this definition for future use.
+This way, we can associate a language with any isomorphism-closed class of structures over the vocabulary $\tau$.  We formalize this definition for future use.
 \begin{definition}\label{def:associated-lang}
   For $\tau$ a relational vocabulary consisting of a binary relation symbol $<$ and unary relation symbols $R_1,\ldots,R_k$, and $\mathcal{A}$ a class of $\tau$-structures, we define the language $L_{\mathcal{A}}$ over the alphabet $\Sigma_k = \{0,1\}^k$ to be
   $$L_{\mathcal{A}} = \{ w_{\str{A}} \mid \str{A} \in \mathcal{A} \}.$$
@@ -153,15 +153,15 @@ This way, we can assocate a language with any isomorphism-closed class of struct
 
 As the elements of a string $\str{A}$ are linearly ordered, we can identify them with an initial segment $\{1,\ldots,n\}$ of the positive integers.  In other words, we treat a string with universe $\{1,\ldots,n\}$ and the standard order on these elements as a canonical representative of its isomorphism class.  In addition to the order predicate, we may allow other \emph{numerical predicates} to appear in formulas of our logics.  These are predicates whose meaning is completely determined by the size $n$ of the structure and the ordering of its elements.  In particular, we have ternary predicates $+$ and $\times$ for the partial addition and multiplication functions.
 
-An insight due to Lindstr\"om allows us to define a \emph{quantifier} from any isomorphism-closed class of structures (see~\cite{Ebb85}).  Specifically, let $Q$ be any isomorphism-closed class of structures in a relational vocabulary $\tau = \langle R_1,\ldots,R_l\rangle$, where for each $i$, $R_i$ is a relation symbol of arity $r_i$.  For any vocabulary $\sigma$ and positive integer $d$, an \emph{interpretation} of $\tau$ in $\sigma$ of dimension $d$ is a tuple of formulas $I = (\phi_1(\tup{x}_1),\dots, \phi_l(\tup{x}_l))$ of vocabulary $\sigma$ where $\phi_i$ is associated with a tuple $\tup{x}_i$ of variables of length $dr_i$.  Suppose we are given a $\sigma$-structure $\str{A}$ and an assignment $\alpha$ that takes variables to elements of $\str{A}$.  Then let $\phi_i^{\str{A},\alpha}$ denote the relation of arity $dr_i$ consisting of the set of tuples $\{\tup{a} \in |\str{A}|^{dr_i} \mid \str{A} \models \phi_i[\alpha[\tup{x}_i/\tup{a}]] \}$.  Then, the interpretation $I$ defines a map that takes a $\sigma$-structure $\str{A}$, along with an assignment $\alpha$ to the  $\tau$-structure $I(\str{A},\alpha)$ with universe $|\str{A}|^d$ where the interpretation of $R_i$ is the set $\phi_i^{\str{A},\alpha}$, seen as a relation of arity $r_i$ on $|\str{A}|^d$.
+An insight due to Lindstr\"om allows us to define a \emph{quantifier} from any isomorphism-closed class of structures (see~\cite{Ebb85}).  Specifically, let $Q$ be any isomorphism-closed class of structures in a relational vocabulary $\tau = \{ R_1,\ldots,R_l\}$, where for each $i$, $R_i$ is a relation symbol of arity $r_i$.  For any vocabulary $\sigma$ and positive integer $d$, an \emph{interpretation} of $\tau$ in $\sigma$ of dimension $d$ is a tuple of formulas $I = (\phi_1(\tup{x}_1),\dots, \phi_l(\tup{x}_l))$ of vocabulary $\sigma$ where $\phi_i$ is associated with a tuple $\tup{x}_i$ of variables of length $dr_i$.  Suppose we are given a $\sigma$-structure $\str{A}$ and an assignment $\alpha$ that takes variables to elements of $\str{A}$.  Then let $\phi_i^{\str{A},\alpha}$ denote the relation of arity $dr_i$ consisting of the set of tuples $\{\tup{a} \in |\str{A}|^{dr_i} \mid \str{A} \models \phi_i[\alpha[\tup{x}_i/\tup{a}]] \}$.  Then, the interpretation $I$ defines a map that takes a $\sigma$-structure $\str{A}$, along with an assignment $\alpha$ to the  $\tau$-structure $I(\str{A},\alpha)$ with universe $|\str{A}|^d$ where the interpretation of $R_i$ is the set $\phi_i^{\str{A},\alpha}$, seen as a relation of arity $r_i$ on $|\str{A}|^d$.
 
 Then, in a logic with quantifier $Q$, we can form formulas of the form
 $$Q \tup{x}_1\cdots \tup{x}_l (\phi_1,\ldots,\phi_l)$$
-in which occurrences in the the subformula $\phi_i$  of variables among $x_i$ are bound.  The semantics of this quantifier are given by the rule that 
+in which occurrences in the subformula $\phi_i$  of variables among $x_i$ are bound.  The semantics of this quantifier are given by the rule that 
 $Q \tup{x}_1\cdots \tup{x}_l (\phi_1,\ldots,\phi_l)$ is true in a structure $\str{A}$ under some interpretation $\alpha$ of values to the free variables if the $\tau$-structure $I(\str{A},\alpha)$ is in $Q$.  Note, we have defined what are usually called \emph{vectorized quantifiers}, in that they can take interpretations of any dimension.  Another way of formulating this is to have a separate quantifier $Q_d$ for each dimension $d$.  We switch between these notations when it causes no confusion and we call $Q_d$ the \emph{vectorization} of $Q$ of dimension $d$.
 
 
-We are particularly interested in interpretations $I$ where both $\sigma$ and $\tau$ are vocabularies of strings.  These are also known in the literature as \emph{string-to-string tranducers}~\cite{CITE3}.    We further restrict ourselves to interpretations in which the definition of the linear order in $I(\str{A},\alpha)$ is always the lexicographic order on $d$-tuples of $\str{A}$ induced by the order in $\str{A}$.  This order is easily defined by a (quantifier-free) first-order formula, and we simply omit it from the description of $I$.  Hence, we only need to specify the interpretation giving the unary relations in $\tau$ and an interpretation of dimension $d$ has the simple form $(\phi_1(\tup{x}_1),\ldots, \phi_l(\tup{x}_l))$, where all tuples of variables have length $d$.  We can then assume, without loss of generality, that they are all the same tuple $\tup{x}$ and we thus write a formula with a string quantifier $Q$ as
+We are particularly interested in interpretations $I$ where both $\sigma$ and $\tau$ are vocabularies of strings.  These are also known in the literature as \emph{string-to-string tranducers}. (See \cite{bojanczyk2022transducers} for an example of how transducers may have many representations.)  We further restrict ourselves to interpretations in which the definition of the linear order in $I(\str{A},\alpha)$ is always the lexicographic order on $d$-tuples of $\str{A}$ induced by the order in $\str{A}$.  This order is easily defined by a (quantifier-free) first-order formula, and we simply omit it from the description of $I$.  Hence, we only need to specify the interpretation giving the unary relations in $\tau$ and an interpretation of dimension $d$ has the simple form $(\phi_1(\tup{x}_1),\ldots, \phi_l(\tup{x}_l))$, where all tuples of variables have length $d$.  We can then assume, without loss of generality, that they are all the same tuple $\tup{x}$ and we thus write a formula with a string quantifier $Q$ as
 $$Q \tup{x} (\phi_1,\ldots,\phi_l).$$
 Observe that a quantifier applied to an interpretation of dimension $d$ will then bind $d$ variables.
 
@@ -179,29 +179,29 @@ A remark is due on our notation for numerical predicates.  All structures we con
 
 \subsection{Multiplication Quantifiers}
 
-The definition of multiplication quantifier has its origin in Barrington, Immerman, and Straubing \cite[Section 5]{barrington1990uniformity} where they were referred to as monoid quantifiers; the authors proved that the languages in \textsc{DLogTime}-uniform NC${}^1$ are exactly those expressible by first-order logic with quantifiers whose truth-value is determined via multiplication in a finite semigroup.  The notion was extended by Lautemann et al.~\cite{lautemann2001descriptive} to include quantifiers for the word problem over more general algebras with a binary operation.  Multiplication quantifiers over a finite semigroup $S$ can be understood as generalized quantifiers corresponding to languages recognized by $S$, and here we define them as such.
+The definition of multiplication quantifier has its origin in Barrington, Immerman, and Straubing \cite[Section 5]{barrington1990uniformity} where they were referred to as monoid quantifiers; the authors proved that the languages in \textsc{DLogTime}-uniform NC${}^1$ are exactly those expressible by first-order logic with quantifiers whose truth-value is determined via multiplication in a finite monoid.  The notion was extended by Lautemann et al.~\cite{lautemann2001descriptive} to include quantifiers for the word problem over more general algebras with a binary operation.  Multiplication quantifiers over a finite monoid $M$ can be understood as generalized quantifiers corresponding to languages recognized by $M$, and here we define them as such.
 
-Fix a semigroup $S$, a set $B \subseteq S$ and a positive integer $k$.  Let $\Sigma_k$ denote the set $\{0,1\}^k$ which we think of as an alphabet of size $2^k$, and fix a function $\gamma: \Sigma_k \rightarrow S$.  We extend $\gamma$ to strings in $\Sigma_k^+$ inductively in the standard way: $\gamma(wa) = \gamma(w)\gamma(a)$.  Together these define a language
-$$L^{S,B}_{\gamma} = \{ x \in \Sigma_k^* \mid \gamma(x) \in B\}.$$
+Fix a monoid $M$, a set $B \subseteq M$ and a positive integer $k$.  Let $\Sigma_k$ denote the set $\{0,1\}^k$ which we think of as an alphabet of size $2^k$, and fix a function $\gamma: \Sigma_k \rightarrow M$.  We extend $\gamma$ to strings in $\Sigma_k^*$ inductively in the standard way: $\gamma(wa) = \gamma(w)\gamma(a)$.  Together these define a language
+$$L^{M,B}_{\gamma} = \{ x \in \Sigma_k^* \mid \gamma(x) \in B\}.$$
 We can now define a \emph{multiplication quantifier}.  In the following, $\mathcal{S}_L$ denotes the class of structures associated with a language $L$ in the sense of Definition~\ref{def:associated-lang}.
 \begin{definition}\label{def:multquant}
 Let $\tau$ be a vocabulary including an order symbol $<$ and $k$ unary relations.
-For a semigroup $S$, a set $B \subseteq S$, a positive integer $k$ and a function $\gamma: \{0,1\}^k \rightarrow S$, the \emph{multiplication quantifier} $\Gamma_{\gamma}^{S,B}$ is the Lindstr\"om quantifier associated with the class of structures $\mathcal{S}_{L^{S,B}_{\gamma}}$.
+For a monoid $M$, a set $B \subseteq M$, a positive integer $k$ and a function $\gamma: \{0,1\}^k \rightarrow M$, the \emph{multiplication quantifier} $\Gamma_{\gamma}^{M,B}$ is the Lindstr\"om quantifier associated with the class of structures $\mathcal{S}_{L^{M,B}_{\gamma}}$.
 
-We also write $\Gamma_{d,\gamma}^{S,B}$ for the vectorization of this quantifier of dimension $d$. If $B$ is a singleton $\{s\}$, then we often write $\Gamma^{S,s}_{d,\gamma}$ for short.
+We also write $\Gamma_{d,\gamma}^{M,B}$ for the vectorization of this quantifier of dimension $d$. If $B$ is a singleton $\{s\}$, then we often write $\Gamma^{M,s}_{d,\gamma}$ for short.
 \end{definition}
 
-Recall that $U_1$ denotes the two-element semigroup $\{0,1\}$ with standard multiplication.  Then, it is easily seen that $\Gamma^{U_1,0}_{1,\gamma}$,  where $\gamma : \{0,1\} \rightarrow U_1$ such that $\gamma(0) = 1$ and $\gamma(1) = 0$, is the standard existential quantifier.  The universal quantifier can be defined similarly.
+Recall that $U_1$ denotes the two-element monoid $\{0,1\}$ with standard multiplication.  Then, it is easily seen that $\Gamma^{U_1,0}_{1,\gamma}$,  where $\gamma : \{0,1\} \rightarrow U_1$ such that $\gamma(0) = 1$ and $\gamma(1) = 0$, is the standard existential quantifier.  The universal quantifier can be defined similarly.
 
 
 \begin{definition}
-    For a semigroup $S$, we define the following collections of quantifiers: 
+    For a monoid $M$, we define the following collections of quantifiers: 
     \begin{align*}
-        \Gamma^S &= \left\{\Gamma^{S,B}_{l,\gamma} \mid B \subseteq S \text{, } \gamma : \{0,1\}^k \rightarrow S \text{, and } l,k \geq 1\right\}\\
-        \Gamma^S_{l} &= \left\{\Gamma^{S,B}_{l,\gamma} \mid B \subseteq S \text{ and } \gamma : \{0,1\}^k \rightarrow S\right\}\\
-        \Gamma^S_{l,\gamma} &= \left\{\Gamma^{S,B}_{l,\gamma} \mid B \subseteq S\right\}
+        \Gamma^M &= \left\{\Gamma^{M,B}_{d,\gamma} \mid B \subseteq M \text{, } \gamma : \{0,1\}^k \rightarrow M \text{, and } d,k \geq 1\right\}\\
+        \Gamma^S_{d} &= \left\{\Gamma^{M,B}_{d,\gamma} \mid B \subseteq M \text{ and } \gamma : \{0,1\}^k \rightarrow M\right\}\\
+        \Gamma^S_{d,\gamma} &= \left\{\Gamma^{M,B}_{d,\gamma} \mid B \subseteq M\right\}
     \end{align*}
-    Finally, let $\Gamma^{\fin}$ be the collection of all multiplication quantifiers over finite semigroups.
+    Finally, let $\Gamma^{\fin}$ be the collection of all multiplication quantifiers over finite monoids.
 \end{definition}
 
 From \cite[Corollary 9.1]{barrington1990uniformity}, we know that $\text{\textsc{DLogTime}-uniform NC${}^1$}$ is characterized by $(\text{FO})[+,\times]$ equipped with finite multiplication quantifiers:
@@ -212,11 +212,11 @@ From \cite[Corollary 9.1]{barrington1990uniformity}, we know that $\text{\textsc
 
 % include in this remark that we don't actually need for the exposition what a non-solvable monoid is but S5 will do
 \begin{remark}\label{thm:s5logfornc1}
-    In fact, simply allowing multiplication quantifiers for some fixed finite, non-solvable monoid suffices.  The definition of ``non-solvable monoid'' is not needed for our proofs here but, for example, the \emph{symmetric group of degree five}, denoted $S_5$, is a non-solvable monoid. Therefore, we know that $\text{\textsc{DLogTime}-uniform NC${}^1$} = \mathcal{L}((\text{FO}\cup\Gamma^{S_5})[+,\times])$.
+    In fact, simply adding multiplication quantifiers for some fixed finite, non-solvable monoid to $(\FO)[+,\times]$ suffices.  The definition of ``non-solvable monoid'' is not needed for our proofs here but, for example, the \emph{symmetric group of degree five}, denoted $S_5$, is a non-solvable monoid. Therefore, we know that $\text{\textsc{DLogTime}-uniform NC${}^1$} = \mathcal{L}((\text{FO}\cup\Gamma^{S_5})[+,\times])$.
 \end{remark}
 
-In the absence of the arithmetic predicates for addition and multiplication, the logic of multiplication quantifiers over finite semigroups only allows us to define regular languages.  Specifically, Barrington et al.~\cite{barrington1990uniformity} established that the regular languages are characterized by the logic using such quantifiers with only unary interpretations.
-We denote this logic $(\Gamma^{\fin}_1)[<])$.
+In the absence of the arithmetic predicates for addition and multiplication, the logic of multiplication quantifiers over finite monoids only allows us to define regular languages.  Specifically, Barrington et al.~\cite{barrington1990uniformity} established that the regular languages are characterized by the logic using such quantifiers with only unary interpretations.
+We denote this logic $(\Gamma^{\fin}_1)[<]$.
 \begin{theorem}[\cite{barrington1990uniformity}]\label{thm:fologforreg}
     \emph{\textsc{Reg}} $= \mathcal{L}((\Gamma^{\fin}_1)[<])$.
 \end{theorem}
@@ -225,7 +225,7 @@ We denote this logic $(\Gamma^{\fin}_1)[<])$.
     \emph{\textsc{Reg}} $= \mathcal{L}((\Gamma^{\fin})[<])$.
   \end{theorem}
 
-Our main technical result shows that this is true even in the presence of any numerical predicates and therefore $\Gamma^{\fin}$ can be replaced by $\Gamma^{\fin}_1$ even in Theorem~\ref{thm:logfornc1}.  
+Our main technical result shows that this is true even in the presence of other numerical predicates and, therefore, $\Gamma^{\fin}$ can be replaced by $\Gamma^{\fin}_1$ even in Theorem~\ref{thm:logfornc1}.  
 
 % TODO mention in meeting:
 % defining L(logic)
@@ -234,11 +234,11 @@ Our main technical result shows that this is true even in the presence of any nu
 
 % for second proof later: vectorization can be replaced by nesting
 
-\subsection{Typed Semigroups}\label{sec:backgroundtyped}
+\subsection{Typed Monoids}\label{sec:backgroundtyped}
 
-In this subsection, we review the definitions and results from~\cite{REF1,REF2} on typed semigroups, their relationship to languages and corresponding characterizations of complexity classes.
+In this subsection, we review the definitions and results from~\cite{behle2011typed,krebs2008typed} on typed monoids, their relationship to languages and corresponding characterizations of complexity classes.
 
-A typed semigroup is a semigroup equipped with a collection of \emph{types}, which form a Boolean algebra, and a set of \emph{units}.  We only deal with concrete Boolean algebras, given as collections of subsets of a fixed universe.
+A typed monoid is a monoid equipped with a collection of \emph{types}, which form a Boolean algebra, and a set of \emph{units}.  We only deal with concrete Boolean algebras, given as collections of subsets of a fixed universe.
 
 \begin{definition}[Boolean Algebra]
     A \emph{Boolean algebra} over a set $S$ is a set $B \subseteq \wp(S)$ such that $\varnothing, S \in B$ and $B$ is closed under union, intersection, and complementation. If $B$ is finite, we call it a \emph{finite} Boolean algebra.
@@ -247,43 +247,44 @@ A typed semigroup is a semigroup equipped with a collection of \emph{types}, whi
 \end{definition}
 
 A homomorphism between Boolean algebras is defined as standard.  That is, if $B_1$ and $B_2$ are Boolean algebras over sets $S$ and $T$, respectively, then we call $h : B_1 \rightarrow B_2$ a \emph{homomorphism} if $h(\varnothing) = \varnothing$, $h(S) = T$, and for all $s_1, s_2 \in B_1$, $h(s_1 \cap s_2) = h(s_1) \cap h(s_2)$, $h(s_1 \cup s_2) = h(s_1) \cup h(s_2)$, and $h(s^C) = (h(s))^C$.
-Now we are ready to define typed semigroups.
+Now we are ready to define typed monoids.
 
-\begin{definition}[Typed Semigroup]
-    Let $S$ be a semigroup, $G$ a Boolean algebra over $S$, and $E$ a finite subset of $S$. We call the tuple $T = (S, G, E)$ a \emph{typed semigroup over $S$} and the elements of $G$ \emph{types} and the elements of $E$ \emph{units}. We call $S$ the \emph{base semigroup} of $T$. If $S$ is a monoid or group, then we may also call $T$ a \emph{typed monoid} or \emph{typed group}, respectively.
+\begin{definition}[Typed Monoid]
+    Let $M$ be a monoid, $G$ a Boolean algebra over $M$, and $E$ a finite subset of $M$. We call the tuple $T = (M, G, E)$ a \emph{typed monoid over $M$} and the elements of $G$ \emph{types} and the elements of $E$ \emph{units}. We call $M$ the \emph{base monoid} of $T$. If $M$ is a group, then we may also call $T$ a \emph{typed group}.
 
-    If $G = \{\varnothing, A, S - A, S\}$, then we often abbreviate $T$ as $(S, A, E)$, i.e., the Boolean algebra is signified by an element, or elements, which generates it---in this case, $A$. 
+    Say $G = \{\varnothing, A, M - A, M\}$. Then, we often abbreviate $T$ as $(M, A, E)$, i.e., the Boolean algebra is signified by an element, or elements, which generates it---in this case, $A$. 
 \end{definition}
-We say that a typed semigroup $(S,G,E)$ is finite if $S$ is.
+We say that a typed monoid $(M,G,E)$ is finite if $M$ is.
 
-We also need a notion of morphism between typed semigroups.
+We also need a notion of morphism between typed monoids.
 \begin{definition}\label{def:typedhom}
-    A \emph{typed homomorphism} $h : (S, G, E) \rightarrow (T, H, F)$ of typed semigroups is a triple $(h_1, h_2, h_3)$ where $h_1 : S \rightarrow T$ is a semigroup homomorphism, $h_2 : G \rightarrow H$ is a homomorphism of Boolean algebras, and $h_3 : E \rightarrow F$ is a mapping of sets such that the following conditions hold:
+    A \emph{typed monoid homomorphism} $h : (S, G, E) \rightarrow (T, H, F)$ of typed monoids is a triple $(h_1, h_2, h_3)$ where $h_1 : S \rightarrow T$ is a monoid homomorphism, $h_2 : G \rightarrow H$ is a homomorphism of Boolean algebras, and $h_3 : E \rightarrow F$ is a mapping of sets such that the following conditions hold:
     \begin{enumerate}[\ \ \ \ (i)]
         \item For all $A \in G$, $h_1(A) = h_2(A) \cap h_1(S)$.
         \item For all $e \in E$, $h_1(e) = h_3(e)$.
     \end{enumerate}
 \end{definition}
-Note that $h_3$ is redundant in the definition as it is completely determined by $h_1$.  We retain it as part of the definition for consistency with~\cite{REF}.
+Note that $h_3$ is redundant in the definition as it is completely determined by $h_1$.  We retain it as part of the definition for consistency with~\cite{behle2011typed,krebs2008typed}.
 
-To motivate the definitions, recall that a language $L \subseteq \Sigma^*$ is recognized by a semigroup $S$ if there is a homomorphism $h: \Sigma^* \rightarrow S$ and a set $B \subseteq S$ such that $L = h^{-1}(B)$.  When the semigroup $S$ is infinite, the languages recognized form a rather rich collection and we aim to restrict this in two ways.  First, $B$ cannot be an arbitrary set but must be an element of the algebra of types.  Secondly, the homomorphism $h$ must map the letters in $\Sigma$ to units of the typed semigroup.  Formally, we have the following definition.
+To motivate the definitions, recall that a language $L \subseteq \Sigma^*$ is recognized by a monoid $M$ if there is a homomorphism $h: \Sigma^* \rightarrow M$ and a set $B \subseteq M$ such that $L = h^{-1}(B)$.  When the monoid $M$ is infinite, the languages recognized form a rather rich collection and we aim to restrict this in two ways.  First, $B$ cannot be an arbitrary set but must be an element of the algebra of types.  Secondly, the homomorphism $h$ must map the letters in $\Sigma$ to units of the typed monoid.  Formally, we have the following definition.
 \begin{definition}\label{def:langrecognitiontyped}
-    A typed semigroup $T = (S, G, E)$ \emph{recognizes} a language $L \subseteq \Sigma^+$ if there exists a typed homomorphism from $(\Sigma^+, L, \Sigma)$ to $T$. We let $\mathcal{L}(T)$ denote the set of languages recognized by $T$.
+    A typed monoid $T = (M, G, E)$ \emph{recognizes} a language $L \subseteq \Sigma^+$ if there exists a typed monoid homomorphism from $(\Sigma^+, L, \Sigma)$ to $T$. We let $\mathcal{L}(T)$ denote the set of languages recognized by $T$.
 \end{definition}
 
-When the base semigroup of a typed semigroup is finite, we recover the classical definition of a recognition.  Hence, the languages recognized by finite typed semigroup are necessarily regular.
+When the base monoid of a typed monoid is finite, we recover the classical definition of a recognition.  Hence, the languages recognized by finite typed monoids are necessarily regular.
+
 \begin{proposition}
-    If $T$ is a finite typed semigroup, then $\mathcal{L}(T) \subseteq \emph{\textsc{Reg}}$.
+    If $T$ is a finite typed monoid, then $\mathcal{L}(T) \subseteq \emph{\textsc{Reg}}$.
 \end{proposition}
 
-We can now state the definitions of the key relationships between typed semigroups.
+We can now state the definitions of the key relationships between typed monoids.
 
 \begin{definition}
-    Let $(S, G, E)$ and $(T, H, F)$ be typed semigroups.
+    Let $(S, G, E)$ and $(T, H, F)$ be typed monoids.
     \begin{itemize}
-        \item A typed homomorphism $h = (h_1, h_2, h_3) : (S, G, E) \rightarrow (T, H, F)$ is \emph{injective} (\emph{surjective}, or \emph{bijective}) if all of $h_1$, $h_2$, and $h_3$ are.
-        \item $(S, G, E)$ is a \emph{typed subsemigroup} (or, simply, ``subsemigroup'' when context is obvious) of $(T, H, F)$, denoted $(S, G, E) \leq (T, H, F)$, if there exists an injective typed homomorphism $h : (S, G, E) \rightarrow (T, H, F)$.
-        \item $(S, G, E)$ divides $(T, H, F)$, denoted $(S, G, E) \preceq (T, H, F)$, if there exists a surjective  typed homomorphism from a typed subsemigroup of $(T, H, F)$ to $(S, G, E)$.
+        \item A typed monoid homomorphism $h = (h_1, h_2, h_3) : (S, G, E) \rightarrow (T, H, F)$ is \emph{injective} (\emph{surjective}, or \emph{bijective}) if all of $h_1$, $h_2$, and $h_3$ are.
+        \item $(S, G, E)$ is a \emph{typed submonoid} (or, simply, ``submonoid'' when context is obvious) of $(T, H, F)$, denoted $(S, G, E) \leq (T, H, F)$, if there exists an injective typed monoid homomorphism $h : (S, G, E) \rightarrow (T, H, F)$.
+        \item $(S, G, E)$ divides $(T, H, F)$, denoted $(S, G, E) \preceq (T, H, F)$, if there exists a surjective  typed monoid homomorphism from a typed submonoid of $(T, H, F)$ to $(S, G, E)$.
         \iffalse TODO: remove before submission
             \item A  typed semigroup $(S, G', E)$ is a \emph{shift} of $(S, G, E)$ if there exist $p,q \in S$, with \[G' = \{\{s \in S \mid psq \in A\} \mid A \in G\}.\]
             \item Let $E' \subseteq S$ be any finite set. Then, we call $(S, G, E')$ a \emph{unit relaxation} of $(S, G, E)$.
@@ -293,55 +294,55 @@ We can now state the definitions of the key relationships between typed semigrou
 
 These have the expected properties.
 \begin{proposition}[\cite{behle2011typed}]\label{prop:typedsemigroupprops}
-    Let $T_1$, $T_2$, and $T_3$ be typed semigroup.
+    Let $T_1$, $T_2$, and $T_3$ be typed monoids.
     \begin{itemize}
-        \item Typed homomorphisms are closed under composition.
+        \item Typed monoid homomorphisms are closed under composition.
         \item Division is transitive: if $T_1 \preceq T_2$ and $T_2 \preceq T_3$, then $T_1 \preceq T_3$.
         \item If $T_1 \preceq T_2$, then $\mathcal{L}(T_1) \subseteq \mathcal{L}(T_2)$.
     \end{itemize}
 \end{proposition}
 
-We can formulate the notion of the \emph{syntactic typed semigroup} of a language $L$ as an extension of the syntactic semigroup of $L$ with a minimal collection of types and units necessary.
+We can formulate the notion of the \emph{syntactic typed monoid} of a language $L$ as an extension of the syntactic monoid of $L$ with a minimal collection of types and units necessary.
 \begin{definition}\label{def:typedcongmin}
-    Let $T = (S, G, E)$ be a typed semigroup. A congruence $\sim$ over $S$ is a \emph{typed congruence over $T$} if for every $A \in G$ and $s_1,s_2\in S$, if $s_1 \sim s_2$ and $s_1 \in A$, then $s_2 \in A$.
+    Let $T = (M, G, E)$ be a typed monoid. A congruence $\sim$ over $M$ is a \emph{typed congruence over $T$} if for every $A \in G$ and $s_1,s_2\in M$, if $s_1 \sim s_2$ and $s_1 \in A$, then $s_2 \in A$.
 
     For a typed congruence $\sim$ over $T$, let
     \begin{align*}
-        S'/{\sim} &= \{[x]_\sim \mid x \in S'\} \text{ where $S' \subseteq S$}\\
+        A/{\sim} &= \{[x]_\sim \mid x \in A\} \text{ where $A \subseteq M$}\\
         G/{\sim} &= \{A/{\sim} \mid A \in G\}\\
         E/{\sim} &= \{[x]_\sim \mid x \in E\}.
     \end{align*}
-    \noindent Then, $T/{\sim} := (S/{\sim}, G/{\sim}, E/{\sim})$ is the \emph{typed quotient semigroup of $T$ by $\sim$}.
+    \noindent Then, $T/{\sim} := (M/{\sim}, G/{\sim}, E/{\sim})$ is the \emph{typed quotient monoid of $T$ by $\sim$}.
 
-    Let $\sim_T$ denote the typed congruence on $T$ such that for $s_1,s_2 \in S$, $s_1 \sim_T s_2$ iff for all $x,y \in S$ and $A \in G$, $xs_1y \in A$ iff $xs_2y \in A$. We then refer to the quotient semigroup $T/{\sim_T}$ as the \emph{minimal reduced semigroup of $T$}.
+    Let $\sim_T$ denote the typed congruence on $T$ such that for $s_1,s_2 \in S$, $s_1 \sim_T s_2$ iff for all $x,y \in S$ and $A \in G$, $xs_1y \in A$ iff $xs_2y \in A$. We then refer to the quotient monoid $T/{\sim_T}$ as the \emph{minimal reduced monoid of $T$}.
 \end{definition}
 
 Recall that ${\sim_L}$ is the syntactic congruence of $L$, defined in Definition \ref{def:syncong}.
 \begin{definition}
-    For a language $L \subseteq \Sigma^+$, the \emph{syntactic typed semigroup of $L$}, denoted $\emph{syn}(L)$, is the typed semigroup $(\Sigma^+, L, \Sigma)/{\sim_L}$. 
+    For a language $L \subseteq \Sigma^+$, the \emph{syntactic typed monoid of $L$}, denoted $\syn(L)$, is the typed monoid $(\Sigma^+, L, \Sigma)/{\sim_L}$. 
 \end{definition} 
-    We also get the \emph{canonical typed homomorphism}, $\eta_d : (\Sigma^+, L, \Sigma) \rightarrow \emph{syn}(L)$ induced by the syntactic homomorphism of $L$.
+    We also get the \emph{canonical typed monoid homomorphism}, $\eta_L : (\Sigma^+, L, \Sigma) \rightarrow \syn(L)$ induced by the syntactic homomorphism of $L$.
 
 
-We now turn to the relationship between the expressive power of logics with multiplication quantifiers and typed semigroups.  A formal association is defined through the definition below.
+We now turn to the relationship between the expressive power of logics with multiplication quantifiers and typed monoids.  A formal association is defined through the definition below.
 
 \begin{definition}\label{def:origtypedquantsemi}
-    For a multiplication quantifier $Q=\Gamma^{S,B}_{\gamma}$ where $\gamma : \{0,1\}^k \rightarrow S$, we define the \emph{typed quantifier semigroup} of $Q$, denoted $\mathcal{S}(Q)$, to be the syntactic typed semigroup of the language $L^{S,B}_{\gamma}$.  
+    For a multiplication quantifier $Q=\Gamma^{M,B}_{\gamma}$ where $\gamma : \{0,1\}^k \rightarrow M$, we define the \emph{typed quantifier monoid} of $Q$, denoted $\mathcal{M}(Q)$, to be the syntactic typed monoid of the language $L^{M,B}_{\gamma}$.  
 \end{definition}
 
-It turns out that we can give a purely structural characterization of those typed semigroups that are syntactic semigroups.
+It turns out that we can give a purely structural characterization of those typed monoids that are syntactic monoids.
 
 \begin{proposition}[\cite{krebs2008typed}]
-    A typed semigroup is the syntactic semigroup of a language if, and only if, it is reduced, generated by its units, and has four or two types.
+    A typed monoid is the syntactic monoid of a language if, and only if, it is reduced, generated by its units, and has four or two types.
 
 In case it has just two types, then it only recognizes the empty language or the language of all strings.
 \end{proposition}
 
-We now want to state the formal connection between the languages expressible in a logicwith a collection of quantifiers and the corresponding class of typed semigroups.  For this we need the notion of the \emph{ordered strong block product closure} of a set of typed semigroups $T$, which we denote $\mathrm{sbpc}_<(T)$.  The definition is technical and can be found in~\cite{krebs2008typed} and is also reproduced in the appendix for ease of reference.
+We now want to state the formal connection between the languages expressible in a logic with a collection of quantifiers and the corresponding class of typed monoids.  For this we need the notion of the \emph{ordered strong block product closure} of a set of typed monoids $T$, which we denote $\mathrm{sbpc}_<(T)$.  The definition is technical and can be found in~\cite{krebs2008typed} and is also reproduced in the appendix for ease of reference.
 
 From \cite[Theorem 4.14]{krebs2008typed}, we then get the following relationship between logics and algebras:\footnote{The theorem in \cite{krebs2008typed} is actually more general as it accounts for more predicates than just order; however, for our purposes, order alone suffices.}
 \begin{theorem}\label{thm:logcircalgequiv}
-     Let $\mathfrak{Q}$ be a collection of quantifiers and $\bm{Q}$ the corresponding set of typed quantifier semigroups for $\mathfrak{Q}$. Then, \(
+     Let $\mathfrak{Q}$ be a collection of quantifiers and $\bm{Q}$ the corresponding set of typed quantifier monoids for $\mathfrak{Q}$. Then, \(
         \mathcal{L}((\mathfrak{Q}_1)[<]) = \mathcal{L}(\emph{sbpc}_<(\bm{Q}))
     \).
 \end{theorem}
@@ -351,14 +352,14 @@ From \cite[Theorem 4.14]{krebs2008typed}, we then get the following relationship
 To use Theorem~\ref{thm:logcircalgequiv} to obtain an algebraic characterization of $\NC^1$, we need to characterize this class in a logic with only unary quantifiers, i.e.\ where quantifiers are only applied to unary interpretations.  Remark~\ref{thm:s5logfornc1} gives us a characterization using first-order quantifiers and $\Gamma^{S_5}$.  Our aim in this section is to show that we can eliminate the use of interpretations of dimension higher than $1$ in this logic.  As a first step, we show that we can restrict ourselves to quantifiers $\Gamma^{{S_5},s}_{\delta}$ for a \emph{fixed} function $\delta$.
 
 \begin{lemma}\label{lem:finitetuple}
-    For every finite semigroup $S$, there exists a function $\delta : \{0,1\}^{|S|} \rightarrow S$ such that for every $s \in S$ and $\gamma : \{0,1\}^k \rightarrow S$, the quantifier $\Gamma^{S,s}_{\gamma}$ is definable in $(\Gamma^{S,s}_{\delta})[\varnothing]$.
+    For every finite monoid $M$, there exists a function $\delta : \{0,1\}^{|M|} \rightarrow M$ such that for every $s \in M$ and $\gamma : \{0,1\}^k \rightarrow M$, the quantifier $\Gamma^{M,s}_{\gamma}$ is definable in $(\Gamma^{M,s}_{\delta})[\varnothing]$.
   \end{lemma}
   \begin{proof}
-    Recall that $\Gamma^{S,s}_{\gamma}$ is the class of structures $\str{A}$ in a vocabulary $\tau$ with one binary relation $<$ and $k$ unary relations $R_1,\ldots,R_k$ such that $\gamma(w_{\str{A}}) = s$ where $w_{\str{A}}$ is the string associated with $\str{A}$ as in Def.~\ref{def:associated}.
+    Recall that $\Gamma^{M,s}_{\gamma}$ is the class of structures $\str{A}$ in a vocabulary $\tau$ with one binary relation $<$ and $k$ unary relations $R_1,\ldots,R_k$ such that $\gamma(w_{\str{A}}) = s$ where $w_{\str{A}}$ is the string associated with $\str{A}$ as in Def.~\ref{def:associated}.
 
-        Let $c = |S|$, fix an enumeration $\{s_1,\ldots,s_c\}$ of $S$, and let $z$ be an arbitrary element of $S$.  Let $\delta : \{0,1\}^c \rightarrow S$ be the function where $\delta(w) = s_i$ if $w$ is the one-hot encoding of $i$ and $\delta(w) = z$ otherwise (that is, if the number of occurrences of the symbol $1$ in the string $w$ is not exactly one).
+        Let $c = |M|$, fix an enumeration $\{s_1,\ldots,s_c\}$ of $M$, and let $z$ be an arbitrary element of $M$.  Let $\delta : \{0,1\}^c \rightarrow M$ be the function where $\delta(w) = s_i$ if $w$ is the one-hot encoding of $i$ and $\delta(w) = z$ otherwise (that is, if the number of occurrences of the symbol $1$ in the string $w$ is not exactly one).
 
-        For each $t \in S$, define the formula $\psi_t(x)$ as follows:
+        For each $t \in M$, define the formula $\psi_t(x)$ as follows:
         $$ \psi_t(x) : = \bigvee_{w \in \{0,1\}^k : \gamma(w) = t} \left( \bigwedge_{i \in [k] : w_i = 1} R_i(x) \land \bigwedge_{i \in [k] : w_i = 0} \neg R_i(x) \right).$$
 
           It is easy to see that in a $\tau$-structure $\str{A}$, we have $\str{A} \models \psi_t[a]$ if, and only if, the $a$th element of $w_{\str{A}}$ is mapped by $\gamma$ to $t$.  Thus, in particular, the formulas $\psi_{s_1},\ldots,\psi_{s_c}$ define disjoint sets that partition the universe of $\str{A}$.  We now claim that the quantifier $\Gamma^{S,s}_{\gamma}$ is defined by the formula:
@@ -370,7 +371,7 @@ To use Theorem~\ref{thm:logcircalgequiv} to obtain an algebraic characterization
             \text{iff}\ & \str{A} \models\psi_i[a] \\
             \text{iff}\ & \gamma((w_{\str{A}}))_a) = s_i.
           \end{align*}
-Hence, $\delta(w_{I(\str{A})}) = \gamma(w_{\str{A}})$ and therefore $I(\str{A}) \in \Gamma^{S,s}_{\delta}$ if, and only if $\str{A} \in \Gamma^{S,s}_{\gamma}$ as required.
+Hence, $\delta(w_{I(\str{A})}) = \gamma(w_{\str{A}})$ and therefore $I(\str{A}) \in \Gamma^{M,s}_{\delta}$ if, and only if $\str{A} \in \Gamma^{M,s}_{\gamma}$ as required.
         
   \end{proof}
 
@@ -518,15 +519,15 @@ We now prove that having quantifiers binding only one variable is sufficient:
 \end{proof}
 
 \begin{corollary}\label{cor:unarymqssuffice}
-    For every finite semigroup $S$, there exists a function $\delta : \{0,1\}^c \rightarrow S$ such that for any set of quantifiers $\mathfrak{Q}$ and set of numerical predicates $\mathfrak{N}$,\[
-        \mathcal{L}((\mathfrak{Q} \cup \Gamma^{S})[\mathfrak{N}]) = \mathcal{L}((\mathfrak{Q} \cup \Gamma^{S}_{1,\delta})[\mathfrak{N}])
+    For every finite monoid $M$, there exists a function $\delta : \{0,1\}^c \rightarrow M$ such that for any set of quantifiers $\mathfrak{Q}$ and set of numerical predicates $\mathfrak{N}$,\[
+        \mathcal{L}((\mathfrak{Q} \cup \Gamma^{M})[\mathfrak{N}]) = \mathcal{L}((\mathfrak{Q} \cup \Gamma^{M}_{1,\delta})[\mathfrak{N}])
     \]
 \end{corollary}
 \begin{remark}
-    Because we are considering finite semigroups, we can always take disjunctions of the multiplication quantifiers which check if the product is equal to a single element of a semigroup in order to define multiplication quantifiers which check if the product is equal to any element of a specified subset of a semigroup.
+    Because we are considering finite monoids, we can always take disjunctions of the multiplication quantifiers which check if the product is equal to a single element of a monoid in order to define multiplication quantifiers which check if the product is equal to any element of a specified subset of a monoid.
 \end{remark}
 \begin{remark}
-    Note that for a finite semigroup $S$, while $\Gamma^{S}$ and $\Gamma^{S}_1$ are infinite sets, $\Gamma^{S}_{1,\delta}$ is a finite set.
+    Note that for a finite monoid $M$, while $\Gamma^{M}$ and $\Gamma^{M}_1$ are infinite sets, $\Gamma^{M}_{1,\delta}$ is a finite set.
 \end{remark}
 
 Therefore, this gives us a logic characterizing \textsc{DLogTime}-uniform NC${}^1$ which not only uses unary quantifiers but also only has a finite number of quantifiers:
@@ -571,7 +572,7 @@ Bringing everything together, we get the following algebraic characterization of
     \[\text{\emph{\textsc{DLogTime}-uniform NC${}^1$}} = \mathcal{L}(\emph{sbpc}_<(\{(\mathbb{Z}, \mathbb{Z}^+, \pm 1), (\mathbb{N}, \mathbb{S}, \{0,1\}), (S_5, \wp(S_5), S_5)\})).\]
 \end{theorem}
 \begin{proof}
-    Let $\delta : \{0,1\}^c \rightarrow S_5$ be as it was defined in Lemma \ref{lem:finitetuple}. It is easy to see that the typed quantifier semigroup for Maj is $(\mathbb{Z}, \mathbb{Z}^+, \pm 1)$, for Sq is $(\mathbb{N}, \mathbb{S}, \{0,1\})$, and for $\Gamma^{S_5,s}_{1,\delta}$ is $(S_5, \{s\}, S_5)$. Then,
+    Let $\delta : \{0,1\}^c \rightarrow S_5$ be as it was defined in Lemma \ref{lem:finitetuple}. It is easy to see that the typed quantifier monoid for Maj is $(\mathbb{Z}, \mathbb{Z}^+, \pm 1)$, for Sq is $(\mathbb{N}, \mathbb{S}, \{0,1\})$, and for $\Gamma^{S_5,s}_{1,\delta}$ is $(S_5, \{s\}, S_5)$. Then,
     \begin{align*}
         \text{\textsc{DLogTime}-uniform NC${}^1$} &= \mathcal{L}((\text{FO} \cup \Gamma^{S_5})[+,\times])\text{ via \cite{barrington1990uniformity}}\\
         &=\mathcal{L}((\text{FO} \cup \Gamma^{S_5}_{1,\delta})[+,\times])\text{ via Corollary \ref{cor:alogtimelogicbetter}}\\
@@ -618,35 +619,35 @@ TODO: remove before submission if not included
 
 \subsection{Weakly Closed Classes}
 
-\begin{definition}[Direct Product of Semigroups]
-    The \emph{direct product} of two semigroups $(S, \cdot_S)$ and $(T, \cdot_T)$ is the semigroup $(S \times T, \cdot)$ where $(s_1, t_1) \cdot (s_2, t_2) = (s_1 \cdot_S s_2, t_1 \cdot_T t_2)$.
+\begin{definition}[Direct Product of Monoids]
+    The \emph{direct product} of two monoids $(S, \cdot_S)$ and $(T, \cdot_T)$ is the monoid $(S \times T, \cdot)$ where $(s_1, t_1) \cdot (s_2, t_2) = (s_1 \cdot_S s_2, t_1 \cdot_T t_2)$.
 \end{definition}
 \begin{definition}[Direct Product of Boolean Algebras]
     We define the \emph{direct product} of Boolean algebras $B_1$ and $B_2$, denoted $B_1 \times B_2$, to be the Boolean algebra generated by the set $\{A_1 \times A_2 \mid A_1 \in B_1 \text{ and } A_2 \in B_2\}$.
 \end{definition}
 
 \begin{definition}[Direct Product of Typed Semigroups]
-    \item The \emph{direct product} $(S, G, E) \times (T, H, F)$ is the typed semigroup $(S \times T, G \times H, E \times F)$.
+    \item The \emph{direct product} $(S, G, E) \times (T, H, F)$ is the typed monoid $(S \times T, G \times H, E \times F)$.
 \end{definition}
 
 \begin{definition}[Trivial Extension]
-    If there exists a surjective typed homomorphism from $(S, G, E)$ to $(T, H, F)$, then we say that $(S, G, E)$ is a \emph{trivial extension} of $(T, H, F)$.
+    If there exists a surjective typed monoid homomorphism from $(S, G, E)$ to $(T, H, F)$, then we say that $(S, G, E)$ is a \emph{trivial extension} of $(T, H, F)$.
 \end{definition}
 
 
 \begin{definition}[Weakly Closed Class]
-    We call a set of typed semigroups $T$ a \emph{weakly closed class} if it is closed under
+    We call a set of typed monoids $T$ a \emph{weakly closed class} if it is closed under
     \begin{itemize}
         \item Division: If $(S, G, E) \in T$ and $(S, G, E) \preceq (T, H, F)$, then $(T, H, F) \in T$.
         \item Direct Product: If $(S, G, E), (T, H, F) \in T$, then $(S, G, E) \times (T, H, F) \in T$.
         \item Trivial Extension: If $(S, G, E)$ is a trivial extension of $(T, H, F)$ and $(T, H, F) \in T$, then $(S, G, E) \in T$.
     \end{itemize}
-    We write $\emph{wc(T)}$ to denote the smallest weakly closed set of typed semigroups containing $T$.
+    We write $\emph{wc(T)}$ to denote the smallest weakly closed set of typed monoids containing $T$.
 \end{definition}
 
 
 \subsection{The Block Product}
-The block product will be our main tool for the construction of algebraic characterizations of language classes via logic.\footnote{Historically, the ``\emph{wreath product}'' was first used for this purpose. Since \cite{rhodes1989kernel}, however, the block product has been the preferred and easier-to-work-with tool of choice.} We now build up to its definition:
+The block product will be our main tool for the construction of algebraic characterizations of language classes via logic. Historically, the ``\emph{wreath product}'' was first used for this purpose. Since \cite{rhodes1989kernel}, however, the block product has typically been the preferred and easier-to-work-with tool of choice. We now build up to its definition:
 
 \begin{definition}[Left and Right Actions]
     A \emph{left action} $\star_l$ of a semigroup $(N, \cdot)$ on a semigroup $(M, +)$ is a function from $N \times M$ to $M$ such that for $n_1,n_2 \in N$ and $m_1,m_2 \in M$, \begin{align*}
@@ -659,8 +660,8 @@ The block product will be our main tool for the construction of algebraic charac
 \end{definition}
 
 \begin{definition}[Two-sided Semidirect Product]
-    For a pair of compatible left and right actions, $\star_l$ and $\star_r$ of $(N, \cdot)$ on $(M, +)$, the \emph{two-sided (or bilateral) semidirect product} of $(M, +)$ and $(N, \cdot)$ with respect to $\star_l$ and $\star_r$ is the semigroup $(M \times N, \circ)$ where for $(m_1,n_1),(m_2,n_2) \in M \times N$, \[
-        (m_1,n_1) \circ (m_2,n_2) = (m_1n_2 + n_1m_2, n_1 \cdot n_2).
+    For a pair of compatible left and right actions, $\star_l$ and $\star_r$ of $(N, \cdot)$ on $(M, +)$, the \emph{two-sided (or bilateral) semidirect product} of $(M, +)$ and $(N, \cdot)$ with respect to $\star_l$ and $\star_r$ is the semigroup $(M \times N, \star)$ where for $(m_1,n_1),(m_2,n_2) \in M \times N$, \[
+        (m_1,n_1) \star (m_2,n_2) = (m_1n_2 + n_1m_2, n_1 \cdot n_2).
     \]
 \end{definition}
 

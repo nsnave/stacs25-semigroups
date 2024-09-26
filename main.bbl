@@ -18,6 +18,12 @@ Christoph Behle, Andreas Krebs, and Stephanie Reifferscheid.
   2011, Linz, Austria, June 21-24, 2011. Proceedings 4}, pages 97--114.
   Springer, 2011.
 
+\bibitem{bojanczyk2022transducers}
+Mikolaj Bojanczyk.
+\newblock Transducers of polynomial growth.
+\newblock In {\em Proceedings of the 37th annual acm/ieee symposium on logic in
+  computer science}, pages 1--27, 2022.
+
 \bibitem{cano2021positive}
 A~Cano, J~Cantero, and Ana Mart{\'\i}nez-Pastor.
 \newblock {A positive extension of Eilenberg's variety theorem for non-regular
