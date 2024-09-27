@@ -8,12 +8,9 @@ Reallocated glb_str_end (elt_size=4) to 20 items from 10.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: main.bib
-Warning--I didn't find a database entry for "REF1"
-Warning--I didn't find a database entry for "REF2"
-Warning--I didn't find a database entry for "REF"
 You've used 15 entries,
             2943 wiz_defined-function locations,
-            738 strings with 7486 characters,
+            732 strings with 7464 characters,
 and the built_in function-call counts, 6926 in all, are:
 = -- 737
 > -- 212
@@ -52,4 +49,3 @@ warning$ -- 0
 while$ -- 59
 width$ -- 17
 write$ -- 170
-(There were 3 warnings)
