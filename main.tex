@@ -151,7 +151,7 @@ This way, we can associate a language with any isomorphism-closed class of struc
 
 As the elements of a string $\str{A}$ are linearly ordered, we can identify them with an initial segment $\{1,\ldots,n\}$ of the positive integers.  In other words, we treat a string with universe $\{1,\ldots,n\}$ and the standard order on these elements as a canonical representative of its isomorphism class.  In addition to the order predicate, we may allow other \emph{numerical predicates} to appear in formulas of our logics.  These are predicates whose meaning is completely determined by the size $n$ of the structure and the ordering of its elements.  In particular, we have ternary predicates $+$ and $\times$ for the partial addition and multiplication functions.
 
-An insight due to Lindstr\"om allows us to define a \emph{quantifier} from any isomorphism-closed class of structures (see~\cite{Ebb85}).  Specifically, let $Q$ be any isomorphism-closed class of structures in a relational vocabulary $\tau = \{ R_1,\ldots,R_l\}$, where for each $i$, $R_i$ is a relation symbol of arity $r_i$.  For any vocabulary $\sigma$ and positive integer $d$, an \emph{interpretation} of $\tau$ in $\sigma$ of dimension $d$ is a tuple of formulas $I = (\phi_1(\tup{x}_1),\dots, \phi_l(\tup{x}_l))$ of vocabulary $\sigma$ where $\phi_i$ is associated with a tuple $\tup{x}_i$ of variables of length $dr_i$.  Suppose we are given a $\sigma$-structure $\str{A}$ and an assignment $\alpha$ that takes variables to elements of $\str{A}$.  Then let $\phi_i^{\str{A},\alpha}$ denote the relation of arity $dr_i$ consisting of the set of tuples $\{\tup{a} \in |\str{A}|^{dr_i} \mid \str{A} \models \phi_i[\alpha[\tup{x}_i/\tup{a}]] \}$.  Then, the interpretation $I$ defines a map that takes a $\sigma$-structure $\str{A}$, along with an assignment $\alpha$ to the  $\tau$-structure $I(\str{A},\alpha)$ with universe $|\str{A}|^d$ where the interpretation of $R_i$ is the set $\phi_i^{\str{A},\alpha}$, seen as a relation of arity $r_i$ on $|\str{A}|^d$.
+An insight due to Lindstr\"om allows us to define a \emph{quantifier} from any isomorphism-closed class of structures (see~\cite{Ebb85}).  Specifically, let $Q$ be any isomorphism-closed class of structures in a relational vocabulary $\tau = \{ R_1,\ldots,R_l\}$, where for each $i$, $R_i$ is a relation symbol of arity $r_i$.  For any vocabulary $\sigma$ and positive integer $d$, an \emph{interpretation} of $\tau$ in $\sigma$ of dimension $d$ is a tuple of formulas $I = (\phi_1(\tup{x}_1),\dots, \phi_l(\tup{x}_l))$ of vocabulary $\sigma$ where $\phi_i$ is associated with a tuple $\tup{x}_i$ of variables of length $dr_i$.  Suppose we are given a $\sigma$-structure $\str{A}$ and an assignment $\alpha$ that takes variables to elements of $\str{A}$.  Then let $\phi_i^{\str{A},\alpha}$ denote the relation of arity $dr_i$ consisting of the set of tuples $\{\tup{a} \in |\str{A}|^{dr_i} \mid \str{A} \models \phi_i[\alpha[\tup{a}/\tup{x}_i]] \}$.  Then, the interpretation $I$ defines a map that takes a $\sigma$-structure $\str{A}$, along with an assignment $\alpha$ to the  $\tau$-structure $I(\str{A},\alpha)$ with universe $|\str{A}|^d$ where the interpretation of $R_i$ is the set $\phi_i^{\str{A},\alpha}$, seen as a relation of arity $r_i$ on $|\str{A}|^d$.
 
 Then, in a logic with quantifier $Q$, we can form formulas of the form
 $$Q \tup{x}_1\cdots \tup{x}_l (\phi_1,\ldots,\phi_l)$$
@@ -159,7 +159,7 @@ in which occurrences in the subformula $\phi_i$  of variables among $x_i$ are bo
 $Q \tup{x}_1\cdots \tup{x}_l (\phi_1,\ldots,\phi_l)$ is true in a structure $\str{A}$ under some interpretation $\alpha$ of values to the free variables if the $\tau$-structure $I(\str{A},\alpha)$ is in $Q$.  Note, we have defined what are usually called \emph{vectorized quantifiers}, in that they can take interpretations of any dimension.  Another way of formulating this is to have a separate quantifier $Q_d$ for each dimension $d$.  We switch between these notations when it causes no confusion and we call $Q_d$ the \emph{vectorization} of $Q$ of dimension $d$.
 
 
-We are particularly interested in interpretations $I$ where both $\sigma$ and $\tau$ are vocabularies of strings.  These are also known in the literature as \emph{string-to-string tranducers}. (See \cite{bojanczyk2022transducers} for an example of how transducers may have many representations.)  We further restrict ourselves to interpretations in which the definition of the linear order in $I(\str{A},\alpha)$ is always the lexicographic order on $d$-tuples of $\str{A}$ induced by the order in $\str{A}$.  This order is easily defined by a (quantifier-free) first-order formula, and we simply omit it from the description of $I$.  Hence, we only need to specify the interpretation giving the unary relations in $\tau$ and an interpretation of dimension $d$ has the simple form $(\phi_1(\tup{x}_1),\ldots, \phi_l(\tup{x}_l))$, where all tuples of variables have length $d$.  We can then assume, without loss of generality, that they are all the same tuple $\tup{x}$ and we thus write a formula with a string quantifier $Q$ as
+We are particularly interested in interpretations $I$ where both $\sigma$ and $\tau$ are vocabularies of strings.  These are also known in the literature as \emph{string-to-string tranducers} (see \cite{bojanczyk2022transducers} for an example of how transducers may have many representations.)  We further restrict ourselves to interpretations in which the definition of the linear order in $I(\str{A},\alpha)$ is always the lexicographic order on $d$-tuples of $\str{A}$ induced by the order in $\str{A}$.  This order is easily defined by a (quantifier-free) first-order formula, and we simply omit it from the description of $I$.  Hence, we only need to specify the interpretation giving the unary relations in $\tau$ and an interpretation of dimension $d$ has the simple form $(\phi_1(\tup{x}_1),\ldots, \phi_l(\tup{x}_l))$, where all tuples of variables have length $d$.  We can then assume, without loss of generality, that they are all the same tuple $\tup{x}$ and we thus write a formula with a string quantifier $Q$ as
 $$Q \tup{x} (\phi_1,\ldots,\phi_l).$$
 Observe that a quantifier applied to an interpretation of dimension $d$ will then bind $d$ variables.
 
@@ -179,7 +179,7 @@ A remark is due on our notation for numerical predicates.  All structures we con
 
 The definition of multiplication quantifier has its origin in Barrington, Immerman, and Straubing \cite[Section 5]{barrington1990uniformity} where they were referred to as monoid quantifiers; the authors proved that the languages in \textsc{DLogTime}-uniform NC${}^1$ are exactly those expressible by first-order logic with quantifiers whose truth-value is determined via multiplication in a finite monoid.  The notion was extended by Lautemann et al.~\cite{lautemann2001descriptive} to include quantifiers for the word problem over more general algebras with a binary operation.  Multiplication quantifiers over a finite monoid $M$ can be understood as generalized quantifiers corresponding to languages recognized by $M$, and here we define them as such.
 
-Fix a monoid $M$, a set $B \subseteq M$ and a positive integer $k$.  Let $\Sigma_k$ denote the set $\{0,1\}^k$ which we think of as an alphabet of size $2^k$, and fix a function $\gamma: \Sigma_k \rightarrow M$.  We extend $\gamma$ to strings in $\Sigma_k^*$ inductively in the standard way: $\gamma(wa) = \gamma(w)\gamma(a)$.  Together these define a language
+Fix a monoid $M$, a set $B \subseteq M$ and a positive integer $k$.  Let $\Sigma_k$ denote the set $\{0,1\}^k$ which we think of as an alphabet of size $2^k$, and fix a function $\gamma: \Sigma_k \rightarrow M$.  We extend $\gamma$ to strings in $\Sigma_k^*$ inductively in the standard way: $\gamma(\epsilon) = 1_M$ and $\gamma(wa) = \gamma(w)\gamma(a)$.  Together these define a language
 $$L^{M,B}_{\gamma} = \{ x \in \Sigma_k^* \mid \gamma(x) \in B\}.$$
 We can now define a \emph{multiplication quantifier}.  In the following, $\mathcal{S}_L$ denotes the class of structures associated with a language $L$ in the sense of Definition~\ref{def:associated-lang}.
 \begin{definition}\label{def:multquant}
@@ -195,9 +195,9 @@ Recall that $U_1$ denotes the two-element monoid $\{0,1\}$ with standard multipl
 \begin{definition}
     For a monoid $M$, we define the following collections of quantifiers: 
     \begin{align*}
-        \Gamma^M &= \left\{\Gamma^{M,B}_{d,\gamma} \mid B \subseteq M \text{, } \gamma : \{0,1\}^k \rightarrow M \text{, and } d,k \geq 1\right\}\\
+        \Gamma^M &= \left\{\Gamma^{M,B}_{\gamma} \mid B \subseteq M \text{, } \gamma : \{0,1\}^k \rightarrow M \text{, and } k \geq 1\right\}\\
         \Gamma^M_{d} &= \left\{\Gamma^{M,B}_{d,\gamma} \mid B \subseteq M \text{ and } \gamma : \{0,1\}^k \rightarrow M\right\}\\
-        \Gamma^M_{\gamma} &= \left\{\Gamma^{M,B}_{d,\gamma} \mid B \subseteq M \text{ and } d \geq 1\right\}\\
+        \Gamma^M_{\gamma} &= \left\{\Gamma^{M,B}_{\gamma} \mid B \subseteq M \right\}\\
         \Gamma^M_{d,\gamma} &= \left\{\Gamma^{M,B}_{d,\gamma} \mid B \subseteq M\right\}
     \end{align*}
     Finally, let $\Gamma^{\fin}$ be the collection of all multiplication quantifiers over finite monoids.
@@ -215,7 +215,6 @@ From \cite[Corollary 9.1]{barrington1990uniformity}, we know that $\text{\textsc
 \end{remark}
 
 In the absence of the arithmetic predicates for addition and multiplication, the logic of multiplication quantifiers over finite monoids only allows us to define regular languages.  Specifically, Barrington et al.~\cite{barrington1990uniformity} established that the regular languages are characterized by the logic using such quantifiers with only unary interpretations.
-We denote this logic $(\Gamma^{\fin}_1)[<]$.
 \begin{theorem}[\cite{barrington1990uniformity}]\label{thm:fologforreg}
     \emph{\textsc{Reg}} $= \mathcal{L}((\Gamma^{\fin}_1)[<])$.
 \end{theorem}
@@ -251,7 +250,7 @@ We say that a typed monoid $(M,G,E)$ is finite if $M$ is.
 
 We also need a notion of morphism between typed monoids.
 \begin{definition}\label{def:typedhom}
-    A \emph{typed monoid homomorphism} $h : (S, G, E) \rightarrow (T, H, F)$ of typed monoids is a triple $(h_1, h_2, h_3)$ where $h_1 : S \rightarrow T$ is a monoid homomorphism, $h_2 : G \rightarrow H$ is a homomorphism of Boolean algebras, and $h_3 : E \rightarrow F$ is a mapping of sets such that the following conditions hold:
+    A \emph{typed monoid homomorphism} $h$ from $(S, G, E)$ to  $(T, H, F)$ is a triple $(h_1, h_2, h_3)$ where $h_1 : S \rightarrow T$ is a monoid homomorphism, $h_2 : G \rightarrow H$ is a homomorphism of Boolean algebras, and $h_3 : E \rightarrow F$ is a mapping of sets such that the following conditions hold:
     \begin{enumerate}[\ \ \ \ (i)]
         \item For all $A \in G$, $h_1(A) = h_2(A) \cap h_1(S)$.
         \item For all $e \in E$, $h_1(e) = h_3(e)$.
@@ -261,7 +260,7 @@ Note that $h_3$ is redundant in the definition as it is completely determined by
 
 To motivate the definitions, recall that a language $L \subseteq \Sigma^*$ is recognized by a monoid $M$ if there is a homomorphism $h: \Sigma^* \rightarrow M$ and a set $B \subseteq M$ such that $L = h^{-1}(B)$.  When the monoid $M$ is infinite, the languages recognized form a rather rich collection and we aim to restrict this in two ways.  First, $B$ cannot be an arbitrary set but must be an element of the algebra of types.  Secondly, the homomorphism $h$ must map the letters in $\Sigma$ to units of the typed monoid.  Formally, we have the following definition.
 \begin{definition}\label{def:langrecognitiontyped}
-    A typed monoid $T = (M, G, E)$ \emph{recognizes} a language $L \subseteq \Sigma^+$ if there exists a typed monoid homomorphism from $(\Sigma^+, L, \Sigma)$ to $T$. We let $\mathcal{L}(T)$ denote the set of languages recognized by $T$.
+    A typed monoid $T = (M, G, E)$ \emph{recognizes} a language $L \subseteq \Sigma^*$ if there exists a typed monoid homomorphism from $(\Sigma^*, L, \Sigma)$ to $T$. We let $\mathcal{L}(T)$ denote the set of languages recognized by $T$.
 \end{definition}
 
 When the base monoid of a typed monoid is finite, we recover the classical definition of a recognition.  Hence, the languages recognized by finite typed monoids are necessarily regular.
@@ -308,9 +307,9 @@ We can formulate the notion of the \emph{syntactic typed monoid} of a language $
 
 Recall that ${\sim_L}$ is the syntactic congruence of $L$, defined in Definition \ref{def:syncong}.
 \begin{definition}
-    For a language $L \subseteq \Sigma^+$, the \emph{syntactic typed monoid of $L$}, denoted $\syn(L)$, is the typed monoid $(\Sigma^+, L, \Sigma)/{\sim_L}$. 
+    For a language $L \subseteq \Sigma^*$, the \emph{syntactic typed monoid of $L$}, denoted $\syn(L)$, is the typed monoid $(\Sigma^*, L, \Sigma)/{\sim_L}$. 
 \end{definition} 
-    We also get the \emph{canonical typed monoid homomorphism}, $\eta_L : (\Sigma^+, L, \Sigma) \rightarrow \syn(L)$ induced by the syntactic homomorphism of $L$.
+    We also get the \emph{canonical typed monoid homomorphism}, $\eta_L : (\Sigma^*, L, \Sigma) \rightarrow \syn(L)$ induced by the syntactic homomorphism of $L$.
 
 
 We now turn to the relationship between the expressive power of logics with multiplication quantifiers and typed monoids.  A formal association is defined through the definition below.
@@ -329,32 +328,31 @@ In case it has just two types, then it only recognizes the empty language or the
 
 We now want to state the formal connection between the languages expressible in a logic with a collection of quantifiers and the corresponding class of typed monoids.  For this we need the notion of the \emph{ordered strong block product closure} of a set of typed monoids $T$, which we denote $\mathrm{sbpc}_<(T)$.  The definition is technical and can be found in~\cite{krebs2008typed} and is also reproduced in the appendix for ease of reference.
 
-From \cite[Theorem 4.14]{krebs2008typed}, we then get the following relationship between logics and algebras:\footnote{The theorem in \cite{krebs2008typed} is actually more general as it accounts for more predicates than just order; however, for our purposes, order alone suffices.}
+From \cite[Theorem 4.14]{krebs2008typed}, we then get the following relationship between logics and algebras:\footnote{The theorem in \cite{krebs2008typed} is actually more general as it allows for more predicates than just order; however, for our purposes, order alone suffices.}
 \begin{theorem}\label{thm:logcircalgequiv}
      Let $\mathfrak{Q}$ be a collection of quantifiers and $\bm{Q}$ the corresponding set of typed quantifier monoids for $\mathfrak{Q}$. Then, \(
         \mathcal{L}((\mathfrak{Q}_1)[<]) = \mathcal{L}(\emph{sbpc}_<(\bm{Q}))
-    \). Recall that ``$\mathfrak{Q}_1$'' here is used to denote the restriction of our logic to only uses where quantifiers are applied to interpretations of dimension $1$.
-\end{theorem}
+    \). 
+  \end{theorem}
+  Recall that ``$\mathfrak{Q}_1$'' here is used to denote the restriction of our logic to only uses where quantifiers are applied to interpretations of dimension $1$.
 
 \section{Simplifying Multiplication Quantifiers}\label{sec:mult}
 
-To use Theorem~\ref{thm:logcircalgequiv} to obtain an algebraic characterization of $\NC^1$, we need to characterize this class in a logic with only unary quantifiers, i.e.\ where quantifiers are only applied to unary interpretations.  Remark~\ref{thm:s5logfornc1} gives us a characterization using first-order quantifiers and $\Gamma^{S_5}$.  Our aim in this section is to show that we can eliminate the use of interpretations of dimension higher than $1$ in this logic.  As a first step, we show that we can restrict ourselves to quantifiers $\Gamma^{{S_5},s}_{\delta}$ for a \emph{fixed} function $\delta$.
+To use Theorem~\ref{thm:logcircalgequiv} to obtain an algebraic characterization of $\NC^1$, we need to characterize this class in a logic with only unary quantifiers, i.e.\ where quantifiers are only applied to unary interpretations.  Remark~\ref{thm:s5logfornc1} gives us a characterization using first-order quantifiers and $\Gamma^{S_5}$.  Our aim in this section is to show that we can eliminate the use of interpretations of dimension higher than $1$ in this logic.  As a first step, we show that we can restrict ourselves to quantifiers $\Gamma^{{S_5},B}_{\delta}$ for a \emph{fixed} function $\delta$.
 
 \begin{lemma}\label{lem:finitetuple}
     For every finite monoid $M$, there exists a function $\delta : \{0,1\}^{|M|} \rightarrow M$ such that for every $B \subseteq M$ and $\gamma : \{0,1\}^k \rightarrow M$, the quantifier $\Gamma^{M,B}_{\gamma}$ is definable in $(\Gamma^{M,B}_{\delta})[\varnothing]$.
   \end{lemma}
   \begin{proof}
-    We prove this in the case that $B = \{s\}$ is a singleton. Because $M$ is finite, $B$ is too. Therefore, we may reduce any application of $\Gamma^{M,B}_\gamma$ to a disjunction of formulas applying $\Gamma^{M,s}_{\gamma}$ for each $s \in B$.
-
-    Recall that $\Gamma^{M,s}_{\gamma}$ is the class of structures $\str{A}$ in a vocabulary $\tau$ with one binary relation $<$ and $k$ unary relations $R_1,\ldots,R_k$ such that $\gamma(w_{\str{A}}) = s$ where $w_{\str{A}}$ is the string associated with $\str{A}$ as in Def.~\ref{def:associated}.
+    Recall that $\Gamma^{M,B}_{\gamma}$ is the class of structures $\str{A}$ in a vocabulary $\tau$ with one binary relation $<$ and $k$ unary relations $R_1,\ldots,R_k$ such that $\gamma(w_{\str{A}}) \in B$ where $w_{\str{A}}$ is the string associated with $\str{A}$ as in Def.~\ref{def:associated}.
 
         Let $c = |M|$, fix an enumeration $\{s_1,\ldots,s_c\}$ of $M$, and let $z$ be an arbitrary element of $M$.  Let $\delta : \{0,1\}^c \rightarrow M$ be the function where $\delta(w) = s_i$ if $w$ is the one-hot encoding of $i$ and $\delta(w) = z$ otherwise (that is, if the number of occurrences of the symbol $1$ in the string $w$ is not exactly one).
 
         For each $t \in M$, define the formula $\psi_t(x)$ as follows:
         $$ \psi_t(x) : = \bigvee_{w \in \{0,1\}^k : \gamma(w) = t} \left( \bigwedge_{i \in [k] : w_i = 1} R_i(x) \land \bigwedge_{i \in [k] : w_i = 0} \neg R_i(x) \right).$$
 
-          It is easy to see that in a $\tau$-structure $\str{A}$, we have $\str{A} \models \psi_t[a]$ if, and only if, the $a$th element of $w_{\str{A}}$ is mapped by $\gamma$ to $t$.  Thus, in particular, the formulas $\psi_{s_1},\ldots,\psi_{s_c}$ define disjoint sets that partition the universe of $\str{A}$.  We now claim that the quantifier $\Gamma^{M,s}_{\gamma}$ is defined by the formula:
-          $$ \Gamma^{M,s}_{\delta}(\psi_{s_1}\ldots,\psi_{s_c}).$$
+        It is easy to see that in a $\tau$-structure $\str{A}$, we have $\str{A} \models \psi_t[a]$ if, and only if, the $a$th element of $w_{\str{A}}$ is mapped by $\gamma$ to $t$.  Thus, in particular, the formulas $\psi_{s_1},\ldots,\psi_{s_c}$ define disjoint sets that partition the universe of $\str{A}$.  We now claim that the quantifier $\Gamma^{M,B}_{\gamma}$ is defined by the formula:
+          $$ \Gamma^{M,B}_{\delta}(\psi_{s_1}\ldots,\psi_{s_c}).$$
 
           To see this, let $I$ denote the unary interpretation $(\psi_{s_1}\ldots,\psi_{s_c})$ so that $w_{I(\str{A})}$ is a string over $\{0,1\}^c$.  By the fact that the sets defined by the formulas $\psi_{s_1},\ldots,\psi_{s_c}$ partition $|\str{A}|$ it follows that each letter of $w_{I(\str{A})}$ is a vector in $\{0,1\}^c$ with exactly one $1$.  Indeed, the $a$th element of $w_{I(\str{A})}$ is the one-hot encoding of $i$ precisely if $\str{A} \models \psi_{s_i}[a]$.  Since $\delta$ takes the one-hot encoding of $i$ to $s_i$, we have for any $a \in |\str{A}|$
           \begin{align*}
@@ -385,9 +383,9 @@ Again, fix an enumeration $M = \{s_1,\ldots,s_c\}$ of $M$ and recall that $\delt
     where $\theta_i$ is the formula
     \[ \theta_i(x_i) := \Gamma_{\delta}^{M,s_i}x_2,\ldots,x_d (\phi_1(x_1,\ldots,x_d),\ldots,\phi_c(x_1,\ldots,x_d)).\]
 
-    Thus, $\Phi_1$ is obtained by the application of $ \Gamma_{\delta}^{M,B}$ to a unary interpretation $$I_1 := (\theta_1(x_1),\ldots,\theta_c(x_1))$$ where each formula $\theta_i$ is obtained as the application of a quantifier $ \Gamma_{\delta}^{M,s}$ to an interpretation of dimension $d-1$ defined by formulas of $(\mathfrak{Q} \cup \Gamma^{M}_{1,\delta})[\mathfrak{N}]$.  Thus, by the inductive hypothesis, each $\theta_i$ is equivalent to a formula of $(\mathfrak{Q}  \cup \Gamma^{M}_{1,\delta})[\mathfrak{N}]$ and we would be done.
+    Thus, $\Phi_1$ is obtained by the application of $ \Gamma_{\delta}^{M,B}$ to a unary interpretation $$I_1 := (\theta_1(x_1),\ldots,\theta_c(x_1))$$ where each formula $\theta_i$ is obtained as the application of a quantifier $ \Gamma_{\delta}^{M,s}$ to an interpretation of dimension $d-1$ defined by formulas of $(\mathfrak{Q} \cup \Gamma^{M}_{1,\delta})[\mathfrak{N}]$.  Thus, by the inductive hypothesis, each $\theta_i$ is equivalent to a formula of $(\mathfrak{Q}  \cup \Gamma^{M}_{1,\delta})[\mathfrak{N}]$ and we are done.
 
-      It remains to show that $\Phi$ and $\Phi_1$ are equivalent with respect to any string structure $\str{A}$.  To see this, fix an assignment $\alpha$ of values in $|\str{A}|$ to the free variables of $\Phi$.  We need to show that $\str{A} \models \Phi[\alpha]$ if, and only if, $\str{A} \models \Phi_1[\alpha]$.  Let $n$ be the length of $\str{A}$ and assume without loss of generality that the elements of $|\str{A}|$ are $\{1,\ldots,n\}$ in that order.
+      It remains to show that $\Phi$ and $\Phi_1$ are equivalent on any string structure $\str{A}$.  To see this, fix an assignment $\alpha$ of values in $|\str{A}|$ to the free variables of $\Phi$.  We need to show that $\str{A} \models \Phi[\alpha]$ if, and only if, $\str{A} \models \Phi_1[\alpha]$.  Let $n$ be the length of $\str{A}$ and assume without loss of generality that the elements of $|\str{A}|$ are $\{1,\ldots,n\}$ in that order.
 
       Now, $w_{I(\str{A},\alpha)}$ denotes the string associated with the structure $I(\str{A},\alpha)$ and note that this is a string of length $n^d$ whose elements are indexed by $d$-tuples of elements of $\str{A}$.  By definition, $\str{A} \models \Phi[\alpha]$ precisely if $\delta(w_{I(\str{A},\alpha)}) \in B$.  We can also regard $I$ as an interpretation of dimension $d-1$ obtained by treating the variable $x_1$ as a parameter.  We write $w_{I(\str{A},\alpha[a/x_1])}$ for the string of length $n^{d-1}$ that results from applying this interpretation with the assignment of $a$ to the variable $x_1$.  Since the ordering of $d$-tuples in $w_{I(\str{A},\alpha)}$ is lexicographic, we have
 \[
@@ -417,7 +415,7 @@ Again, fix an enumeration $M = \{s_1,\ldots,s_c\}$ of $M$ and recall that $\delt
          For every finite monoid $M$, there exists a function $\delta : \{0,1\}^{|M|} \rightarrow M$ such that for any collection of quantifiers $\mathfrak{Q}$ and any set $\mathfrak{N}$ of numerical predicates, every formula of $(\mathfrak{Q} \cup \Gamma^M)[\mathfrak{N}]$ is equivalent to a formula of $(\mathfrak{Q} \cup \Gamma^M_{1,\delta})[\mathfrak{N}]$.
    \end{theorem}
    \begin{proof}
-     Let $\phi$ be any formula of $(\mathfrak{Q}  \cup \Gamma^M)[\mathfrak{N}]$.  By Lemma~\ref{lem:finitetuple} we can replace all occurrences of quantifiers $\Gamma^{M,B}_{\gamma}$ by their definitions using $\Gamma^{M,B}_{\delta}$ to get  formula $\phi'$ of $(\mathfrak{Q}  \cup \Gamma^M_{\delta})[\mathfrak{N}]$ equivalent to $\phi$.  Finally, by Lemma~\ref{lem:nesting}, there is a formula of $(\mathfrak{Q}  \cup \Gamma^M_{1,\delta})[\mathfrak{N}]$ equivalent to $\phi'$.
+     Let $\phi$ be any formula of $(\mathfrak{Q}  \cup \Gamma^M)[\mathfrak{N}]$.  By Lemma~\ref{lem:finitetuple} we can replace all occurrences of quantifiers $\Gamma^{M,B}_{\gamma}$ by their definitions using $\Gamma^{M,B}_{\delta}$ to get a  formula $\phi'$ of $(\mathfrak{Q}  \cup \Gamma^M_{\delta})[\mathfrak{N}]$ equivalent to $\phi$.  Finally, by Lemma~\ref{lem:nesting}, there is a formula of $(\mathfrak{Q}  \cup \Gamma^M_{1,\delta})[\mathfrak{N}]$ equivalent to $\phi'$.
 \end{proof}
 
 Note that for a finite monoid $M$, while $\Gamma^{M}$ and $\Gamma^{M}_1$ are infinite sets, $\Gamma^{M}_{1,\delta}$ is a finite set.
@@ -428,13 +426,9 @@ Therefore, this gives us a logic characterizing \textsc{DLogTime}-uniform NC${}^
     \]
 \end{corollary}
 
-\noindent This will simplify our construction of an algebra capturing \textsc{DLogTime}-uniform NC${}^1$.
+\noindent This simplifies our construction of an algebra capturing \textsc{DLogTime}-uniform NC${}^1$.
 
-Moreover, this theorem serves as an alternative proof of Theorem \ref{thm:unaryfologforreg} (\cite[Theorem 5.1]{lautemann2001descriptive}) which, unlike the original proof, does not rely on the use of automata:
-\begin{corollary}\label{cor:reglogicbetter}
-    \emph{\textsc{Reg}} $= \mathcal{L}((\Gamma^{\fin})[<]) = \mathcal{L}((\Gamma^{\fin}_1)[<])$.
-\end{corollary}
-\noindent and, furthermore, resolves an open question from \cite{lautemann2001descriptive}:
+Moreover, this theorem serves as an alternative proof of Theorem \ref{thm:unaryfologforreg} (\cite[Theorem 5.1]{lautemann2001descriptive}) which, unlike the original proof, does not rely on the use of automata.  Furthermore, resolves an open question from \cite{lautemann2001descriptive}:
 \begin{corollary}\label{cor:openquestionfromlautemann}
     $\mathcal{L}((\Gamma^{\fin})[+,\times]) = \mathcal{L}((\Gamma^{\fin}_1)[+,\times])$
 \end{corollary}
@@ -443,9 +437,10 @@ Moreover, this theorem serves as an alternative proof of Theorem \ref{thm:unaryf
 \section{The Algebraic Characterization}\label{sec:alg}
 
 
-Now that we have a first-order logic with only quantifiers containing interpretations of unary dimension capturing \textsc{DLogTime}-uniform NC${}^1$, we are closer to applying Theorem \ref{thm:logcircalgequiv} to construct an algebra for it. We now just need to convert the logic to a form whose only numerical predicate is $<$ without introducing quantifiers of a higher dimension.
+Now that we have an extension of first-order logic capturing \textsc{DLogTime}-uniform NC${}^1$ using only quantifiers acting on unary interpretations of unary dimension, we are able to apply Theorem~\ref{thm:logcircalgequiv} to construct an algebra for it.  We just need to
+obtain an equivalent logic using only the numerical predicate $<$ without introducing quantifiers of higher dimension.
 
-To do this, we follow what was done for the construction of an algebra for $\TC^0$. First, we note that the quantifier \text{Maj} is true if the majority of the assignments to the bound variable satisfy the formula and the quantifier \text{Sq} which is true if the number of assignments to the bound variable satisfying the formula is a positive square number. In the below, we always assume the use of unary interpretations with these quantifiers.
+To do this, we follow the construction of an algebra for $\TC^0$.  The \emph{majority} quantifier $\text{Maj}$ is the collection of strings over the alphabet $\{0,1\}$ in which at least half of the symbols are $1$.  The \emph{square} quantifier $\text{Sq}$ is the collection of strings over the alphabet $\{0,1\}$ in which the number of $1$s is a positive square number (i.e.\ and element of $\mathbb{S}$).  In the logics we define below, we always use these quantifiers only with unary interpretations.
 
 The following lemma displays some known results about the expressiveness of these quantifiers:
 \begin{lemma}\label{lem:superhelperalogtime}
@@ -483,9 +478,11 @@ Bringing everything together, we get the following algebraic characterization of
 
 \section{Conclusion}\label{sec:conc}
 
-In this work, we constructed a class of typed monoids exactly recognizing \textsc{DLogTime}-uniform NC${}^1$. To do so, we proved results regarding the expressive power of logics with quantifiers defined over finite monoids. Namely, we showed that changing the dimension of the quantifier does not increase or decrease the expressive power of the logic it is used in, regardless of numerical predicates available. Therefore, we were able to provide a logic characterizing \textsc{DLogTime}-uniform NC${}^1$ which only uses unary quantifiers. We then used this logic to construct an algebraic characterization of \textsc{DLogTime}-uniform NC${}^1$. This result marks the second complexity class to be characterized in a such a way, with the first being \textsc{DLogTime}-uniform TC${}^0$ \cite{krebs2007characterizing}.
+In this work, we constructed a class of typed monoids exactly recognizing \textsc{DLogTime}-uniform NC${}^1$. To do so, we proved results regarding the expressive power of logics with quantifiers defined over finite monoids.  Specifically, we established that the expressive power is not changed by restricting the dimension of the interpretations on which the quantifiers act, regardless of which numerical predicates are available.
 
-In future work, we intend to construct similar algebraic characterization of other complexity classes beyond NC${}^1$. Doing so will be aided by the construction of new algebraic tools analogous to how the block product is used to characterize first-order quantification over interpretations of degree one but for first-order quantification over interpretations of higher degrees and for higher order quantifiers.
+Therefore, we were able to provide a logic characterizing \textsc{DLogTime}-uniform NC${}^1$ which only uses unary quantifiers and use this logic to construct an algebraic characterization of \textsc{DLogTime}-uniform NC${}^1$.  This result marks the second circuit complexity class to be characterized in a such a way, with the first being \textsc{DLogTime}-uniform TC${}^0$ \cite{krebs2007characterizing}.
+
+An interesting future direction would be to  construct similar algebraic characterization of other complexity classes beyond NC${}^1$.  It seems this would require the development of new algebraic tools.  In particular, the block product is a key tool used to characterize first-order quantification and more generally quantification over interpretations of dimension one.  To extend the work to other complexity classes, it would be worthwhile investigating other product constructions that might similarly relate to quantification on interpretations of higher dimension as well as higher-order quantifiers.
 
 
 %%
